@@ -1,0 +1,39 @@
+.table-responsive
+  width: 100%;
+  overflow-x: auto;
+$border = #dee2e6
+table
+  border-collapse: collapse
+  //border-spacing: 0
+  width: 100%
+  margin-bottom 2em
+tr
+  border-bottom: 1px solid $border
+th
+  text-align: left
+  border-bottom: 3px solid $border
+td,th
+  padding: .2rem .5rem
+
+.td_buttonGroup
+  width: 1%
+
+.table_col
+  td,th
+    border-right: 1px solid $border
+    &:last-child
+      border-right: 0
+
+
+.table_distance
+  td,th
+    padding: 1rem 1.5rem
+.table_striped
+  tbody tr:nth-of-type(odd)
+    background-color: rgba(0,0,0,.05);
+
+
+
+
+
+
