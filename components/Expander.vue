@@ -35,6 +35,22 @@ export default {
 
 <style lang="stylus" scoped>
 
+.Expander__trigger
+  position relative
+  &:before {
+      transition: opacity .1s linear, transform .35s ease-in-out;
+      position: absolute;
+      border-bottom: 1px solid currentColor;
+      content: '';
+      width: 100%;
+      left: 0;
+      bottom: 0;
+  }
+  &:not(:hover)::before {
+      transform: scaleX(0);
+      opacity: 0;
+  }
+
 
 .Expander
   &__trigger

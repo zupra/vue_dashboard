@@ -4,7 +4,7 @@
     span
       | выбрать цвет &nbsp;
       input(type="color" v-model="bgColor")
-    .btn(v-show="bgColor" @click="bgColor=''") сбросить
+      .btn(v-show="bgColor" @click="bgColor=''") сбросить
   section(:style="{ backgroundColor: bgColor}")
     - for( n=1; n< 25;n++ )
       .whiteframe(class="whiteframe-"+n+"dp")=n+"dp"

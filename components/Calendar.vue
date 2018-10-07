@@ -7,7 +7,7 @@
   .calendar
     .head
       b.ltMonth(@click='ltMonth') «
-      b {{months[currMonth]}} {{currYear}}
+      b.currMonth {{months[currMonth]}} {{currYear}}
       b.gtMonth(@click='gtMonth') »
     .week
       b(v-for='day in days') {{day}}
@@ -117,7 +117,7 @@ time
   &:hover:not(.currDay):not(.CURR)
     background #dee2e6
 .currDay
-  background rgba(red, .2)
+  background #EEE
   position relative
 
 .CURR
@@ -127,14 +127,18 @@ time
 
 .head
   user-select none
-  background #EEE
+  background #477dca
+  color #FFF
   justify-content space-between
   line-height $time
+.currMonth
+  flex 1
 .ltMonth
 .gtMonth
+  //background #3498db
   cursor pointer
   width $time
   &:hover
-    background #EEE - 5%
+    background #477dca - 20
 
 </style>

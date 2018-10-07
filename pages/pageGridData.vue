@@ -35,9 +35,6 @@ export default {
 
 <style lang="styl">
 
-.MainFullWidth
-  margin: 1em
-
 
 .Grid
   display: grid
@@ -56,7 +53,6 @@ export default {
   display: flex
 .box
   flex-direction: column
-
 
 .flex
   flex 1

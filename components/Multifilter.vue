@@ -2,7 +2,9 @@
 
 .Multifilter
   .Multifilter-search
-    input.Search.lg(v-model="keyword", placeholder="Искать в списке")
+    .Search-hasReset
+      .Search_Reset(v-show="keyword", @click="keyword=''")
+      input.Search.lg(v-model="keyword", placeholder="Искать в списке")
 
   .Multifilter-list
     label(v-for="item in filteredData", :key="item")
@@ -49,7 +51,6 @@ export default {
 
 <style lang="stylus">
 
-
 .Multifilter
   box-shadow: 0 1px 8px rgba(0,0,0,.25);
   width 240px
@@ -61,7 +62,7 @@ export default {
     input
       width 100%
   &-footer
-    padding-top .3em
+    padding-top 5px
     overflow: auto;
     .btn
       margin-top: .5em;
@@ -95,8 +96,8 @@ export default {
   .Selected
     font-size 10px
     i
-      border 1px solid #dee2e6
-      background #dee2e6
+      border 2px solid #dee2e6
+      //background #dee2e6
       display inline-block
       padding 0 3px
       line-height 1.6em
@@ -106,15 +107,15 @@ export default {
       margin-top 3px
       position relative
       &:before
+        content ""
         position absolute
-        right -.3em
-        top -.7em
-        content '✘'
+        right -5px
+        top -6px
+        width 10px
+        height 10px
+        //border-radius 50%
+        background #FFF url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><g stroke='#ed5565' stroke-width='4' stroke-linecap='round'><line x1='3' y1='3' x2='17' y2='17'/><line x1='3' y1='17' x2='17' y2='3'/></g></svg>") center/60% no-repeat
       &:hover
         background #EEE
-        &:before
-          color #ed5565
-
-
 
 </style>
