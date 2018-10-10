@@ -3,15 +3,16 @@
 #layout
   #topNav
     // .btn#burger(@click="showSidebar = !showSidebar") ≡
-    svg(
-        @click="showSidebar = !showSidebar", 
-        width='90', 
-        height='44', 
-        style="cursor:pointer;user-select:none;"
-      )
-      rect(x="14", y="6", width="32", height="32", fill="rgba(255, 255, 255, .7)", stroke='gold', stroke-width='2')
-      use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#burgerSVG')
-      text(x="40",y="28") Menu
+    #burger
+      svg(
+          @click="showSidebar = !showSidebar",
+          width='90',
+          height='44',
+          style="cursor:pointer;user-select:none;"
+        )
+        rect(x="14", y="6", width="32", height="32", fill="rgba(255, 255, 255, .7)", stroke='gold', stroke-width='2')
+        use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#burgerSVG')
+        text(x="40",y="28") Menu
     svg(style='display: none', viewbox='0 0 44 44', xmlns='http://www.w3.org/2000/svg')
       symbol#burgerSVG
         g(stroke='#444', stroke-width='2')
@@ -21,7 +22,7 @@
     //- breadcrumbs
     .button-group
       each item in ['Войти','Настройки','Профиль']
-        .btn.outline #{item}
+        .btn #{item}
 
 
 
@@ -99,6 +100,10 @@ $zIndex = 10
 
 #layout
   display flex
+  /* хром, сафари */
+  &::-webkit-scrollbar { width: 0; }
+  /* ie 10+ */
+  & { -ms-overflow-style: none; }
 
 $sidebar()
   @media (max-width 800px)
@@ -130,7 +135,7 @@ $sidebar()
   $sidebar()
   padding-top: 3em
 
-  background-color #f7f7f7 // $blue
+  background-color #F3F3F4 //#f7f7f7
   // box-shadow 0 0 15px #262831
   box-shadow: 0 1em 7em -2em #000
   // color #FFF
@@ -154,9 +159,9 @@ $sidebar()
   width: 100%
   z-index: 5;
   height: 3em;
-  background: #FFF;
-  box-shadow: 0 5px 7px 0 rgba(#999,.2);
-  
+  background: #777
+  //box-shadow: 0 5px 7px 0 rgba(#999,.2);
+
   padding .5em 1em
   display flex
   justify-content space-between

@@ -74,8 +74,10 @@ export default {
 <style lang="stylus">
 .Radio
   &_head
-    background: #4281A4;
-    padding: 1em;
+    background: #4281A4
+    padding: .5em
+    margin 0 1em -1em
+
 
 
 .audioControl

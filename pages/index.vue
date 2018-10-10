@@ -1,5 +1,8 @@
 <template lang="pug">
 .Wrap
+  IconsTest
+  hr
+  ui-select-test
   <divider title="Цвет" />
   #palette
     each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#3c4858']
@@ -10,17 +13,23 @@
   shadow-poligon
 
   .flex-row.items-start
-    nav.Card
-      each link in ['Mark as important','Create event','Restore contacts']
-        a(href="#")= link
-      a.active(href="#") Lorem ipsum
-    nav.Card
-      each item in [1,2,3,4,5]
-        a(href="#") link_#{item}
-    ul.Card
-      li.active На Волне Yum.fm
-      each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
-        li #{item}
+    div
+      .Tag nav>a
+      nav.Card
+        each link in ['Mark as important','Create event','Restore contacts']
+          a(href="#")= link
+        a.active(href="#") Lorem ipsum
+    div
+      .Tag nav>a
+      nav.Card
+        each item in [1,2,3,4,5]
+          a(href="#") link_#{item}
+    div
+      .Tag ul>li
+      ul.Card
+        li.active На Волне Yum.fm
+        each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
+          li #{item}
 
   <divider title="Calendar" />
   calendar
@@ -40,6 +49,7 @@
 
 
 <script>
+import UiSelectTest from '~/components/UiSelectTest.vue'
 import MultifilterTest from '~/components/MultifilterTest.vue'
 import ModalTest from '~/components/ModalTest.vue'
 import ExpanderTest from '~/components/ExpanderTest.vue'
@@ -48,6 +58,7 @@ import UiTest from '~/components/UiTest.vue'
 import Dropdown from '~/components/Dropdown.vue'
 import ShadowPoligon from '~/components/ShadowPoligon.vue'
 import Calendar from '~/components/Calendar.vue'
+import IconsTest from '~/components/IconsTest.vue'
 
 export default {
   components: {
@@ -58,7 +69,9 @@ export default {
     MultifilterTest,
     Dropdown,
     ShadowPoligon,
-    Calendar
+    Calendar,
+    UiSelectTest,
+    IconsTest
   },
   data() {
     return {}

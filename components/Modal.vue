@@ -6,7 +6,10 @@
       slot
     .actions
       slot(name='actions')
-        button.btn.red(@click='close') close
+        button.btn(
+          v-show="!freezing"
+          @click='close'
+        ) close
 
 </template>
 
@@ -16,6 +19,10 @@ export default {
     show: {
       type: Boolean,
       required: true
+    },
+    freezing: {
+      type: Boolean,
+      default: false
     },
     mod: {
       type: String,
@@ -41,8 +48,8 @@ export default {
   },
   methods: {
     close() {
-      this.$emit('update:show', false)
-      document.body.style = ''
+      !this.freezing && this.$emit('update:show', false)
+      // document.body.style = ''
     }
   }
 }
