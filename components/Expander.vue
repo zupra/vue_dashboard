@@ -1,13 +1,12 @@
 <template lang="pug">
 .Expander
-  .Expander__trigger(@click='open = !open')
-
-    svg.Expander__trigger-Icon(:class='{open:open}', width='40', height='12', stroke='cornflowerblue')
+  .Expander__trigger(@click="open=!open", :class="open?'active':'beforeBorder'")
+    svg.Expander__trigger-Icon(:class="{open:open}", width='40', height='12', stroke='cornflowerblue')
       polyline(points='12,2 20,10 28,2', stroke-width='3', fill='none')
     | {{ title }}
 
 
-  transition(:name='animation')
+  transition(:name="animation")
     .Expander__body(v-show='open')
       slot
 </template>
@@ -35,16 +34,16 @@ export default {
 
 <style lang="stylus" scoped>
 
-.Expander__trigger
+.beforeBorder
   position relative
   &:before {
-      transition: opacity .1s linear, transform .35s ease-in-out;
+      transition: opacity .1s linear, transform .5s ease-in-out;
       position: absolute;
       border-bottom: 1px solid currentColor;
       content: '';
       width: 100%;
       left: 0;
-      bottom: 0;
+      bottom: -1px;
   }
   &:not(:hover)::before {
       transform: scaleX(0);
@@ -56,11 +55,13 @@ export default {
   &__trigger
     cursor pointer
     padding .7rem .5rem
-    border-top 1px solid #efefef
-    //transition all .4s
-    //background #dee2e6
+    border-bottom 1px solid #efefef
+
     &:hover
       color #477dca
+    &.active
+      //color #777
+      border-bottom-color #477dca
 
     &-Icon
       transition transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)

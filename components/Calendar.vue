@@ -151,6 +151,7 @@ $time = ($width / 7)
 
 
 .Calendar
+  background #FFF
   // box-shadow 0 1em 6em -1em #000
   box-shadow: 0 0 20px rgba(#333 .5)
   width: $width

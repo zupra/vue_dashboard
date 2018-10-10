@@ -83,6 +83,7 @@ export default {
   &_input
     background #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='12'><polygon points='0,0 12,0 6,12' fill='orange'/></svg>") 100% no-repeat;
     cursor pointer
+    padding-right: 22px !important
 
   &_list
     margin 0 //reset .Card
