@@ -1,48 +1,25 @@
+$shadow_btn_button-group()
+  // box-shadow: 0 2px 5px 0 rgba(#000, .2), 0 1px 10px 2px rgba(#444, .2)
+  box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+
 $border-input =  #bdc3c7
 
-//== helperS ==
-.form-group
-  display flex
-  flex-direction column
-  //!FIXME
-  >*
-    width 240px
-    margin-bottom 1em
-.checked-group
-  label
-    display block
-
-.form-line
-  user-select none
-  margin -.3em
-  &+&
-    margin-top .7em
-  .btn, button, input, select
-    margin .35em
-  label
-    white-space: nowrap
-    padding-right .7em
+@import '_Form__Search'
+@import '_Form__Helpers'
+@import '_Form__Chekbox&Radio'
+@import '_Form__Select'
 
 
-//helper-el
-fieldset
-  border 1px solid #EEE
-  padding 1em 1.4em 1.4em
-  margin 1em 0
-legend
-  padding 0 .3em
-label
-  user-select none
-  cursor pointer
-  white-space nowrap
-  display inline-table
-
-input[type=color]
-  height: 3em;
+input[type="color"]
+input[type="range"]
   vertical-align: middle;
+input[type="color"]
+  height: 3em;
   background: transparent;
   border: 0
   cursor pointer
+input[type="file"]
+  background-color: #FFF
 
 
 
@@ -57,12 +34,9 @@ select:not([multiple]):-moz-focusring
 
 .disabled
 [disabled]
-  //cursor wait !important
   pointer-events none
-  // background #EEE !important
-  // color #999 !important
-  // border-color transparent !important
   opacity .5
+
 
 $size_Mod()
   &.sm
@@ -72,70 +46,46 @@ $size_Mod()
   &.xl
     font-size 1.2rem
 
+
 $base_form_el_size()
   line-height: 1.15
   padding .6em 1em
-input, .btn, button, select, textarea
-  //font: inherit
-  font-size .8rem
+input
+.btn, button
+select
+textarea
+  font-size .8rem //font: inherit
   $size_Mod()
   outline: 0
 
+
 //input box-shadow
+input:not([type="range"]):not([type="color"])
 select
-input:not([type="range"]):not([type="color"]):not([type=reset]):not([type=submit])
+textarea
+  //background-color: #FFF
   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)
 
-.select, select:not([multiple]),
-textarea,
-.btn, button,
+//input el_size
 input:not([type=color]):not([type=range]):not([type=radio]):not([type=checkbox])
+.select, select:not([multiple])
+textarea
+.btn, button
   $base_form_el_size()
   border-radius .3em
 
 
-
-.select, select,
-textarea,
-input:not([type=color]):not([type=range]):not([type=radio]):not([type=checkbox]):not([type=reset]):not([type=submit])
-
+//input focus
+input:not([type=color]):not([type=range]):not([type=radio]):not([type=checkbox])
+.select, select
+textarea
   border: 1px solid $border-input
   &:focus
     border-radius: 0
     border-top-color: $link
-    //box-shadow: 0 2px 6px rgba($link, .3), 0 0 10px rgba(#000,.1);
 
 
-$select()
-  appearance: none
-  cursor: pointer
-  background #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='12'><polygon points='0,0 12,0 6,12' fill='orange'/></svg>") 100% no-repeat;
-  padding-right 2em //for icon
-select:not([multiple]),
-.select
-  $select()
-select[multiple]
-  cursor: pointer
-  padding .2em
-  option
-    padding .2em
-    padding-left .8em
-    &:first-child
-      background #EFEFEF
-
-
-.Search
-  padding-left: 2.4em !important;
-  background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='13' height='13'><g stroke-width='2' stroke='blueviolet'><circle cx='5' cy='5'  r='4' style='fill:none;' /><line x1='9' y1='9' x2='13' y2='13' /></g></svg>") 1em 50% no-repeat
-
-
-
-
-// ====== button / button-group ===============
-$shadow()
-  // box-shadow: 0 2px 5px 0 rgba(#000, .2), 0 1px 10px 2px rgba(#444, .2)
-  box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
-
+// === BUTTON ===
 $fill_Mod()
   &.fill
     &.lite
@@ -156,9 +106,41 @@ $fill_Mod()
       &:hover
         background $orange + 20% //#eea236 - 10
 
+$flat_Mod()
+  &.flat
+    //reset
+    background-color: transparent;
+    box-shadow none
+    color #444
+    text-transform uppercase
+    font-weight 500
+    &:hover
+      background rgba(#777, .2)
+    &.blue
+      color $blue
+      &:hover
+        background: rgba($blue, .2)
+    &.red
+      color $red
+      &:hover
+        background: rgba($red, .2)
+    &.green
+      color $green
+      &:hover
+        background: rgba($green, .2)
+    &.orange
+      color $orange
+      &:hover
+        background: rgba($orange, .2)
+
+
 $outline_Mod()
   &.outline
-    border-color: currentColor
+
+    border 2px solid currentColor
+    border-radius 2em
+
+    transition: none //background 0.3s
     background: snow
     color #999
     &:hover
@@ -182,21 +164,19 @@ $outline_Mod()
       &:hover
         background: $orange
 
+//base
 .btn
   display inline-block
   white-space nowrap
   text-decoration none
   vertical-align middle
-input[type="button"]
-input[type="reset"]
-input[type="submit"]
-button
-.btn
-  $shadow()
+.btn, button
+  $shadow_btn_button-group()
   border: 1px solid transparent
   cursor: pointer
   user-select: none
   transition: background 0.3s
+
   //default
   background: $blue
   color: #FFF
@@ -207,59 +187,6 @@ button
 
 .btn
   $fill_Mod()
+  $flat_Mod()
   $outline_Mod()
   $size_Mod()
-
-
-.button-group
-  display inline-flex
-  margin: 0.35em
-  $shadow()
-  border-radius .3em
-  .btn
-    border-color: transparent;
-    box-shadow none
-    border-radius 0
-    &:first-child
-      border-radius .3em 0 0 .3em
-    &:last-child
-      border-radius 0 .3em .3em 0
-
-  .btn + .btn
-    border-left 1px solid #dee2e6 //rgba(#FFF, .3)
-
-
-
-// ====== chekbox / radio ===============
-$clr = #2196f3;
-$size = 20px
-input[type="checkbox"],
-input[type="radio"]
-  //reset base input
-  padding 0
-  border: 2px solid $clr
-
-  appearance: none;
-  cursor pointer
-  height: $size
-  width: $size !important
-
-  vertical-align: sub //text-top
-  margin: 0 .5em
-  &:checked
-    background $clr
-    animation bounce 0.3s
-@keyframes bounce
-  0%,100%
-    transform: scale(1);
-  50%
-    transform: scale(0.7);
-//checked: background-image
-input[type=checkbox]
-  border-radius: .2em
-  &:checked
-    background-image url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke-width='3' stroke='white' d='M3,7 L7,11 L13,4'/></svg>")
-input[type=radio]
-  border-radius: 50%
-  &:checked
-    background-image url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='white'/></svg>")

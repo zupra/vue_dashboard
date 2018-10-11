@@ -14,7 +14,7 @@ div
 
   modal(:show.sync="showModal_3", mod="SM")
     p Заголовок не был назначен, поэтому только тело
-    h3 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+    h4 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
     p Quod dignissimos voluptate iure eius cupiditate rem sed consequuntur itaque odio!
 
   modal(:show.sync="showModal_4", mod="SM toCenter", title="Small modal toCenter")
@@ -26,12 +26,12 @@ div
   modal(:show.sync="showModal_6", position="rModal", title="Lorem ipsum dolor")
     h2 Lorem ipsum dolor sit amet consectetur adipisicing elit.
     p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod dignissimos voluptate iure eius cupiditate rem sed consequuntur itaque odio. Assumenda dignissimos veritatis placeat nesciunt maiores vel fuga est odio magnam!
-    h4 Magnam atque, accusamus deleniti, inventore pariatur voluptates eos officiis quasi officia magni reprehenderit ipsa nam ducimus, temporibus autem sunt odio quae iste.
+    h3 Magnam atque, accusamus deleniti, inventore pariatur voluptates eos officiis quasi officia magni reprehenderit ipsa nam ducimus, temporibus autem sunt odio quae iste.
 
   modal(:show.sync="showModal_7", position="lModal", title="Lorem ipsum dolor")
     h2 Lorem ipsum dolor sit amet consectetur adipisicing elit.
     p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod dignissimos voluptate iure eius cupiditate rem sed consequuntur itaque odio. Assumenda dignissimos veritatis placeat nesciunt maiores vel fuga est odio magnam!
-    h4 Magnam atque, accusamus deleniti, inventore pariatur voluptates eos officiis quasi officia magni reprehenderit ipsa nam ducimus, temporibus autem sunt odio quae iste.
+    h3 Magnam atque, accusamus deleniti, inventore pariatur voluptates eos officiis quasi officia magni reprehenderit ipsa nam ducimus, temporibus autem sunt odio quae iste.
   br
   .Tag modal from table
   .table-responsive

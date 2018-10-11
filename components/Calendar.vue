@@ -2,11 +2,11 @@
 div
   div
     p сегодня: {{new Date().toLocaleDateString()}} г.
-    p выбрано: &nbsp
-      i(v-if='clickedDay')
-        b {{output.str}} &nbsp;
-        | format &nbsp;
-        b {{output.format}}
+    p
+      pre inst_date={{inst_date}}
+    p
+      pre clickedDay={{clickedDay}}
+    pre output={{output}}
 
   .Calendar
     .Cr-Head
@@ -149,7 +149,6 @@ export default {
 $width = 280px
 $time = ($width / 7)
 
-
 .Calendar
   background #FFF
   // box-shadow 0 1em 6em -1em #000
@@ -162,9 +161,11 @@ $time = ($width / 7)
   &-Week,
   &-Days
     display: flex
+
   &-Head,
   &-Week
     font-weight bold
+
   &-Week
     line-height: 2em
     &_day
@@ -175,8 +176,10 @@ $time = ($width / 7)
     color: #FFF
     justify-content: space-between
     line-height: $time
+
     &_currMonth
       flex: 1
+
     &_ltMonth,
     &_gtMonth
       background #3498db
@@ -192,8 +195,10 @@ $time = ($width / 7)
     &_blank,
     &_day
       width: $time
+
     &_blank
       color #dee2e6
+
     &_day
       cursor: pointer
       border-radius: 50%
@@ -207,6 +212,4 @@ $time = ($width / 7)
       color: #FFF
       font-weight: bold
       background: #477dca
-
-
 </style>

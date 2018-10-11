@@ -1,6 +1,7 @@
 <template lang="pug">
 .Wrap
-  IconsTest
+
+  input-number
   hr
   ui-select-test
   <divider title="Цвет" />
@@ -32,12 +33,16 @@
           li #{item}
 
   <divider title="Calendar" />
+
   calendar
+
+  calendar-by_month
+
   hr.H1
   dropdown
+
   <divider title="Multifilter" />
   <multifilter-test />
-
   <divider title="Modal" />
   <modal-test />
   <divider title="Expander" />
@@ -45,6 +50,12 @@
 
   //- UI
   <ui-test />
+
+  <divider title="Иконки" />
+  IconsTest
+  br
+  hr
+  br
 </template>
 
 
@@ -59,9 +70,14 @@ import Dropdown from '~/components/Dropdown.vue'
 import ShadowPoligon from '~/components/ShadowPoligon.vue'
 import Calendar from '~/components/Calendar.vue'
 import IconsTest from '~/components/IconsTest.vue'
+import CalendarBy_month from '~/components/CalendarBy_month.vue'
+
+import InputNumber from '~/components/InputNumber.vue'
 
 export default {
+  //layout: 'lite',
   components: {
+    InputNumber,
     UiTest,
     Divider,
     ModalTest,
@@ -70,6 +86,7 @@ export default {
     Dropdown,
     ShadowPoligon,
     Calendar,
+    CalendarBy_month,
     UiSelectTest,
     IconsTest
   },

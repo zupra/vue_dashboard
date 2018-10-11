@@ -6,7 +6,8 @@
 
 pre
   padding 1em
-  background #f1f1f1
+  background #EEE
+  margin 1em 0
 
 hr
   margin: 1em 0;
@@ -56,66 +57,4 @@ hr
   // border-bottom: 2px solid #efefef
 
 
-// ul.Card li
-// nav.Card a
-.Card
-  background #FFF
-  margin 1em
-  //display inline-block
-  box-shadow 0 .2em 1.4em 0 rgba(0, 0, 0, 0.2)
 
-  >*
-    padding 0 1em
-    line-height: 2.4
-    border-top 1px solid rgba(#CCC, .3)
-    white-space: nowrap; /* Запрещаем перенос строк */
-    overflow: hidden; /* Обрезаем все, что не помещается в область */
-    text-overflow: ellipsis; /* Добавляем многоточие */
-    &:hover
-      background #f9f9f9
-      color #477dca - 30
-    &.selected
-      color #000
-    &.active
-      background: #f3f4f5
-      color #000
-  >li
-    cursor: pointer
-    color #477dca
-  >a
-    display block
-    text-decoration none
-/*
-.Card
-  >*
-    padding .6em 1em
-    border-top 1px solid rgba(#CCC, .3)
-    cursor pointer
-    &:hover
-      background #efefef
-      color #445e98
-    &.active
-      //cursor default
-      background: #f3f4f5
-      color #445e98
-  //nav
-  >a
-    display block
-    text-decoration none
-*/
-
-
-.Search-hasReset
-  position relative
-.Search_Reset
-  cursor pointer
-  position absolute
-  top 50%
-  transform translateY(-50%)
-  left 12px
-  width 20px
-  height 20px
-  border-radius 50%
-  background #2196f3 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><g stroke='white' stroke-width='4' stroke-linecap='round'><line x1='3' y1='3' x2='17' y2='17'/><line x1='3' y1='17' x2='17' y2='3'/></g></svg>") center/50% no-repeat
-  &:hover
-    background-color #ed5565

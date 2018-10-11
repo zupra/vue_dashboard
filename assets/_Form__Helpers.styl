@@ -1,0 +1,57 @@
+//== helperS ==
+.form-group
+  display flex
+  flex-direction column
+  //!FIXME
+  >*
+    width 240px
+    margin-bottom 1em
+
+.checked-group
+  label
+    display block
+
+.form-line
+  user-select none
+  margin -.3em
+  &+&
+    margin-top .7em
+  .btn, button, input, select
+    margin .35em
+  label
+    white-space: nowrap
+    padding-right .7em
+
+
+//helper-el
+fieldset
+  border 1px solid #EEE
+  padding 1em 1.4em 1.4em
+  margin 1em 0
+
+legend
+  padding 0 .3em
+
+label
+  user-select none
+  cursor pointer
+  white-space nowrap
+  display inline-table
+
+
+.button-group
+  display inline-flex
+  margin: 0.35em
+  $shadow_btn_button-group()
+  border-radius .3em
+  .btn
+    border-color: transparent;
+    box-shadow none
+    border-radius 0
+    &:first-child
+      border-radius .3em 0 0 .3em
+    &:last-child
+      border-radius 0 .3em .3em 0
+
+  .btn + .btn
+    border-left 1px solid #dee2e6 //rgba(#FFF, .3)

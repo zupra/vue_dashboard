@@ -24,8 +24,6 @@
 
 <script>
 const iconsArr = [
-  'access-point',
-  'access-point-network',
   'account',
   'account-alert',
   'account-box',
@@ -62,19 +60,7 @@ const iconsArr = [
   'account-star',
   'account-supervisor',
   'account-supervisor-circle',
-  'account-switch',
-  'accusoft',
-  'adjust',
-  'adobe',
-  'air-conditioner',
-  'airballoon',
-  'airplane',
-  'airplane-landing',
-  'airplane-off',
-  'airplane-takeoff',
-  'airplay',
-  'airport',
-  'alarm'
+  'account-switch'
 ]
 export default {
   data() {

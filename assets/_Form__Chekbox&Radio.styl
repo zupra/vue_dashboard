@@ -1,0 +1,32 @@
+$clr = #2196f3;
+$size = 20px
+input[type="checkbox"],
+input[type="radio"]
+  //reset base input
+  padding 0
+  border: 2px solid $clr
+
+  appearance: none;
+  cursor pointer
+  height: $size
+  width: $size !important
+
+  vertical-align: sub //text-top
+  margin: 0 .5em
+  &:checked
+    background $clr
+    animation bounce 0.3s
+@keyframes bounce
+  0%,100%
+    transform: scale(1);
+  50%
+    transform: scale(0.7);
+//checked: background-image
+input[type=checkbox]
+  border-radius: .2em
+  &:checked
+    background-image url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke-width='3' stroke='white' d='M3,7 L7,11 L13,4'/></svg>")
+input[type=radio]
+  border-radius: 50%
+  &:checked
+    background-image url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='white'/></svg>")

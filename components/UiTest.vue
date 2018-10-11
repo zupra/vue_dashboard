@@ -7,8 +7,8 @@ section
     .form-line
       button base button
       button(disabled) button disabled
-      input(type="reset", value="inp[reset]")
-      input(type="submit", value="inp[submit]")
+      button.btn(type="reset") [type=reset]
+      button.btn(type="submit") [type=submit]
 
     .Tag fill/mod
     .form-line
@@ -18,7 +18,20 @@ section
     .Tag button-group
     .button-group
       each _,i in Array(3)
-        div.btn.outline item_#{i+1}
+        div.btn.fill.lite item_#{i+1}
+    .button-group
+      each _,i in Array(3)
+        div.btn.flat item_#{i+1}
+        .button-group
+    .button-group
+      each _,i in Array(3)
+        div.btn.flat.red item_#{i+1}
+    .button-group
+      each _,i in Array(3)
+        div.btn.flat.green item_#{i+1}
+    .button-group
+      each _,i in Array(3)
+        div.btn.flat.orange item_#{i+1}
     .button-group
       each _,i in Array(3)
         div.btn item_#{i+1}
@@ -29,6 +42,35 @@ section
       div.btn.fill item_1
       div.btn.fill.red item_1
       div.btn.fill.orange item_2
+
+    .Tag flat/mod
+    .form-line
+      each styl in ['btn flat','btn flat blue','btn flat red','btn flat green','btn flat orange']
+        div(class=""+styl) #{styl}
+
+
+    .flex-row
+      .Card
+        p Lorem
+        .footer-actions
+          .btn.flat отменить
+          .btn.fill.red удалить
+      .Card
+        p Lorem
+        .footer-actions
+          .btn.flat.red action
+          .btn ОК
+      .Card
+        p Lorem
+        .footer-actions
+          .btn.flat.green action
+          .btn.fill.green ОК
+      .Card
+        p Lorem
+        .footer-actions
+          .btn.flat.orange action
+          .btn.fill.orange ОК
+
 
 
     .Tag outline/mod

@@ -82,7 +82,8 @@ export default {
 
 
 
-<style lang="styl">
+
+<style lang="styl" scoped>
 
 $blue = #2D3A4B
 $zIndex = 10
@@ -120,11 +121,11 @@ $sidebar()
   flex: 1
   overflow: hidden
   width: 100%
-  background #f7f7f7
+  //background #f7f7f7
 
 /*
 .scrollableArea
-  height: 100%
+  height: 100%rrrr
   overflow-y: auto
   /* хром, сафари */
   &::-webkit-scrollbar { width: 0; }
@@ -136,9 +137,9 @@ $sidebar()
   $sidebar()
   padding-top: 3em
 
-  //background-color #F3F3F4 //#f7f7f7
-  //box-shadow: 0 1em 7em -2em #000
-  background #3c4858
+  background-color #F3F3F4 //#f7f7f7
+  box-shadow: 0 2em 7em -2em #000
+
 
   nav
     padding: 1em
@@ -159,8 +160,8 @@ $sidebar()
   width: 100%
   z-index: $zIndex + 1;
   height: 44px;
-  background: #777
-  //box-shadow: 0 5px 7px 0 rgba(#999,.2);
+  background: #FFF
+  box-shadow: 0 5px 7px 0 rgba(#999,.2);
 
   //padding .5em 1em
   display flex

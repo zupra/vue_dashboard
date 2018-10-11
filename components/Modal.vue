@@ -86,7 +86,7 @@ $bg = #f1f1f1;
     padding: .75rem 1.5rem;
     //border-radius .2em 0 0
   .body
-    background #ecf3fd //#f1f1f1
+    background #f7f7f7
     padding 1rem 1.5rem;
     line-height 1.2rem
 
