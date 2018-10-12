@@ -1,16 +1,15 @@
 <template lang="pug">
 .InputNumber
-  .btn(@click="minus") -
-  //- input(readonly, :value="value")
+  .btn(@click="(value - step >= min) && minus(step)") -
   .InputNumber_Field
     b {{value}}
-  .btn(@click="plus") +
+  .btn(@click="(value + step <= max) && plus(step)") +
 
 </template>
 <script>
 export default {
   props: {
-    value: {
+    start: {
       type: Number,
       default: 0
     },
@@ -20,20 +19,26 @@ export default {
     },
     max: {
       type: Number,
-      default: undefined
+      default: Infinity
     },
     step: {
       type: Number,
       default: 1
     }
   },
+  data() {
+    return {
+      value: this.start
+    }
+  },
   methods: {
-    plus() {
-      this.value++
-      // this.$emit('change', newValue, oldValue)
+    plus(step) {
+      this.value += step
+      this.$emit('number', this.value)
     },
-    minus() {
-      this.value--
+    minus(step) {
+      this.value -= step
+      this.$emit('number', this.value)
     }
   }
 }
@@ -41,7 +46,7 @@ export default {
 
 <style lang="stylus">
 .InputNumber
-  display flex
+  display inline-flex
   &_Field
     width 3em
     border 1px solid #CCC

@@ -10,8 +10,13 @@
         | выбрать цвет &nbsp;
         input(type="color" v-model="color")
         | выбрать размер &nbsp;
-        input(type="number" v-model="size")
-        //- .btn(v-show="bgColor" @click="bgColor=''") сбросить
+        //input(type="number" v-model="size")
+        input-number(
+          :start="size",
+          :min="12",
+          :max="200",
+          @number="size = $event"
+        )
 
     .flex-row
       .IconTest_item(v-for="icon in iconsArr")
@@ -62,7 +67,12 @@ const iconsArr = [
   'account-supervisor-circle',
   'account-switch'
 ]
+
+import InputNumber from '~/components/InputNumber.vue'
 export default {
+  components: {
+    InputNumber
+  },
   data() {
     return {
       iconsArr: iconsArr,

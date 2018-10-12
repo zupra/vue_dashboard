@@ -1,7 +1,7 @@
 <template lang="pug">
 .Wrap
 
-  input-number
+  pagination-test
   hr
   ui-select-test
   <divider title="Цвет" />
@@ -72,12 +72,12 @@ import Calendar from '~/components/Calendar.vue'
 import IconsTest from '~/components/IconsTest.vue'
 import CalendarBy_month from '~/components/CalendarBy_month.vue'
 
-import InputNumber from '~/components/InputNumber.vue'
+import PaginationTest from '~/components/PaginationTest.vue'
 
 export default {
   //layout: 'lite',
   components: {
-    InputNumber,
+    PaginationTest,
     UiTest,
     Divider,
     ModalTest,

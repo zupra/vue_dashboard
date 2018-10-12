@@ -73,7 +73,10 @@ export default {
   },
   data() {
     return {
-      selectedOption: {},
+      selectedOption: {
+        name: '',
+        value: null
+      },
       options: options
       // index: null
     }
@@ -90,8 +93,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-pre
-  padding 1em
-  background #f1f1f1
-  float right
+
 </style>

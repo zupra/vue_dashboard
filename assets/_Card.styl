@@ -1,21 +1,17 @@
-// ul.Card li
-// nav.Card a
+
 .Card
   background #FFF
   margin 1em
   //display inline-block
   box-shadow 0 .2em 1.4em 0 rgba(0, 0, 0, 0.2)
 
-  >*
+ul.Card
+nav.Card
+  li,a
     padding 0 1em
     line-height: 2.4
-    cursor: pointer
     border-top 1px solid rgba(#CCC, .3)
-
-    white-space: nowrap; /* Запрещаем перенос строк */
-    overflow: hidden; /* Обрезаем все, что не помещается в область */
-    text-overflow: ellipsis; /* Добавляем многоточие */
-
+    textOW()
     &:hover
       background #f9f9f9
       color #477dca - 30
@@ -24,9 +20,11 @@
     &.active
       background: #f3f4f5
       color #000
-  >li
+
+  li
+    cursor: pointer
     color #477dca
-  >a
+  a
     display block
     text-decoration none
 

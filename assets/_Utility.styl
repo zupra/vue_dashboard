@@ -3,33 +3,6 @@
   overflow-y: auto
 
 
-//Grid !TODO
-.col
-  flex 1
-$MW = 600px
-@media (min-width: $MW)
-  .flex-row
-    display flex
-    flex-wrap: wrap
-  .col
-    margin-left 1em
-  .w_1-4
-    flex 2.5
-  .w_3-4
-    flex 7.5
-  .w_1-2
-    flex 5
-
-
-
-.items-start
-  align-items: flex-start
-
-
-
-
-
-
 ripple() {
   position: relative;
   overflow: hidden;
@@ -66,3 +39,15 @@ nav a
 .btn
 button
   ripple()
+
+
+
+// white-space: nowrap; /* Запрещаем перенос строк */
+// overflow: hidden; /* Обрезаем все, что не помещается в область */
+// text-overflow: ellipsis; /* Добавляем многоточие */
+
+textOW()
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
