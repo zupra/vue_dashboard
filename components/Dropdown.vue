@@ -2,7 +2,7 @@
 div
   .btn(v-click-outside='hide', @click='toggle', v-show="!opened") Toggle
   b(v-show="opened") &nbsp; ЛЮБОЙ КЛИК ЗАКРОЕТ ОКНО
-  ul.Card(v-show='opened')
+  ul.list-Card(v-show='opened')
     li.active На Волне Yum.fm
     each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
       li #{item}

@@ -86,29 +86,9 @@ export default {
     padding-right: 22px !important
 
   &_list
-    margin 0 //reset .Card
+    //reset .Card
+    margin 0
     position absolute
-    background #FFF
     width 100%
 
-  // ul
-  //   position absolute
-  //   background #FFF
-  //   width 100%
-  //   box-shadow 0 .2em 1.4em 0 rgba(0, 0, 0, 0.2)
-  // li
-  //   white-space: nowrap; /* Запрещаем перенос строк */
-  //   overflow: hidden; /* Обрезаем все, что не помещается в область */
-  //   text-overflow: ellipsis; /* Добавляем многоточие */
-
-  //   cursor pointer
-  //   color #477dca
-  //   border-top 1px solid #EFEFEF
-
-  //   padding 0 1em
-  //   line-height: 2.4
-  //   &.selected
-  //     color #000
-  //   &:hover
-  //     background #f9f9f9
 </style>

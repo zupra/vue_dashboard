@@ -22,7 +22,6 @@ section
     .button-group
       each _,i in Array(3)
         div.btn.flat item_#{i+1}
-        .button-group
     .button-group
       each _,i in Array(3)
         div.btn.flat.red item_#{i+1}
@@ -52,22 +51,22 @@ section
     .flex-row
       .Card
         p Lorem
-        .footer-actions
+        .divActions
           .btn.flat отменить
           .btn.fill.red удалить
       .Card
         p Lorem
-        .footer-actions
+        .divActions
           .btn.flat.red action
           .btn ОК
       .Card
         p Lorem
-        .footer-actions
+        .divActions
           .btn.flat.green action
           .btn.fill.green ОК
       .Card
         p Lorem
-        .footer-actions
+        .divActions
           .btn.flat.orange action
           .btn.fill.orange ОК
 

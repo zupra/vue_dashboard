@@ -1,12 +1,18 @@
 
 .Card
+.list-Card
   background #FFF
   margin 1em
-  //display inline-block
-  box-shadow 0 .2em 1.4em 0 rgba(0, 0, 0, 0.2)
+  box-shadow: 0 1px 8px rgba(#000, .25);
 
-ul.Card
-nav.Card
+// panel
+// area
+// header
+// content
+// actions
+
+
+.list-Card
   li,a
     padding 0 1em
     line-height: 2.4
@@ -20,7 +26,7 @@ nav.Card
     &.active
       background: #f3f4f5
       color #000
-
+  //as a
   li
     cursor: pointer
     color #477dca
@@ -28,9 +34,11 @@ nav.Card
     display block
     text-decoration none
 
-.footer-actions
+
+.divActions
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
+  justify-content flex-end
   padding: 1em;
   .btn + .btn
     margin-left: 1em

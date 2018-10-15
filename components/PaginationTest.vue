@@ -12,7 +12,7 @@
           //-   dt DT
           //-   dd DD
 
-        .footer-actions
+        .divActions
           .btn.flat actions
           .btn ОК
 

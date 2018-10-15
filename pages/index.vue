@@ -6,7 +6,7 @@
   ui-select-test
   <divider title="Цвет" />
   #palette
-    each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#3c4858']
+    each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#C7CEDE','#3c4858','#34495e','#568DA6']
       figure
         div(style="width:5em;height:4em;background-color:"+clr)
         figcaption #{clr}
@@ -16,18 +16,18 @@
   .flex-row.items-start
     div
       .Tag nav>a
-      nav.Card
+      nav.list-Card
         each link in ['Mark as important','Create event','Restore contacts']
           a(href="#")= link
         a.active(href="#") Lorem ipsum
     div
       .Tag nav>a
-      nav.Card
+      nav.list-Card
         each item in [1,2,3,4,5]
           a(href="#") link_#{item}
     div
       .Tag ul>li
-      ul.Card
+      ul.list-Card
         li.active На Волне Yum.fm
         each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
           li #{item}
@@ -35,8 +35,7 @@
   <divider title="Calendar" />
 
   calendar
-
-  calendar-by_month
+  calendar_month
 
   hr.H1
   dropdown
@@ -68,9 +67,10 @@ import Divider from '~/components/Divider.vue'
 import UiTest from '~/components/UiTest.vue'
 import Dropdown from '~/components/Dropdown.vue'
 import ShadowPoligon from '~/components/ShadowPoligon.vue'
-import Calendar from '~/components/Calendar.vue'
 import IconsTest from '~/components/IconsTest.vue'
-import CalendarBy_month from '~/components/CalendarBy_month.vue'
+
+import Calendar from '~/components/Calendar/Calendar.vue'
+import Calendar_month from '~/components//Calendar/Calendar_month.vue'
 
 import PaginationTest from '~/components/PaginationTest.vue'
 
@@ -86,7 +86,7 @@ export default {
     Dropdown,
     ShadowPoligon,
     Calendar,
-    CalendarBy_month,
+    Calendar_month,
     UiSelectTest,
     IconsTest
   },

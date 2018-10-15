@@ -2,7 +2,7 @@
 .Radio
   .Radio_head
     .audioControl(@click="toggle()", :class="isPause ? 'pause' : 'active' ")
-  ul.Card
+  ul.list-Card
     li(v-for="(item, index) in stations", :class='{ active : index == activeStation }', @click="playItem(item.src, index)") {{item.title}}
   audio(ref="audio", src="")
   

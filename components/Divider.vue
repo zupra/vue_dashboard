@@ -1,6 +1,6 @@
 <template lang="pug">
 .Divider
-  .Divider__title {{title}}
+  .Divider__title # {{title}}
 
 </template>
 <script>
@@ -15,24 +15,10 @@ export default {
 </script>
 <style lang="stylus">
 .Divider
-  background aliceblue
-
-  margin 3rem 1rem
-
-  line-height 22px
-  font-size: 22px;
-  text-align center
-
-  //position relative
-  // &:after
-  //   content ''
-  //   display block
-  //   transform translateY(-12px)
-  //   height: 1px
-  //   background-image: linear-gradient(to right, rgba(#000, 0), rgba(violet 0.75), rgba(#000, 0));
-  &__title
-    //position relative
-    display: inline-block;
-    background: white;
-    padding 0 .5em
+  margin 3rem
+  background #ead2ac
+  padding .5rem 1em
+  font bold 22px/1 "Courier New", Courier, monospace
+  color #FFF
+  //&__title
 </style>

@@ -82,11 +82,10 @@ export default {
 
 
 
-<style lang="styl">
+<style lang="stylus">
 
-$blue = #2D3A4B
+@import '~@/assets/__var.styl'
 $zIndex = 10
-
 
 
 .slideSidebar-enter-active
@@ -115,30 +114,19 @@ $sidebar()
 #main
   height: 100vh
 
-
 #main
   flex: 1
   overflow: hidden
   width: 100%
   background #f7f7f7
 
-/*
-.scrollableArea
-  height: 100%
-  overflow-y: auto
-  /* хром, сафари */
-  &::-webkit-scrollbar { width: 0; }
-  /* ie 10+ */
-  & { -ms-overflow-style: none; }
-*/
 
 #sidebar
   $sidebar()
   padding-top: 3em
 
-  //background-color #F3F3F4 //#f7f7f7
-  //box-shadow: 0 1em 7em -2em #000
-  background #3c4858
+  background $header
+  color $header_text
 
   nav
     padding: 1em
@@ -160,9 +148,7 @@ $sidebar()
   z-index: $zIndex + 1;
   height: 44px;
   background: #777
-  //box-shadow: 0 5px 7px 0 rgba(#999,.2);
 
-  //padding .5em 1em
   display flex
   justify-content space-between
   align-items center
@@ -171,7 +157,5 @@ $sidebar()
   display flex
   svg
     margin auto
-
-
 
 </style>
