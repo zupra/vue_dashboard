@@ -8,17 +8,16 @@
           @click="showSidebar = !showSidebar",
           width='90',
           height='44',
-          style="cursor:pointer;user-select:none;"
         )
-        rect(x="14", y="6", width="32", height="32", fill="rgba(255, 255, 255, .7)", stroke='gold', stroke-width='2')
-        use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#burgerSVG')
-        text(x="40",y="28") Menu
-    svg(style='display: none', viewbox='0 0 44 44', xmlns='http://www.w3.org/2000/svg')
-      symbol#burgerSVG
-        g(stroke='#444', stroke-width='2')
+        rect(x="14", y="6", width="30", height="32", fill="rgba(255, 255, 255, .5)", stroke='gold', stroke-width='2')
+        g(stroke='midnightblue', stroke-width='2')
           path.d1(d='M5,14 L32,14')
           path.d2(d='M5,22 L26,22')
           path.d3(d='M5,30 L20,30')
+        text(v-if="!showSidebar", x="38",y="28") Menu
+        polyline(v-else, points="50,10 36,22 50,34", fill="whitesmoke")
+
+
     //- breadcrumbs
     .button-group
       each item in ['Войти','Настройки','Профиль']
@@ -155,7 +154,14 @@ $sidebar()
 
 #burger
   display flex
+  //background #696969
+  &:hover polyline
+    fill yellow
+
+
   svg
     margin auto
+    cursor pointer
+    user-select none
 
 </style>

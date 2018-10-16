@@ -178,7 +178,7 @@ section
   fieldset
     legend form-group
     .Flex_wr
-      .form-group
+      .form-group.col.w_25
         input.Search(type='text')
         select(multiple)
           each option in ['red','green','orange','lite','circle']
@@ -200,7 +200,8 @@ section
         input(disabled, placeholder='*disabled')
         button button
 
-      .col
+      .col.w_75
+        h2 Flex Form
         .Flex_wr.form-line
           input.col(placeholder='Input width 1/2')
           input.col(placeholder='Input width 1/2')
