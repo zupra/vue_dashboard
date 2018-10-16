@@ -15,9 +15,9 @@ export default {
 </script>
 <style lang="stylus">
 .Divider
-  margin 3rem
+  margin 3rem 0
   background #ead2ac
-  padding .5rem 1em
+  padding .2em 1em 0
   font bold 22px/1 "Courier New", Courier, monospace
   color #FFF
   //&__title

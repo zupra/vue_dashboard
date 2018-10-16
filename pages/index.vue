@@ -1,9 +1,9 @@
 <template lang="pug">
 .Wrap
 
-  pagination-test
+  PaginationTest
   hr
-  ui-select-test
+  UiSelectTest
   <divider title="Цвет" />
   #palette
     each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#C7CEDE','#3c4858','#34495e','#568DA6']
@@ -11,44 +11,44 @@
         div(style="width:5em;height:4em;background-color:"+clr)
         figcaption #{clr}
   <divider title="ShadowPoligon" />
-  shadow-poligon
+  ShadowPoligon
 
-  .flex-row.items-start
-    div
+  .Flex_wr
+    .col
       .Tag nav>a
-      nav.list-Card
+      nav.list-Card(style="display: inline-grid")
         each link in ['Mark as important','Create event','Restore contacts']
           a(href="#")= link
         a.active(href="#") Lorem ipsum
-    div
+    .col
       .Tag nav>a
-      nav.list-Card
+      nav.list-Card(style="display: inline-grid")
         each item in [1,2,3,4,5]
           a(href="#") link_#{item}
-    div
+    .col
       .Tag ul>li
-      ul.list-Card
+      ul.list-Card(style="display: inline-grid")
         li.active На Волне Yum.fm
         each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
           li #{item}
 
   <divider title="Calendar" />
 
-  calendar
-  calendar_month
+  Calendar
+  Calendar_month
 
   hr.H1
-  dropdown
+  Dropdown
 
   <divider title="Multifilter" />
-  <multifilter-test />
+  MultifilterTest
   <divider title="Modal" />
-  <modal-test />
+  ModalTest
   <divider title="Expander" />
-  <expander-test />
+  ExpanderTest
 
   //- UI
-  <ui-test />
+  UiTest
 
   <divider title="Иконки" />
   IconsTest
@@ -72,7 +72,7 @@ import IconsTest from '~/components/IconsTest.vue'
 import Calendar from '~/components/Calendar/Calendar.vue'
 import Calendar_month from '~/components//Calendar/Calendar_month.vue'
 
-import PaginationTest from '~/components/PaginationTest.vue'
+import PaginationTest from '~/components/Pagination/PaginationTest.vue'
 
 export default {
   //layout: 'lite',

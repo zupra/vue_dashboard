@@ -1,5 +1,5 @@
 <template lang="pug">
-.InputNumber
+.InputNumber.button-group
   .btn(@click="(value - step >= min) && minus(step)") -
   .InputNumber_Field
     b {{value}}
@@ -46,10 +46,10 @@ export default {
 
 <style lang="stylus">
 .InputNumber
-  display inline-flex
+  //display inline-flex
   &_Field
     width 3em
-    border 1px solid #CCC
+    //border 1px solid #CCC
     display flex
     justify-content center
     align-items center

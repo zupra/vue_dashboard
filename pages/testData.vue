@@ -1,7 +1,7 @@
 <template lang="pug">
 .Wrap
 
-  notification(:notice="notice")
+  Notification(:notice="notice")
 
   img(src="~/static/img/spinner.svg")
   h1 TEST notification

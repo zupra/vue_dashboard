@@ -3,13 +3,13 @@
   .button-group
     .btn(
       :disabled="currPage === 0"
-      @click="currPage--"
+      @click="currPage--;$emit('slice', {slice:sliceData,curr:currPage})"
     ) « Prev
     .Pagination_currPage
       b {{currPage+1}}/{{totalPagesCount}}
     .btn(
       :disabled="currPage >= totalPagesCount -1"
-      @click="currPage++"
+      @click="currPage++;$emit('slice', {slice:sliceData,curr:currPage})"
     ) Next »
 </template>
 
@@ -23,6 +23,10 @@ export default {
     perPage: {
       type: Number,
       default: 1
+    },
+    setPage: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -31,12 +35,20 @@ export default {
     }
   },
   computed: {
+    // currPage() {
+    //   return this.setPage
+    // },
     totalPagesCount() {
       return Math.floor(this.qty / this.perPage)
+    },
+    sliceData() {
+      return [this.currPage * this.perPage, this.perPage * (this.currPage + 1)]
     }
-    //sliceData() {}
   },
-  methods: {}
+  methods: {
+    // minus() {},
+    // plus() {}
+  }
 }
 </script>
 

@@ -10,9 +10,9 @@ div
 
   .Calendar
     .Cr-Head
-      .Cr-Head_ltMonth(@click="ltMonth") «
+      .Cr-Head_ltMonth.ripple(@click="ltMonth") «
       .Cr-Head_currMonth {{months[currMonth]}} {{currYear}}
-      .Cr-Head_gtMonth(@click="gtMonth") »
+      .Cr-Head_gtMonth.ripple(@click="gtMonth") »
     .Cr-Week
       .Cr-Week_day(v-for="day in days") {{day}}
     .Cr-Days

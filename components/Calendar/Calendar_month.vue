@@ -5,9 +5,9 @@ div
 
   .Calendar
     .Cr-Head
-      .Cr-Head_ltMonth(@click="ltMonth") «
+      .Cr-Head_ltMonth.ripple(@click="ltMonth") «
       .Cr-Head_currMonth {{currYear}}
-      .Cr-Head_gtMonth(@click="gtMonth") »
+      .Cr-Head_gtMonth.ripple(@click="gtMonth") »
 
     .monthsList
       time(

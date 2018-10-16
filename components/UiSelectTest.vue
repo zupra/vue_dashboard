@@ -8,13 +8,13 @@ fieldset
   p selectedOption: &nbsp;
     b {{selectedOption.name}}
 
-  .flex-row
+  .Flex_wr
     .col
       .Tag size="sm"
 
       //- :index="index",
       //- @index="OnOptionIdx",
-      ui-select(
+      UiSelect(
         name="ui_select"
         :options="options",
         @option="OnSelect",
@@ -22,14 +22,14 @@ fieldset
       )
     .col
       .Tag base
-      ui-select(
+      UiSelect(
         name="ui_select"
         :options="options",
         @option="OnSelect"
       )
     .col
       .Tag size="lg"
-      ui-select(
+      UiSelect(
         name="ui_select"
         :options="options",
         @option="OnSelect",
@@ -37,7 +37,7 @@ fieldset
       )
     .col
       .Tag size="xl"
-      ui-select(
+      UiSelect(
         name="ui_select"
         :options="options",
         @option="OnSelect",

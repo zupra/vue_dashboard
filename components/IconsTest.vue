@@ -11,14 +11,14 @@
         input(type="color" v-model="color")
         | выбрать размер &nbsp;
         //input(type="number" v-model="size")
-        input-number(
+        InputNumber(
           :start="size",
           :min="12",
           :max="200",
           @number="size = $event"
         )
 
-    .flex-row
+    .Flex_wr
       .IconTest_item(v-for="icon in iconsArr")
         img(:src="'https://icongr.am/material/' + icon + '.svg?size=' + size + '&color=' + color.slice(1)")
         p {{icon}}

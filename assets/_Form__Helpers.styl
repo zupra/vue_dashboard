@@ -13,7 +13,7 @@
 
 .form-line
   user-select none
-  margin -.3em
+  margin .3em
   &+&
     margin-top .7em
   .btn, button, input, select
@@ -40,11 +40,14 @@ label
 
 
 .button-group
+  line-height: 1;
+  //margin: 0.35em
   display inline-flex
-  margin: 0.35em
+  align-items stretch
   $shadow_btn_button-group()
   border-radius .3em
   .btn
+    height 100% //fix 
     border-color: transparent;
     box-shadow none
     border-radius 0

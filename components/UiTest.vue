@@ -16,31 +16,39 @@ section
         div(class=""+styl) #{styl}
 
     .Tag button-group
-    .button-group
-      each _,i in Array(3)
-        div.btn.fill.lite item_#{i+1}
-    .button-group
-      each _,i in Array(3)
-        div.btn.flat item_#{i+1}
-    .button-group
-      each _,i in Array(3)
-        div.btn.flat.red item_#{i+1}
-    .button-group
-      each _,i in Array(3)
-        div.btn.flat.green item_#{i+1}
-    .button-group
-      each _,i in Array(3)
-        div.btn.flat.orange item_#{i+1}
-    .button-group
-      each _,i in Array(3)
-        div.btn item_#{i+1}
-    .button-group
-      each _,i in Array(3)
-        div.btn.fill.green item_#{i+1}
-    .button-group
-      div.btn.fill item_1
-      div.btn.fill.red item_1
-      div.btn.fill.orange item_2
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn.fill.lite item_#{i+1}
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn.flat item_#{i+1}
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn.flat.red item_#{i+1}
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn.flat.green item_#{i+1}
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn.flat.orange item_#{i+1}
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn item_#{i+1}
+    p
+      .button-group
+        each _,i in Array(3)
+          div.btn.fill.green item_#{i+1}
+    p
+      .button-group
+        div.btn.fill item_1
+        div.btn.fill.red item_1
+        div.btn.fill.orange item_2
 
     .Tag flat/mod
     .form-line
@@ -48,25 +56,38 @@ section
         div(class=""+styl) #{styl}
 
 
-    .flex-row
+    .Flex_wr
+      //- each img in ['1053','1051','1054','1057']
       .Card
-        p Lorem
-        .divActions
-          .btn.flat отменить
+        img(
+          height="160"
+          src="https://picsum.photos/240/160?image="+1053
+        )
+        .btnActions
+          .btn.flat action
           .btn.fill.red удалить
       .Card
-        p Lorem
-        .divActions
+        img(
+          height="160"
+          src="https://picsum.photos/240/160?image="+1051
+        )
+        .btnActions
           .btn.flat.red action
           .btn ОК
       .Card
-        p Lorem
-        .divActions
+        img(
+          height="160"
+          src="https://picsum.photos/240/160?image="+1054
+        )
+        .btnActions
           .btn.flat.green action
           .btn.fill.green ОК
       .Card
-        p Lorem
-        .divActions
+        img(
+          height="160"
+          src="https://picsum.photos/240/160?image="+1057
+        )
+        .btnActions
           .btn.flat.orange action
           .btn.fill.orange ОК
 
@@ -156,7 +177,7 @@ section
 
   fieldset
     legend form-group
-    .flex-row
+    .Flex_wr
       .form-group
         input.Search(type='text')
         select(multiple)
@@ -180,10 +201,10 @@ section
         button button
 
       .col
-        .flex-row.form-line
+        .Flex_wr.form-line
           input.col(placeholder='Input width 1/2')
           input.col(placeholder='Input width 1/2')
-        .flex-row.form-line
+        .Flex_wr.form-line
           .col(style="flex-basis: 210px;align-self:center")
             each _,i in Array(3)
               label
@@ -194,12 +215,12 @@ section
               | Checked
 
           input.col(placeholder='Input')
-        .flex-row.form-line
-          input.col.w_1-4(placeholder='Input width 1/4')
-          input.col.w_1-2(placeholder='Input width 1/2')
-          input.col.w_1-4(placeholder='Input width 1/4')
-        .flex-row.form-line
-          input.col.w_3-4(placeholder='Input width 3/4')
+        .Flex_wr.form-line
+          input.col.w_25(placeholder='Input width 1/4')
+          input.col.w_50(placeholder='Input width 1/2')
+          input.col.w_25(placeholder='Input width 1/4')
+        .Flex_wr.form-line
+          input.col.w_75(placeholder='Input width 3/4')
           div
             button base button
 
