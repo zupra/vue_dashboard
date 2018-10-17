@@ -43,17 +43,18 @@ export default {
       required: true,
       type: Array
     },
-    currPage: {
-      type: Number,
-      default: 0
-    },
     perPage: {
       type: Number,
       default: 8
     }
+    // currPage: {
+    //   type: Number,
+    //   default: 0
+    // }
   },
   data() {
     return {
+      currPage: 0,
       self_perPage: this.perPage
     }
   },

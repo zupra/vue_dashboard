@@ -69,7 +69,7 @@ export default {
     return {
       pages: [
         { url: '/testData', name: 'страница testData' },
-        { url: '/pagePreFetchData', name: 'pagePreFetchData' },
+        { url: '/page_test_form_validate', name: 'Валидация форм' },
         { url: '/pageGridData', name: 'pageGridWidget' }
       ],
       showSidebar: true

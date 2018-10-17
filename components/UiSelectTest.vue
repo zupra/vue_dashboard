@@ -57,7 +57,7 @@ const options = [
     value: 2
   },
   {
-    label: 'Саня ты в порядке',
+    label: 'Саня сказал убрать',
     value: 3
   },
   {
@@ -91,7 +91,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-
-</style>
