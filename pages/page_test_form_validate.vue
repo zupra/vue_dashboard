@@ -1,37 +1,43 @@
 <template lang="pug">
 .Wrap
-  form(@submit.prevent="handleSubmit")
-    .form-group
-      //- label firstName
-      input(
-        v-model="user.firstName",
-        v-validate="'required'",
-        name="firstName",
-        :class="{ 'is-invalid': submitted && errors.has('firstName') }"
-      )
-      .error(v-if="submitted && errors.has('firstName')") errors
-      //- label lastName
-      input(
-        v-model="user.lastName",
-        v-validate="'required'",
-        name="lastName",
-        :class="{ 'is-invalid': submitted && errors.has('lastName') }"
-      )
-      //- label email
-      input(
-        v-model="user.email",
-        v-validate="'required|email'",
-        name="email",
-        :class="{ 'is-invalid': submitted && errors.has('email') }"
-      )
-      .error(v-if="submitted && errors.has('firstName')") errors
-      //- label password
-      input(
-        v-model="user.password",
-        v-validate="{ required: true, min: 6 }",
-        name="password",
-        :class="{ 'is-invalid': submitted && errors.has('password') }"
+  form(@submit.prevent="validateBeforeSubmit")
+    .form-group_validate
+      label firstName
+        input(
+          v-model="user.firstName",
+          v-validate="'required'",
+          name="firstName",
+          :class="{ 'is-invalid': errors.has('firstName') }"
         )
+        .error(v-if="errors.has('firstName')") {{ errors.first('firstName') }}
+      
+      label lastName
+        input(
+          v-model="user.lastName",
+          v-validate="'required'",
+          name="lastName",
+          :class="{ 'is-invalid': errors.has('lastName') }"
+        )
+        .error(v-if="errors.has('lastName')") {{ errors.first('lastName') }}
+      
+      label email
+        input(
+          v-model="user.email",
+          v-validate="'required|email'",
+          name="email",
+          :class="{ 'is-invalid': errors.has('email') }"
+        )
+        .error(v-if="errors.has('email')") {{ errors.first('email')}}
+      
+      label password
+        input(
+          v-model="user.password",
+          v-validate="{ required: true, min: 6 }",
+          name="password",
+          :class="{ 'is-invalid': errors.has('password') }"
+        )
+        .error(v-if="errors.has('password')") {{ errors.first('password') }}
+
     .btn Отправить
 
 
@@ -53,21 +59,47 @@ export default {
       submitted: false
     }
   },
-  mounted() {
-    console.dir(this.$validator)
+  computed: {
+    errors: function() {
+      return new ErrorBag()
+    }
   },
+  inject: ['$validator'],
   methods: {
-    handleSubmit(e) {
-      //this.submitted = true
-      this.$validator.validate().then(valid => {
-        if (!valid) {
-          alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.user))
-        }
-      })
+    validateBeforeSubmit(e) {
+      this.$validator
+        .validateAll()
+        .then(x => console.log(x))
+        .catch(e => console.log(e))
     }
   }
 }
 </script>
 
-<style>
+<style lang="stylus">
+.is-invalid {
+  border-color: red !important;
+}
+
+.form-group_validate {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.form-group_validate input {
+  display: block;
+  width: 220px;
+}
+
+.form-group_validate label {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.error {
+  position: absolute;
+  font-size: 0.8rem;
+  color: red;
+}
 </style>

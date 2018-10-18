@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import VeeValidate from 'vee-validate'
+import VeeValidate, { Validator } from 'vee-validate'
+import ru from 'vee-validate/dist/locale/ru'
 
-Vue.use(VeeValidate)
-// Vue.use(VeeValidate, {
-//   inject: true,
-//   fieldsBagName: 'veeFields'
-// })
+Vue.use(VeeValidate, {
+  inject: false
+})
+Validator.localize('ru', ru)

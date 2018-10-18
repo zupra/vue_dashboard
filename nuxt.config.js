@@ -38,7 +38,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['~plugins/click-outside.js', '~/plugins/vee-validate'],
+  plugins: ['~plugins/click-outside.js', {src: '~plugins/vee-validate.js', ssr: false}],
 
   /*
   ** Nuxt.js modules
@@ -64,6 +64,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    vendor: ['vee-validate'],
     extend(config, ctx) {
       // vue-svg-loader
       /*
