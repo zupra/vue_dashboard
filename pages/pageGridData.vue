@@ -38,7 +38,7 @@ export default {
 
 .Grid
   display: grid
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(280px, auto))
   grid-auto-rows: minmax(200px, auto)
   grid-gap: 1em
 .box

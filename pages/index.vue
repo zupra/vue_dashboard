@@ -1,6 +1,5 @@
 <template lang="pug">
 .Wrap
-
   PaginationTest
   hr
   UiSelectTest
@@ -99,6 +98,7 @@ export default {
 <style lang="stylus">
 #palette
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   text-align center
   figure

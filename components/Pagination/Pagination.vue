@@ -19,17 +19,18 @@
         @number="self_perPage = $event"
       )
 
-    .button-group
-      .btn(
-        :disabled="currPage === 0"
-        @click="currPage--"
-      ) « Prev
-      .Pagination_Actions_currPage
-        b {{currPage+1}}/{{totalPagesCount}}
-      .btn(
-        :disabled="currPage >= totalPagesCount -1"
-        @click="currPage++"
-      ) Next »
+    span
+      .button-group
+        .btn(
+          :disabled="currPage === 0"
+          @click="currPage--"
+        ) « Prev
+        .Pagination_Actions_currPage
+          b {{currPage+1}}/{{totalPagesCount}}
+        .btn(
+          :disabled="currPage >= totalPagesCount -1"
+          @click="currPage++"
+        ) Next »
 </template>
 
 <script>
@@ -83,8 +84,14 @@ export default {
     justify-content center
 
   &_Actions
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    // justify-content: space-between;
+    text-align right
+    
     background: #efefef;
     padding: 1em;
     &_currPage

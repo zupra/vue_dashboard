@@ -1,7 +1,7 @@
 <template lang="pug">
 .Radio
   .Radio_head
-    canvas(ref="canvas")
+    canvas#audioCanvas(ref="canvas")
     .audioControl(@click="toggle()", :class="isPause ? 'pause' : 'active' ")
   ul.list-Card
     li(v-for="(item, index) in stations", :class='{ active : index == activeStation }', @click="playItem(item.src, index)") {{item.title}}
@@ -57,6 +57,7 @@ const stations = [
 
 const SHOW = (audio, canvas) => {
   const AudioContext = window.AudioContext || window.webkitAudioContext
+  //if (!AudioContext) return
   const audioContext = new AudioContext()
 
   const source = audioContext.createMediaElementSource(audio)
@@ -104,9 +105,9 @@ export default {
       notStarted: true
     }
   },
-  mounted() {
-    SHOW(this.$refs.audio, this.$refs.canvas)
-  },
+  // mounted() {
+  //   SHOW(this.$refs.audio, this.$refs.canvas)
+  // },
   methods: {
     playItem(src, i) {
       if (i == this.activeStation) return
@@ -135,6 +136,9 @@ export default {
 </script>
 
 <style lang="stylus">
+#audioCanvas
+  height: 100%
+  width: 100%
 .Radio
   &_head
     margin 0 1em -1em

@@ -51,7 +51,9 @@ export default {
     width 3em
     //border 1px solid #CCC
     display flex
-    justify-content center
-    align-items center
+    // justify-content center
+    // align-items center
+    b
+      margin auto
 
 </style>

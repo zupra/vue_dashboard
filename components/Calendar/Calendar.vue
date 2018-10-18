@@ -3,7 +3,7 @@ div
   div
     p сегодня: {{new Date().toLocaleDateString()}} г.
     p
-      pre inst_date={{inst_date}}
+      pre NOW={{inst_date}}
     p
       pre clickedDay={{clickedDay}}
     pre output={{output}}

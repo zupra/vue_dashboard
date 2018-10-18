@@ -14,7 +14,7 @@
           path.d1(d='M5,14 L32,14')
           path.d2(d='M5,22 L26,22')
           path.d3(d='M5,30 L20,30')
-        text(v-if="!showSidebar", x="38",y="28") Menu
+        text(v-if="!showSidebar", x="39",y="28") Nav
         polyline(v-else, points="50,10 36,22 50,34", fill="whitesmoke")
 
 
@@ -114,6 +114,9 @@ $sidebar()
   height: 100vh
 
 #main
+  //!!!
+  //min-width: 375px;
+  
   flex: 1
   overflow: hidden
   width: 100%

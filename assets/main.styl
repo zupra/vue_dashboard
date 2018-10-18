@@ -14,11 +14,15 @@
   padding 0
   box-sizing border-box
 
-body
+:root
   font 100%/1.4 'Roboto', 'Helvetica Neue', sans-serif;
+  @media (max-width: 400px)
+    font-size: 14px
+body
   color $text
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
+
 
 
 .Wrap
