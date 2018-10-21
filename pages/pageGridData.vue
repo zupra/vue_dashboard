@@ -6,23 +6,29 @@
       //- if item === 'B' || item === 'G'
       if i === 3 || i === 1 || i === 8 || i === 10
         .box.height_2x Widget #{i+1}
-          .flex
-            img(src="~/static/img/spinner.svg")
+          LineChart(style="position: relative;width: 100%")
+          BarChart(style="position: relative;width: 100%")
+          //- .flex
+          //-   img(src="~/static/img/spinner.svg")
 
       else
         .box Widget #{i+1}
-          .flex
-            img(src="~/static/img/spinner.svg")
+          MixedBarLine(style="position: relative;width: 100%")
 
 
 </template>
 
 
 <script>
-//- import Logo from '~/components/Logo.vue'
+import BarChart from '~/components/Chart/BarChart.js'
+import LineChart from '~/components/Chart/LineChart.js'
+import MixedBarLine from '~/components/Chart/MixedBarLine.js'
+
 export default {
   components: {
-    // Logo
+    BarChart,
+    LineChart,
+    MixedBarLine
   },
   data() {
     return {
@@ -53,6 +59,7 @@ export default {
   display: flex
 .box
   flex-direction: column
+  justify-content: space-between;
 
 .flex
   flex 1

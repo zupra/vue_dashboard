@@ -2,7 +2,17 @@
 
 #layout
   #topNav
-    // .btn#burger(@click="showSidebar = !showSidebar") ≡
+    //- .btn#burger(@click="showSidebar = !showSidebar") ≡
+    //- #burger.btn
+    //-   svg(
+    //-       @click="showSidebar = !showSidebar",
+    //-       width='28',
+    //-       height='20',
+    //-     )
+    //-     g(stroke='midnightblue', stroke-width='2')
+    //-       path(d='M0,2 L28,2')
+    //-       path(d='M0,10 L21,10')
+    //-       path(d='M0,18 L14,18')
     #burger
       svg(
           @click="showSidebar = !showSidebar",
@@ -11,9 +21,9 @@
         )
         rect(x="14", y="6", width="30", height="32", fill="rgba(255, 255, 255, .5)", stroke='gold', stroke-width='2')
         g(stroke='midnightblue', stroke-width='2')
-          path.d1(d='M5,14 L32,14')
-          path.d2(d='M5,22 L26,22')
-          path.d3(d='M5,30 L20,30')
+          path(d='M5,14 L32,14')
+          path(d='M5,22 L26,22')
+          path(d='M5,30 L20,30')
         text(v-if="!showSidebar", x="39",y="28") Nav
         polyline(v-else, points="50,10 36,22 50,34", fill="whitesmoke")
 
@@ -82,89 +92,88 @@ export default {
 
 
 <style lang="stylus">
-
 @import '~@/assets/__var.styl'
+
 $zIndex = 10
 
-
-.slideSidebar-enter-active
-.slideSidebar-leave-active
+.slideSidebar-enter-active, .slideSidebar-leave-active
   transition transform .4s
-.slideSidebar-enter
-.slideSidebar-leave-active
-  transform translateX(-100%) //- 24em
 
-
+.slideSidebar-enter, .slideSidebar-leave-active
+  transform translateX(-100%) // - 24em
 
 #layout
   display flex
+
   /* хром, сафари */
-  &::-webkit-scrollbar { width: 0; }
+  &::-webkit-scrollbar
+    width 0
+
   /* ie 10+ */
-  & { -ms-overflow-style: none; }
+  &
+    -ms-overflow-style none
 
 $sidebar()
-  @media (max-width 800px)
+  @media (max-width: 800px)
     position absolute
-    z-index: $zIndex
+    z-index $zIndex
+
   width 220px
 
-#sidebar
-#main
-  height: 100vh
+#sidebar, #main
+  height 100vh
 
 #main
-  //!!!
-  //min-width: 375px;
-  
-  flex: 1
-  overflow: hidden
-  width: 100%
+  // !!!
+  // min-width: 375px;
+  flex 1
+  overflow hidden
+  width 100%
   background #f7f7f7
-
 
 #sidebar
   $sidebar()
-  padding-top: 3em
-
+  padding-top 3em
   background $header
   color $header_text
 
   nav
-    padding: 1em
-  //.nuxt-link-active
+    padding 1em
+
+  // .nuxt-link-active
   .nuxt-link-exact-active
     color #3498db // #FFF
-    font-weight: bold
+    font-weight bold
+
   a
-    display: block
-    padding: .5em 0
-
-
+    display block
+    padding .5em 0
 
 #topNav
   position fixed
   top 0
-  left: 0
-  width: 100%
-  z-index: $zIndex + 1;
-  height: 44px;
-  background: #777
-
+  left 0
+  width 100%
+  z-index $zIndex + 1
+  height 44px
+  background #777
   display flex
   justify-content space-between
   align-items center
+  padding-right 6px
 
 #burger
+  // background #3498db
+  // border-radius .3em
+
+  // background #696969
   display flex
-  //background #696969
+
   &:hover polyline
     fill yellow
 
-
-  svg
-    margin auto
-    cursor pointer
-    user-select none
-
+svg
+  margin auto
+  cursor pointer
+  user-select none
 </style>

@@ -47,14 +47,16 @@ label
 
 
 .button-group
-  line-height: 1;
-  //margin: 0.35em
   display inline-flex
-  align-items stretch
   $shadow_btn_button-group()
+  background #FFF
   border-radius .3em
+
   .btn
-    height 100% //fix 
+    //fix h100%
+    height: 2.5em;
+
+
     border-color: transparent;
     box-shadow none
     border-radius 0
@@ -62,6 +64,5 @@ label
       border-radius .3em 0 0 .3em
     &:last-child
       border-radius 0 .3em .3em 0
-
   .btn + .btn
     border-left 1px solid #dee2e6 //rgba(#FFF, .3)

@@ -3,7 +3,7 @@
   form(@submit.prevent="validateBeforeSubmit")
     .form-group_validate
       label firstName
-        input(
+        input.lg(
           v-model="user.firstName",
           v-validate="'required'",
           name="firstName",
@@ -12,7 +12,7 @@
         .error(v-if="errors.has('firstName')") {{ errors.first('firstName') }}
       
       label lastName
-        input(
+        input.lg(
           v-model="user.lastName",
           v-validate="'required'",
           name="lastName",
@@ -21,7 +21,7 @@
         .error(v-if="errors.has('lastName')") {{ errors.first('lastName') }}
       
       label email
-        input(
+        input.lg(
           v-model="user.email",
           v-validate="'required|email'",
           name="email",
@@ -30,7 +30,7 @@
         .error(v-if="errors.has('email')") {{ errors.first('email')}}
       
       label password
-        input(
+        input.lg(
           v-model="user.password",
           v-validate="{ required: true, min: 6 }",
           name="password",
