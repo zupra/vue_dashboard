@@ -10,7 +10,7 @@
           :class="{ 'is-invalid': errors.has('firstName') }"
         )
         .error(v-if="errors.has('firstName')") {{ errors.first('firstName') }}
-      
+
       label lastName
         input.lg(
           v-model="user.lastName",
@@ -19,7 +19,7 @@
           :class="{ 'is-invalid': errors.has('lastName') }"
         )
         .error(v-if="errors.has('lastName')") {{ errors.first('lastName') }}
-      
+
       label email
         input.lg(
           v-model="user.email",
@@ -28,7 +28,7 @@
           :class="{ 'is-invalid': errors.has('email') }"
         )
         .error(v-if="errors.has('email')") {{ errors.first('email')}}
-      
+
       label password
         input.lg(
           v-model="user.password",
@@ -38,7 +38,7 @@
         )
         .error(v-if="errors.has('password')") {{ errors.first('password') }}
 
-    .btn Отправить
+    button.btn(:disabled="errors.any()") Отправить
 
 
 </template>
@@ -59,17 +59,12 @@ export default {
       submitted: false
     }
   },
-  computed: {
-    errors: function() {
-      return new ErrorBag()
-    }
-  },
   inject: ['$validator'],
   methods: {
     validateBeforeSubmit(e) {
       this.$validator
         .validateAll()
-        .then(x => console.log(x))
+        .then(isValid => console.log(isValid))
         .catch(e => console.log(e))
     }
   }
@@ -77,29 +72,27 @@ export default {
 </script>
 
 <style lang="stylus">
-.is-invalid {
-  border-color: red !important;
-}
 
-.form-group_validate {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2em;
-}
+.form-group_validate
+  display flex
+  flex-direction column
+  margin-bottom 2em
 
-.form-group_validate input {
-  display: block;
-  width: 220px;
-}
+  input
+    display block
+    width 220px
 
-.form-group_validate label {
-  position: relative;
-  margin-bottom: 2em;
-}
+  label
+    position relative
+    margin-bottom 2em
 
-.error {
-  position: absolute;
-  font-size: 0.8rem;
-  color: red;
-}
+  .error
+    position absolute
+    font-size 0.8rem
+    color red
+
+  .is-invalid
+    border-color red !important
+
+
 </style>

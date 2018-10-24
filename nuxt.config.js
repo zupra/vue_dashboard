@@ -38,13 +38,18 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['~plugins/click-outside.js', {src: '~plugins/vee-validate.js', ssr: false}],
+  plugins: [
+    '~plugins/click-outside.js',
+    '~plugins/vee-validate.js'
+    //{ src: '~plugins/vee-validate.js', ssr: false }
+  ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
+    // Doc: https://axios.nuxtjs.org
+    // '@nuxtjs/auth' Doc: https://auth.nuxtjs.org
     '@nuxtjs/axios'
 
     // '@nuxtjs/localtunnel'

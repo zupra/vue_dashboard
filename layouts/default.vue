@@ -29,9 +29,13 @@
 
 
     //- breadcrumbs
-    .button-group
-      each item in ['Войти','Настройки','Профиль']
-        .btn #{item}
+    .btn(@click="logOut") выйти
+    //- .btn(@click="$store.state.user.token = ''") выйти
+
+
+    //- .button-group
+    //-   each item in ['Войти','Настройки','Профиль']
+    //-     .btn #{item}
 
 
 
@@ -78,14 +82,21 @@ export default {
   data() {
     return {
       pages: [
+        { url: '/UI_test', name: 'UI_test' },
         { url: '/testData', name: 'страница testData' },
         { url: '/page_test_form_validate', name: 'Валидация форм' },
-        { url: '/pageGridData', name: 'pageGridWidget' }
+        { url: '/pageGridData', name: 'pageGridWidget' },
+        { url: '/newData', name: 'protection' }
       ],
       showSidebar: true
     }
   },
-  methods: {}
+  methods: {
+    logOut() {
+      localStorage.removeItem('token')
+      this.$store.state.user.token = ''
+    }
+  }
 }
 </script>
 

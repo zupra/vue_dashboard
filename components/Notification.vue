@@ -1,17 +1,16 @@
 <template lang="pug">
 .Notification(v-show="Stack.length")
-  svg.close.closeAll(@click="Stack=[]", width='20', height='20', viewBox='0 0 20 20', stroke-width='2')
+  svg#closeAll(@click="Stack=[]", width='20', height='20', viewBox='0 0 20 20', stroke-width='2')
     line(x1='3', y1='3', x2='17', y2='17')
     line(x1='3', y1='17', x2='17', y2='3')
   .scrollableArea(@click.self="Stack=[]")
     transition-group(name="list")
       .Notice(v-for="(note,i) in Stack" :key="note.id" :class="note.type")
-        svg.close.closeCard(@click="Stack.splice(i, 1)", width='20', height='20', viewBox='0 0 20 20', stroke-width='2')
+        svg.closeCard(@click="Stack.splice(i, 1)", width='20', height='20', viewBox='0 0 20 20', stroke-width='2')
           line(x1='3', y1='3', x2='17', y2='17')
           line(x1='3', y1='17', x2='17', y2='3')
-        .title
-          i.type(:class="note.type") {{note.type}}
-          |  {{note.title}}
+        i.type(:class="note.type") {{note.type}}
+        .title {{note.title}}
         .body {{note.body}}
 
 </template>
@@ -20,7 +19,7 @@
 export default {
   props: {
     notice: {
-      type: [Object, Array],
+      type: Object, //type, title, body, id(for key)
       required: true
     }
   },
@@ -31,6 +30,7 @@ export default {
   },
   watch: {
     notice(notice) {
+      //this.$set(notice, "id", +new Date());
       this.Stack.push(notice)
     },
     Stack() {
@@ -70,6 +70,36 @@ $info = #21b9bb;
 // $warning = #f1c40f;
 // $info = #3498db;
 
+
+
+.scrollableArea
+  cursor pointer //not-allowed no-drop
+
+#closeAll
+.closeCard
+  cursor: pointer;
+  position: absolute;
+#closeAll
+  z-index 101
+  stroke: #FFF;
+  left: -10px;
+  background: #ff9800
+  transition transform .3s
+  &:hover
+
+    transform scale(1.2) translateY(10%)
+    //outline 4px solid #ff9800 //rgba(#FFF, .8)
+    //border-radius .2em
+    //background gold
+    //stroke: #444;
+.closeCard
+  stroke: #CCC;
+  top: 0.5em;
+  right: 0.5em;
+  &:hover
+    stroke: #000;
+
+
 .Notification
   height: 100vh;
   width: 320px;
@@ -81,8 +111,6 @@ $info = #21b9bb;
 
   background: rgba(#dee2e6, .5);
 
-.scrollableArea
-  cursor pointer
 
 
 .Notice {
@@ -90,33 +118,21 @@ $info = #21b9bb;
   border-radius: 5px;
   background: #FFF;
 
-  padding: 1em;
+  padding: .2em 0 1em 1em;
   position: relative;
   margin: 1rem;
+
 }
 
-.close
-  cursor: pointer;
-  position: absolute;
-  stroke: #CCC;
-
-  &:hover
-    stroke: #000;
-  &.closeAll
-    left: -10px;
-    background: #969696
-  &.closeCard
-    top: 0.5em;
-    right: 0.5em;
-
 .title {
-  font-size: 1.4rem;
-  line-height: 1;
-  margin-bottom: 0.7rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1
+  margin-bottom: 0.5rem;
 }
 
 .body {
-  line-height: 1.4;
+  line-height: 1.2;
   color: #333;
   font-size: 90%;
 }
