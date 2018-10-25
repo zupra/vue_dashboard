@@ -93,8 +93,13 @@ export default {
   },
   methods: {
     logOut() {
-      localStorage.removeItem('token')
-      this.$store.state.user.token = ''
+      //sessionStorage.removeItem('token')
+      //this.$store.state.user.token = ''
+      console.error('logOut')
+      sessionStorage.removeItem('token')
+      this.$store.commit('user/logOut')
+      sessionStorage.removeItem('main_nav')
+      this.$router.push('/login')
     }
   }
 }

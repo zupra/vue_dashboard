@@ -1,8 +1,12 @@
 <template lang="pug">
 
-form.Card.Card_form(@submit.prevent="login")
+form.Card.Card_form(
+  @submit.prevent="logIn"
+  role="form"
+)
   Notification(:notice="notice")
   input.lg(
+    type="search"
     placeholder="Логин",
     v-model="user.login"
   )
@@ -36,7 +40,7 @@ export default {
     }
   },
   methods: {
-    login() {
+    logIn() {
       //?login=79991002001&password=qwerty
       const URL = 'http://betclub.com/atlas/auth/login'
       const { login, password } = this.user
@@ -56,9 +60,14 @@ export default {
               id: +new Date()
             }
           } else {
-            const token = response.data.token
-            console.log(token)
-            localStorage.setItem('token', token)
+            const { token, main_nav } = response.data
+            //console.log(token)
+            sessionStorage.setItem('token', token)
+            this.$store.commit('user/logIn', token)
+
+            sessionStorage.setItem('main_nav', JSON.stringify(main_nav))
+            this.$store.commit('user/setMainNav', main_nav)
+
             this.$axios.setHeader('token', token)
             //this.$axios.setToken(token)
             this.$router.push('/')

@@ -1,3 +1,22 @@
-export const state = () => ({
-  counter: 0
-})
+// export const state = () => ({
+//   token: sessionStorage.getItem('token') || '',
+//   mainNav: sessionStorage.getItem('main_nav') || []
+// })
+
+// export const mutations = {
+//   setMainNav(state, nav) {
+//     state.mainNav = nav
+//   },
+//   logIn(state, token) {
+//     state.token = token
+//   },
+//   logOut(state) {
+//     state.token = ''
+//   }
+// }
+
+// export const getters = {
+//   userComponentsArr: state => {
+//     return state.mainNav.map(item => item.url)
+//   }
+// }

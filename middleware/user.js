@@ -1,6 +1,11 @@
-export default function({ store, redirect }) {
-  //store.state.auth.loggedIn
-  if (store.state.user.token) {
+export default function({ store, route, redirect }) {
+  if (
+    !store.state.user.token ||
+    !store.getters['user/userComponentsArr'].includes(route.name)
+  ) {
     return redirect('/login')
   }
+
+  //!store.getters['user/userComponentsArr'].includes(route.name)
+  //return console.log(store.getters['user/userComponentsArr'])
 }
