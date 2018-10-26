@@ -48,9 +48,16 @@
 
         <radio />
 
+        nav
+          h4 backNav
+          nuxt-link(
+            v-for="link in backNav",
+            :to="{path:link.url, name:link.link, component:'components/UiSelectTest.vue'}",
+            :key="link.url"
+          ) {{link.link}}
 
         nav
-          h4 СТРАНИЦЫ
+          h4 мои страницы
           nuxt-link(v-for="link in pages", :to="link.url", :key="link.url" ) {{link.name}}
         nav
           h3 test megaMenu
@@ -75,6 +82,7 @@ import Breadcrumbs from '~/components/Breadcrumbs.vue'
 import Radio from '~/components/Radio.vue'
 
 export default {
+  middleware: 'user',
   components: {
     Radio,
     Breadcrumbs
@@ -82,23 +90,24 @@ export default {
   data() {
     return {
       pages: [
-        { url: '/UI_test', name: 'UI_test' },
-        { url: '/testData', name: 'страница testData' },
-        { url: '/page_test_form_validate', name: 'Валидация форм' },
-        { url: '/pageGridData', name: 'pageGridWidget' },
-        { url: '/newData', name: 'protection' }
+        { url: '/UI', name: 'UI test' },
+        { url: '/notice', name: 'Notice list' },
+        { url: '/valid', name: 'Валидация форм' },
+        { url: '/grid', name: 'Grid' },
+        { url: '/protect', name: 'protection' }
       ],
       showSidebar: true
     }
   },
+  computed: {
+    backNav() {
+      return this.$store.state.user.mainNav
+    }
+  },
   methods: {
     logOut() {
-      //sessionStorage.removeItem('token')
-      //this.$store.state.user.token = ''
-      console.error('logOut')
-      sessionStorage.removeItem('token')
+      //console.error('logOut')
       this.$store.commit('user/logOut')
-      sessionStorage.removeItem('main_nav')
       this.$router.push('/login')
     }
   }
@@ -155,11 +164,6 @@ $sidebar()
 
   nav
     padding 1em
-
-  // .nuxt-link-active
-  .nuxt-link-exact-active
-    color #3498db // #FFF
-    font-weight bold
 
   a
     display block

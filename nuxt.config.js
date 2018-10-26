@@ -40,7 +40,8 @@ module.exports = {
   */
   plugins: [
     '~plugins/click-outside.js',
-    '~plugins/vee-validate.js'
+    '~plugins/vee-validate.js',
+    '~/plugins/vuex-persist.js'
     //{ src: '~plugins/vee-validate.js', ssr: false }
   ],
 

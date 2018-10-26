@@ -1,5 +1,6 @@
 <template lang="pug">
 .Wrap
+  h1 Protection page
   .btn.fill.red(@click="getUsers") Fetch Data
   pre {{Data}}
 
@@ -9,7 +10,7 @@
 <script>
 //- import Logo from '~/components/Logo.vue'
 export default {
-  middleware: 'user',
+  // middleware: 'user',
   components: {
     // Logo
   },

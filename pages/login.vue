@@ -62,10 +62,8 @@ export default {
           } else {
             const { token, main_nav } = response.data
             //console.log(token)
-            sessionStorage.setItem('token', token)
-            this.$store.commit('user/logIn', token)
 
-            sessionStorage.setItem('main_nav', JSON.stringify(main_nav))
+            this.$store.commit('user/logIn', token)
             this.$store.commit('user/setMainNav', main_nav)
 
             this.$axios.setHeader('token', token)
