@@ -1,5 +1,36 @@
 $clr = #2196f3;
 $size = 20px
+
+
+.checked-col
+  label
+    display block
+
+
+.checked-group
+  input[type="checkbox"],
+  input[type="radio"]
+    pointer-events: none;
+    display none
+    &:checked ~ span
+      background: $blue
+      border-color $blue
+      color: #FFF
+  span
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    margin 2px
+    display inline-block
+    border 2px solid currentColor
+    
+    cursor pointer
+    color #999
+    font-size .8rem
+    border-radius 2em
+    line-height: 2
+    padding 0 1em
+
+
+
 input[type="checkbox"],
 input[type="radio"]
   //reset base input

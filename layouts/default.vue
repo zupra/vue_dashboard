@@ -82,7 +82,7 @@ import Breadcrumbs from '~/components/Breadcrumbs.vue'
 import Radio from '~/components/Radio.vue'
 
 export default {
-  middleware: 'user',
+  //middleware: 'user',
   components: {
     Radio,
     Breadcrumbs

@@ -140,6 +140,23 @@ section
     label
       input(type='radio', name='radio', value='4', checked)
       | Checked
+    
+    .Tag .checked-group checkbox
+    fieldset
+      legend checked-group checkbox
+      .checked-group
+        each _,i in Array(23)
+          label
+            input(type='checkbox', name='checkbox', value=''+(i+1) )
+            span Option #{i+1}
+    .Tag .checked-group radio
+    fieldset
+      legend checked-group radio
+      .checked-group
+        each _,i in Array(23)
+          label
+            input(type='radio', name='radio', value=''+(i+1) )
+            span Option #{i+1}
 
 
 
@@ -189,7 +206,7 @@ section
         textarea
         input(placeholder='*Required')
         input(disabled, placeholder='*disabled')
-        .checked-group
+        .checked-col
           each _,i in Array(3)
             label
               input(type='radio', name='radio', value=''+(i+1) )
