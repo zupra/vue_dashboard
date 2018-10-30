@@ -35,7 +35,7 @@ export default {
         login: '',
         password: ''
       },
-      response: {},
+      //response: {},
       notice: {}
     }
   },
@@ -44,14 +44,14 @@ export default {
       //?login=79991002001&password=qwerty
       const URL = 'http://betclub.com/atlas/auth/login'
       const { login, password } = this.user
-      //this.$axios.setToken('token')
+
       this.$axios
         .$post(URL, {
           login: login,
           password: password
         })
         .then(response => {
-          this.response = response
+          //this.response = response
           if (!response.result) {
             this.notice = {
               type: 'danger',
@@ -61,14 +61,16 @@ export default {
             }
           } else {
             const { token, main_nav } = response.data
-            //console.log(token)
-
             this.$store.commit('user/logIn', token)
-            this.$store.commit('user/setMainNav', main_nav)
-
-            this.$axios.setHeader('token', token)
-            //this.$axios.setToken(token)
+            //this.$store.commit('user/setMainNav', main_nav)
             this.$router.push('/')
+
+            //!TODO: fake
+            this.$axios
+              .get(`/mainNav`)
+              .then(res =>
+                this.$store.commit('user/setMainNav', res.data.main_nav)
+              )
           }
         })
     }

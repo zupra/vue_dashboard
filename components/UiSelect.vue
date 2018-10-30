@@ -1,7 +1,7 @@
 <template lang="pug">
 //- (v-click-outside="isOpen=false")
 .Ui-select
-  input.Ui-select_input(:class="[size]", :value="!selectedOption ? 'Please select an item' : selectedOption.label", readonly, @click="isOpen=true")
+  input.Ui-select_input(:class="[size]", :value="!selectedOption ? 'Please select an item' : selectedOption.label", readonly, @click.stop="isOpen=true")
 
   transition(name="select")
     ul.Ui-select_list.list-Card(v-show="isOpen")
@@ -46,10 +46,10 @@ export default {
   // },
   created() {
     // this.selectedOption = this.selected
-    window.addEventListener('click', this.close)
+    document.body.addEventListener('click', this.close)
   },
   beforeDestroy() {
-    window.removeEventListener('click', this.close)
+    document.body.removeEventListener('click', this.close)
   },
   methods: {
     setOption(option, i) {

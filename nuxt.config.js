@@ -41,7 +41,8 @@ module.exports = {
   plugins: [
     '~plugins/click-outside.js',
     '~plugins/vee-validate.js',
-    '~/plugins/vuex-persist.js'
+    '~/plugins/vuex-persist.js',
+    '~/plugins/axios'
     //{ src: '~plugins/vee-validate.js', ssr: false }
   ],
 
@@ -61,6 +62,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseURL: process.env.API_URL || 'http://localhost:3005/'
   },
 
   /*
@@ -94,4 +96,14 @@ module.exports = {
       }
     }
   }
+
+  // render: {
+  //   bundleRenderer: {
+  //     directives: {
+  //       custom1: function (el, dir) {
+  //         // something ...
+  //       }
+  //     }
+  //   }
+  // }
 }

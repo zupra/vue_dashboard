@@ -140,7 +140,7 @@ section
     label
       input(type='radio', name='radio', value='4', checked)
       | Checked
-    
+
     .Tag .checked-group checkbox
     fieldset
       legend checked-group checkbox
@@ -148,7 +148,7 @@ section
         each _,i in Array(23)
           label
             input(type='checkbox', name='checkbox', value=''+(i+1) )
-            span Option #{i+1}
+            span.ripple Option #{i+1}
     .Tag .checked-group radio
     fieldset
       legend checked-group radio
@@ -156,7 +156,7 @@ section
         each _,i in Array(23)
           label
             input(type='radio', name='radio', value=''+(i+1) )
-            span Option #{i+1}
+            span.ripple Option #{i+1}
 
 
 

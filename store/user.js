@@ -18,5 +18,8 @@ export const mutations = {
 export const getters = {
   userComponentsArr: state => {
     return state.mainNav.map(item => item.url)
+  },
+  userReports: state => {
+    return state.mainNav.map(item => item.name)
   }
 }

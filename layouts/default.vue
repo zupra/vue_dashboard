@@ -52,9 +52,9 @@
           h4 backNav
           nuxt-link(
             v-for="link in backNav",
-            :to="{path:link.url, name:link.link, component:'components/UiSelectTest.vue'}",
-            :key="link.url"
-          ) {{link.link}}
+            :to="'/'+link.url",
+            :key="link.name"
+          ) {{link.name}}
 
         nav
           h4 мои страницы

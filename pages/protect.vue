@@ -1,7 +1,7 @@
 <template lang="pug">
 .Wrap
   h1 Protection page
-  .btn.fill.red(@click="getUsers") Fetch Data
+  .btn.fill.red(@click="getData") Fetch Data
   pre {{Data}}
 
 </template>
@@ -20,10 +20,11 @@ export default {
     }
   },
   methods: {
-    getUsers() {
-      fetch('//jsonplaceholder.typicode.com/comments')
-        .then(resp => resp.json())
-        .then(data => (this.Data = data))
+    getData() {
+      // fetch('//jsonplaceholder.typicode.com/comments')
+      //   .then(resp => resp.json())
+      //   .then(data => (this.Data = data))
+      this.$axios.get(`/cars`).then(res => (this.Data = res.data))
     }
   }
 }

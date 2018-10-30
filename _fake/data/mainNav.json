@@ -1,0 +1,16 @@
+{
+  "main_nav": [
+    {
+      "name": "name_1",
+      "url": "report/name_1"
+    },
+    {
+      "name": "name_2",
+      "url": "report/name_2"
+    },
+    {
+      "name": "name_3",
+      "url": "report/name_3"
+    }
+  ]
+}
