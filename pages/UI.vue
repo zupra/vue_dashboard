@@ -1,8 +1,43 @@
 <template lang="pug">
 .Wrap
+
+  hr.H1
+  Dropdown
+    .btn.lg(slot="btn") Dropdown table
+    table.table_distance
+      tr
+        each _,i in Array(5)
+          th thead_#{i+1}
+      each _,i in Array(3)
+        tr
+          each _,i in Array(5)
+            td data_#{i+1}
+
+  Dropdown
+    .btn.lg(slot="btn") Dropdown Multifilter
+    MultifilterTest
+
+
+  <divider title="Calendar" />
+  Calendar_period
+  hr
+  span Input Date &nbsp;
+    InpDate
+  span &nbsp; Input Month &nbsp;
+    InpMonth
+  hr.H1
+  .Flex_wr
+    .col
+      Calendar
+    .col
+      Calendar_month
+
+
+  <divider title="Pagination" />
   PaginationTest
   hr
   UiSelectTest
+
   <divider title="Цвет" />
   #palette
     each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#C7CEDE','#3c4858','#34495e','#568DA6']
@@ -30,14 +65,6 @@
         li.active На Волне Yum.fm
         each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
           li #{item}
-
-  <divider title="Calendar" />
-
-  Calendar
-  Calendar_month
-
-  hr.H1
-  Dropdown
 
   <divider title="Multifilter" />
   MultifilterTest
@@ -69,7 +96,10 @@ import ShadowPoligon from '~/components/ShadowPoligon.vue'
 import IconsTest from '~/components/IconsTest.vue'
 
 import Calendar from '~/components/Calendar/Calendar.vue'
-import Calendar_month from '~/components//Calendar/Calendar_month.vue'
+import InpDate from '~/components/Calendar/InpDate.vue'
+import InpMonth from '~/components/Calendar/InpMonth.vue'
+import Calendar_month from '~/components/Calendar/Calendar_month.vue'
+import Calendar_period from '~/components/Calendar/Calendar_period.vue'
 
 import PaginationTest from '~/components/Pagination/PaginationTest.vue'
 
@@ -85,7 +115,10 @@ export default {
     Dropdown,
     ShadowPoligon,
     Calendar,
+    InpDate,
+    InpMonth,
     Calendar_month,
+    Calendar_period,
     UiSelectTest,
     IconsTest
   },

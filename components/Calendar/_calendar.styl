@@ -2,6 +2,17 @@ $width = 280px
 $time = ($width / 7)
 $M = ($width / 4)
 
+
+
+.Calendar_Input
+  position relative
+  display: inline-block;
+  input
+    cursor: pointer
+  .Calendar
+    position: absolute;
+    z-index: 1;
+
 .Calendar
   background #FFF
   box-shadow: 0 1px 8px rgba(#000, .25);
@@ -29,7 +40,7 @@ $M = ($width / 4)
     justify-content: space-between
     line-height: $time
 
-    &_currMonth
+    &_current
       flex: 1
 
     &_ltMonth,

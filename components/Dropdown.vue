@@ -1,11 +1,16 @@
 <template lang="pug">
-div
-  .btn(v-click-outside='hide', @click='toggle', v-show="!opened") Toggle
-  b(v-show="opened") &nbsp; ЛЮБОЙ КЛИК ЗАКРОЕТ ОКНО
-  ul.list-Card(v-show='opened')
-    li.active На Волне Yum.fm
-    each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
-      li #{item}
+
+//- v-click-outside='closeDropDown',
+.Dropdown(
+  v-click-outside='closeDropDown',
+  aria-haspopup="true"
+)
+  .Dropdown_dt(@click="toggleDropDown")
+    slot(name="btn", @click="toggleDropDown")
+
+  .Dropdown_dd(v-show="isOpen")
+    slot
+
 
 </template>
 
@@ -13,23 +18,36 @@ div
 export default {
   data() {
     return {
-      opened: false
+      isOpen: false
     }
   },
-
-  mounted() {
-    // prevent click outside event with popupItem.
-    // this.popupItem = this.$el
-  },
-
   methods: {
-    toggle() {
-      this.opened = true
+    toggleDropDown() {
+      console.log('CLK')
+      this.isOpen = !this.isOpen
     },
-
-    hide() {
-      this.opened = false
+    closeDropDown() {
+      this.isOpen = false
     }
   }
 }
 </script>
+
+<style lang="stylus">
+.Dropdown
+  margin: 0.35em;
+
+  position relative
+  display: inline-block;
+  &_dd
+    position: absolute;
+    z-index 1
+
+    //asCard
+    background: #fff;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.25);
+
+.Dropdown_dd > *
+  margin 0
+
+</style>

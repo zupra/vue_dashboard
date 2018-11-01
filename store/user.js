@@ -19,7 +19,10 @@ export const getters = {
   userComponentsArr: state => {
     return state.mainNav.map(item => item.url)
   },
-  userReports: state => {
+  userReportArr: state => {
     return state.mainNav.map(item => item.name)
   }
+  // getReportTitle: state => name => {
+  //   return state.mainNav.filter(item => item.name === name)[0].link
+  // }
 }

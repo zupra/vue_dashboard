@@ -1,9 +1,8 @@
 <template lang="pug">
-div
-
-  pre VAL = {{VAL}}
-
-  .Calendar
+.Calendar_Input
+  //- input(@click="show=!show" placeholder="дд мм гггг" :value="VAL.str", readonly)
+  input(@click="show=!show" :value="VAL.str", readonly)
+  .Calendar(v-show="show")
     .Cr-Head
       .Cr-Head_ltMonth.ripple(@click="ltMonth") «
       .Cr-Head_current {{currYear}}
@@ -13,7 +12,7 @@ div
       time(
         v-for="m,i in months",
         :class="{currMonth: i==currMonth, CURR: i == CURR}",
-        @click="CURR=i"
+        @click="CURR=i; show=false"
       ) {{m.slice(0,3)}}
 
 
@@ -25,6 +24,7 @@ const NOW = new Date()
 export default {
   data() {
     return {
+      show: false,
       inst_date: NOW,
       months: [
         'Январь',
@@ -43,7 +43,6 @@ export default {
       CURR: NOW.getMonth()
     }
   },
-
   computed: {
     VAL() {
       const MonthStr =
@@ -63,7 +62,16 @@ export default {
       return this.inst_date.getMonth()
     }
   },
+  mounted() {
+    document.documentElement.addEventListener('click', this.close, false)
+  },
+  beforeDestroy() {
+    document.documentElement.removeEventListener('click', this.close, false)
+  },
   methods: {
+    close(e) {
+      if (!this.$el.contains(e.target)) this.show = false
+    },
     ltMonth() {
       this.inst_date = new Date(this.currYear - 1, this.currMonth)
     },

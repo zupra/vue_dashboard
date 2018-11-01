@@ -1,15 +1,18 @@
 {
   "main_nav": [
     {
-      "name": "name_1",
-      "url": "report/name_1"
+      "name": "userlist",
+      "link": "Список игроков",
+      "url": "report/userlist"
     },
     {
       "name": "name_2",
+      "link": "Список пользователей",
       "url": "report/name_2"
     },
     {
       "name": "name_3",
+      "link": "Список победителей",
       "url": "report/name_3"
     }
   ]

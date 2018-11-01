@@ -1,17 +1,15 @@
 <template lang="pug">
-div
-  div
-    p сегодня: {{new Date().toLocaleDateString()}} г.
-    p
-      pre NOW={{inst_date}}
-    p
-      pre clickedDay={{clickedDay}}
-    pre output={{output}}
-
-  .Calendar
+.Calendar_Input
+  //- :placeholder="output.str ? output.str : `${currDay} ${months[currMonth]} ${currYear}`"
+  input(
+    @click="show=!show"
+    :value="output.str",
+    readonly
+  )
+  .Calendar(v-show="show")
     .Cr-Head
       .Cr-Head_ltMonth.ripple(@click="ltMonth") «
-      .Cr-Head_current {{months[currMonth]}} {{currYear}}
+      .Cr-Head_current {{months[currMonth].slice(0,3)}} {{currYear}}
       .Cr-Head_gtMonth.ripple(@click="gtMonth") »
     .Cr-Week
       .Cr-Week_day(v-for="day in days") {{day}}
@@ -23,48 +21,52 @@ div
         @click="setDate(i)"
       ) {{i}}
       .Cr-Days_blank(v-for="_,i in qtyDaysNextMonth") {{i+1}}
-
-
 </template>
 
 <script>
 const NOW = new Date()
-
 export default {
-  name: 'Calendar',
-  //components: {},
-  // props: {
-  //   field_from: [String, Boolean],
-  //   field_to: [String, Boolean],
-  //   prop_curr: [String, Number] // предучтановленное число текущего месяца # для вчера норм (new Date().getDate())-1
-  // },
+  props: {
+    /*
+      установка даты
+      # для вчера норм https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
+    */
+    prop_setDate: {
+      type: Date,
+      default: null
+    }
+  },
   data() {
     return {
-      inst_date: NOW,
+      show: false,
+      inst_date: this.prop_setDate ? this.prop_setDate : NOW,
       days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
       months: [
-        'Янв',
-        'Фев',
-        'Мар',
-        'Апр',
-        'Май',
-        'Июн',
-        'Июл',
-        'Авг',
-        'Сен',
-        'Окт',
-        'Ноя',
-        'Дек'
+        'Января',
+        'Февраля',
+        'Марта',
+        'Апреля',
+        'Мая',
+        'Июня',
+        'Июля',
+        'Августа',
+        'Сентября',
+        'Октябрь',
+        'Ноября',
+        'Декабря'
       ],
       clickedDay: null,
       output: {
-        str: '', //19 Апр 2018
+        str: '', //1 Ноя 2018
         format: '' //2018-04-19
       }
     }
   },
 
   computed: {
+    NOW() {
+      return this.prop_setDate || NOW
+    },
     currYear() {
       return this.inst_date.getFullYear()
     },
@@ -77,10 +79,10 @@ export default {
     currDay() {
       // !TODO wtf
       if (
-        this.inst_date.getMonth() === NOW.getMonth() &&
-        this.inst_date.getFullYear() === NOW.getFullYear()
+        this.inst_date.getMonth() === this.NOW.getMonth() &&
+        this.inst_date.getFullYear() === this.NOW.getFullYear()
       ) {
-        return NOW.getDate()
+        return this.NOW.getDate()
       }
     },
     daysInMonth() {
@@ -111,15 +113,25 @@ export default {
       return 42 - (this.daysInMonth + this._qtyDaysPrevMonth)
     }
   },
+  created() {
+    this.setDate(this.currDay)
+  },
+  mounted() {
+    document.documentElement.addEventListener('click', this.close, false)
+  },
+  beforeDestroy() {
+    document.documentElement.removeEventListener('click', this.close, false)
+  },
   methods: {
+    close(e) {
+      if (!this.$el.contains(e.target)) this.show = false
+    },
     ltMonth() {
       this.clickedDay = null
-      // this.clickedDay && this.reset()
       this.inst_date = new Date(this.currYear, this.currMonth - 1)
     },
     gtMonth() {
       this.clickedDay = null
-      // this.clickedDay && this.reset()
       this.inst_date = new Date(this.currYear, this.currMonth + 1)
     },
     // reset() {
@@ -140,6 +152,7 @@ export default {
       this.output.format = `${this.currYear}-${fixMonth}-${fixDay}`
 
       this.$emit('setdate', this.output)
+      this.show = false
     }
   }
 }

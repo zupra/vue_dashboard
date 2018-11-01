@@ -50,11 +50,13 @@
 
         nav
           h4 backNav
+          //- :to="{path: '/'+rout.url, props: {title: rout.link}}",
+          //- :to="`/${rout.url}`",
           nuxt-link(
-            v-for="link in backNav",
-            :to="'/'+link.url",
-            :key="link.name"
-          ) {{link.name}}
+            v-for="rout in backNav",
+            :to="'/'+rout.url",
+            :key="rout.name"
+          ) {{rout.link}}
 
         nav
           h4 мои страницы
