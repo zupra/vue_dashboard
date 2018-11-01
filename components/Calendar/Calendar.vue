@@ -19,7 +19,7 @@ div
       .Cr-Days_blank(v-for="blank in daysOfPrevMonth") {{blank}}
       .Cr-Days_day(
         v-for="i in daysInMonth",
-        :class="{currDay: i == currDay, clickedDay: i == clickedDay}",
+        :class="{Today: i == Today, clickedDay: i == clickedDay}",
         @click="setDate(i)"
       ) {{i}}
       .Cr-Days_blank(v-for="_,i in qtyDaysNextMonth") {{i+1}}
@@ -58,8 +58,8 @@ export default {
       ],
       clickedDay: null,
       output: {
-        str: '', //19 Апр 2018
-        format: '' //2018-04-19
+        str: '', //1 Апр 2018
+        format: '' //2018-04-01
       }
     }
   },
@@ -74,7 +74,7 @@ export default {
     currWD() {
       return this.inst_date.getDay()
     },
-    currDay() {
+    Today() {
       // !TODO wtf
       if (
         this.inst_date.getMonth() === NOW.getMonth() &&

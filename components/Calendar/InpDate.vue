@@ -1,6 +1,6 @@
 <template lang="pug">
 .Calendar_Input
-  //- :placeholder="output.str ? output.str : `${currDay} ${months[currMonth]} ${currYear}`"
+  //- :placeholder="output.str ? output.str : `${Today} ${months[currMonth]} ${currYear}`"
   input(
     @click="show=!show"
     :value="output.str",
@@ -17,7 +17,7 @@
       .Cr-Days_blank(v-for="blank in daysOfPrevMonth") {{blank}}
       .Cr-Days_day(
         v-for="i in daysInMonth",
-        :class="{currDay: i == currDay, clickedDay: i == clickedDay}",
+        :class="{Today: i == Today, clickedDay: i == clickedDay}",
         @click="setDate(i)"
       ) {{i}}
       .Cr-Days_blank(v-for="_,i in qtyDaysNextMonth") {{i+1}}
@@ -57,8 +57,8 @@ export default {
       ],
       clickedDay: null,
       output: {
-        str: '', //1 Ноя 2018
-        format: '' //2018-04-19
+        str: '', //1 Апреля 2018
+        format: '' //2018-04-01
       }
     }
   },
@@ -76,13 +76,13 @@ export default {
     currWD() {
       return this.inst_date.getDay()
     },
-    currDay() {
-      // !TODO wtf
+    Today() {
+      // !TODO wtf, TIMESTAMP?
       if (
-        this.inst_date.getMonth() === this.NOW.getMonth() &&
-        this.inst_date.getFullYear() === this.NOW.getFullYear()
+        this.inst_date.getMonth() === NOW.getMonth() &&
+        this.inst_date.getFullYear() === NOW.getFullYear()
       ) {
-        return this.NOW.getDate()
+        return NOW.getDate()
       }
     },
     daysInMonth() {
@@ -101,12 +101,6 @@ export default {
           { length: this._qtyDaysPrevMonth },
           (v, k) => this._lastDateOfPrevMonth - this._qtyDaysPrevMonth + (k + 1)
         )
-        /*
-        Array.from(
-          { length: this._qtyDaysPrevMonth },
-          (v, k) => this._lastDateOfPrevMonth - k
-        ).reverse()
-        */
       )
     },
     qtyDaysNextMonth() {
@@ -114,7 +108,7 @@ export default {
     }
   },
   created() {
-    this.setDate(this.currDay)
+    this.setDate(this.NOW.getDate())
   },
   mounted() {
     document.documentElement.addEventListener('click', this.close, false)
@@ -134,11 +128,6 @@ export default {
       this.clickedDay = null
       this.inst_date = new Date(this.currYear, this.currMonth + 1)
     },
-    // reset() {
-    //   this.clickedDay = null
-    //   // this.output.str = ''
-    //   this.$emit('setdate', null)
-    // },
     setDate(day) {
       this.clickedDay = day
 
