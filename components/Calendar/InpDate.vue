@@ -1,6 +1,5 @@
 <template lang="pug">
 .Calendar_Input
-  //- :placeholder="output.str ? output.str : `${Today} ${months[currMonth]} ${currYear}`"
   input(
     @click="show=!show"
     :value="output.str",
@@ -16,10 +15,10 @@
     .Cr-Days
       .Cr-Days_blank(v-for="blank in daysOfPrevMonth") {{blank}}
       .Cr-Days_day(
-        v-for="i in daysInMonth",
-        :class="{Today: i == Today, clickedDay: i == clickedDay}",
-        @click="setDate(i)"
-      ) {{i}}
+        v-for="d in daysInMonth",
+        :class="{Today: d == Today, clickedDay: d == clickedDay}",
+        @click="setDate(d)"
+      ) {{d}}
       .Cr-Days_blank(v-for="_,i in qtyDaysNextMonth") {{i+1}}
 </template>
 
@@ -29,9 +28,15 @@ export default {
   props: {
     /*
       установка даты
-      # для вчера норм https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
+      # для вчера норм
+      :prop_setDateFrom="( d => new Date(d.setDate(d.getDate()-1)) )(new Date)"
+      https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
     */
-    prop_setDate: {
+    prop_setDateFrom: {
+      type: Date,
+      default: null
+    },
+    prop_setDateTo: {
       type: Date,
       default: null
     }
@@ -39,7 +44,7 @@ export default {
   data() {
     return {
       show: false,
-      inst_date: this.prop_setDate ? this.prop_setDate : NOW,
+      inst_date: this.prop_setDateFrom ? this.prop_setDateFrom : NOW,
       days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
       months: [
         'Января',
@@ -62,11 +67,7 @@ export default {
       }
     }
   },
-
   computed: {
-    NOW() {
-      return this.prop_setDate || NOW
-    },
     currYear() {
       return this.inst_date.getFullYear()
     },
@@ -79,8 +80,8 @@ export default {
     Today() {
       // !TODO wtf, TIMESTAMP?
       if (
-        this.inst_date.getMonth() === NOW.getMonth() &&
-        this.inst_date.getFullYear() === NOW.getFullYear()
+        this.inst_date.getMonth() == NOW.getMonth() &&
+        this.inst_date.getFullYear() == NOW.getFullYear()
       ) {
         return NOW.getDate()
       }
@@ -107,9 +108,20 @@ export default {
       return 42 - (this.daysInMonth + this._qtyDaysPrevMonth)
     }
   },
-  created() {
-    this.setDate(this.NOW.getDate())
+  watch: {
+    prop_setDateTo() {
+      this.inst_date = this.prop_setDateTo
+      const setDate = this.prop_setDateTo.getDate()
+      this.setDate(setDate)
+    }
   },
+  //первый старт
+  created() {
+    this.setDate(this.inst_date.getDate())
+  },
+  // updated() {
+  //   console.error('updated')
+  // },
   mounted() {
     document.documentElement.addEventListener('click', this.close, false)
   },
@@ -130,17 +142,20 @@ export default {
     },
     setDate(day) {
       this.clickedDay = day
-
+      /**готовим output
+        output: {
+          str: "1 Апреля 2018"
+          format: "2018-04-01"
+        }
+      */
       const fixDay = day < 10 ? '0' + day : day
+      const { output, months, currMonth, currYear } = this
       const fixMonth =
-        this.currMonth + 1 < 10
-          ? '0' + (this.currMonth + 1)
-          : this.currMonth + 1
+        currMonth + 1 < 10 ? '0' + (currMonth + 1) : currMonth + 1
+      output.str = `${day} ${months[currMonth]} ${currYear}`
+      output.format = `${currYear}-${fixMonth}-${fixDay}`
 
-      this.output.str = `${day} ${this.months[this.currMonth]} ${this.currYear}`
-      this.output.format = `${this.currYear}-${fixMonth}-${fixDay}`
-
-      this.$emit('setdate', this.output)
+      this.$emit('setdate', this.output.format)
       this.show = false
     }
   }

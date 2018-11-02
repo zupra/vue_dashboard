@@ -3,6 +3,16 @@
 
   hr.H1
   Dropdown
+    .btn.lg(slot="btn") Dropdown Card
+    .Card
+      img(
+        height="160"
+        src="https://picsum.photos/240/160?image="+1051
+      )
+      .btnActions
+        .btn.flat.red action
+        .btn ОК
+  Dropdown
     .btn.lg(slot="btn") Dropdown table
     table.table_distance
       tr
@@ -12,6 +22,13 @@
         tr
           each _,i in Array(5)
             td data_#{i+1}
+
+  Dropdown
+    .btn.lg(slot="btn") Dropdown menu
+    nav.list-Card
+      each link in ['Список игроков','Список пользователей','Mark as important','Create event','Restore contacts']
+        a(href="#")= link
+      a.active(href="#") Lorem ipsum
 
   Dropdown
     .btn.lg(slot="btn") Dropdown Multifilter

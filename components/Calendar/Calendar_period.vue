@@ -2,15 +2,19 @@
 .Calendar_period
   span За период с &nbsp;
     InpDate(
-      :prop_setDate="( d => new Date(d.setDate(d.getDate()-1)) )(new Date)"
+      @setdate="v =>From=v",
+      :prop_setDateFrom="( d => new Date(d.setDate(d.getDate()-1)) )(new Date)"
     )
     | &nbsp; по &nbsp;
-    InpDate
+    InpDate(
+      @setdate="v =>To=v",
+      :prop_setDateTo="setTo"
+    )
 
   .error(
-    v-if="From && To && From.format > To.format",
+    v-show="error",
     class="ERROR text-danger"
-  ) Неверный период времени (FROM > TO)
+  ) Неверный период времени (Начало > Конец)
 </template>
 
 <script>
@@ -23,7 +27,18 @@ export default {
   data() {
     return {
       From: '',
-      To: ''
+      To: '',
+      setTo: null
+    }
+  },
+  computed: {
+    error() {
+      return this.From > this.To
+    }
+  },
+  watch: {
+    error(error) {
+      if (error) this.setTo = new Date(this.From)
     }
   }
 }

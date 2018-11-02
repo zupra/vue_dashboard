@@ -56,8 +56,8 @@ const TEST = [
   }
 ]
 function randomInt(min, max) {
-  let rand = min + Math.random() * (max + 1 - min)
-  rand = Math.floor(rand)
+  let rand = min - 0.5 + Math.random() * (max - min + 1)
+  rand = Math.round(rand)
   return rand
 }
 
@@ -76,12 +76,12 @@ export default {
     }
   },
   mounted() {
+    this.notice = { ...TEST[0], id: +new Date() }
     this.interval = setInterval(() => {
       let index = randomInt(0, 6)
       // console.log(index)
       this.notice = { ...TEST[index], id: +new Date() }
-    }, randomInt(100, 5000))
-    console.dir(this)
+    }, randomInt(100, 10000))
   },
   beforeDestroy() {
     clearInterval(this.interval)

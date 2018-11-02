@@ -50,6 +50,9 @@ $M = ($width / 4)
       width: $time
       &:hover
         background: #3498db + 10%
+    // .hidden
+    //   pointer-events: none
+    //   background: transparent
 
   &-Days
     flex-wrap: wrap
@@ -68,9 +71,22 @@ $M = ($width / 4)
       &:hover:not(.Today):not(.clickedDay)
         background: #dee2e6
 
+    // .hidden
+    //   color #dee2e6
+    //   pointer-events: none
+
     .Today
-      background: #CCC
-      position: relative
+      background: aliceblue
+      // position: relative
+      // &:before
+      //   content: 'NOW'
+      //   position: absolute
+      //   top 4px
+      //   left 50%
+      //   transform: translateX(-50%)
+      //   line-height: 1
+      //   font-size: 6px
+
     .clickedDay
       color: #FFF
       font-weight: bold
