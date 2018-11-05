@@ -136,7 +136,6 @@ $sidebar()
 #sidebar
   $sidebar()
   padding-top: 3em
-
   background-color #F3F3F4 //#f7f7f7
   box-shadow: 0 2em 7em -2em #000
 

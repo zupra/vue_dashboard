@@ -1,14 +1,15 @@
 <template lang="pug">
 
-//- v-click-outside='closeDropDown',
 .Dropdown(
   v-click-outside='closeDropDown',
   aria-haspopup="true"
 )
   .Dropdown_dt(@click="toggleDropDown")
-    slot(name="btn", @click="toggleDropDown")
-
-  .Dropdown_dd(v-show="isOpen")
+    slot(name="btn")
+  .Dropdown_dd(
+    v-show="isOpen"
+    :class="openTo"
+  )
     slot
 
 
@@ -16,6 +17,13 @@
 
 <script>
 export default {
+  props: {
+    openTo: {
+      type: String,
+      default: null,
+      validator: prop => ['toLeft', 'toTop'].includes(prop)
+    }
+  },
   data() {
     return {
       isOpen: false
@@ -23,7 +31,6 @@ export default {
   },
   methods: {
     toggleDropDown() {
-      console.log('CLK')
       this.isOpen = !this.isOpen
     },
     closeDropDown() {
@@ -35,17 +42,21 @@ export default {
 
 <style lang="stylus">
 .Dropdown
-  margin: 0.35em;
+  margin: 0.3rem;
 
   position relative
   display: inline-block;
   &_dd
+    margin-top 0.3em;
     position: absolute;
-    z-index 1
+    z-index 100
 
     //asCard
     background: #fff;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.25);
+    //box-shadow: 0 1px 8px rgba(0,0,0,0.25);
+    box-shadow 0 1px 1rem 1px rgba(0,0,0,0.3)
+    &.toLeft
+      right 0
 
 .Dropdown_dd > *
   margin 0

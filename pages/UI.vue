@@ -1,6 +1,7 @@
 <template lang="pug">
 .Wrap
 
+
   hr.H1
   Dropdown
     .btn.lg(slot="btn") Dropdown Card
@@ -22,10 +23,22 @@
         tr
           each _,i in Array(5)
             td data_#{i+1}
+  Dropdown(
+    openTo="toLeft"
+  )
+    .btn.lg(slot="btn") Dropdown table toLeft
+    table.table_distance
+      tr
+        each _,i in Array(5)
+          th thead_#{i+1}
+      each _,i in Array(3)
+        tr
+          each _,i in Array(5)
+            td data_#{i+1}
 
   Dropdown
     .btn.lg(slot="btn") Dropdown menu
-    nav.list-Card
+    nav.listNav_Card
       each link in ['Список игроков','Список пользователей','Mark as important','Create event','Restore contacts']
         a(href="#")= link
       a.active(href="#") Lorem ipsum
@@ -67,18 +80,18 @@
   .Flex_wr
     .col
       .Tag nav>a
-      nav.list-Card(style="display: inline-grid")
+      nav.listNav_Card(style="display: inline-grid")
         each link in ['Mark as important','Create event','Restore contacts']
           a(href="#")= link
         a.active(href="#") Lorem ipsum
     .col
       .Tag nav>a
-      nav.list-Card(style="display: inline-grid")
+      nav.listNav_Card(style="display: inline-grid")
         each item in [1,2,3,4,5]
           a(href="#") link_#{item}
     .col
       .Tag ul>li
-      ul.list-Card(style="display: inline-grid")
+      ul.listNav_Card(style="display: inline-grid")
         li.active На Волне Yum.fm
         each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
           li #{item}

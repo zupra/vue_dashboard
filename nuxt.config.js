@@ -74,17 +74,6 @@ module.exports = {
     */
     vendor: ['vee-validate'],
     extend(config, ctx) {
-      // vue-svg-loader
-      /*
-      const svgRule = config.module.rules.find(
-        rule => rule.loader === 'url-loader'
-      )
-      svgRule.test = /\.(png|jpe?g|gif)$/
-      config.module.rules.push({
-        test: /\.svg$/,
-        loader: 'vue-svg-loader'
-      })
-      */
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
@@ -95,7 +84,36 @@ module.exports = {
         })
       }
     }
-  }
+  },
+
+  /*
+  ** Router configuration
+  */
+ //https://toor.co/blog/nuxtjs-smooth-scrolling-with-hash-links/
+  // router: {
+  //   scrollBehavior(to, from, savedPosition) {
+  //     if (savedPosition) {
+  //       return savedPosition
+  //     } else {
+  //       let position = {}
+  //       if (to.matched.length < 2) {
+  //         position = { x: 0, y: 0 }
+  //       } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
+  //         position = { x: 0, y: 0 }
+  //       }
+  //       if (to.hash) {
+  //         position = { selector: to.hash }
+  //       }
+  //       return position
+  //     }
+  //   }
+  // }
+
+  // router: {
+  //   scrollBehavior: function (to, from, savedPosition) {
+  //     return { x: 90, y: 0 }
+  //   }
+  // }
 
   // render: {
   //   bundleRenderer: {
@@ -106,4 +124,5 @@ module.exports = {
   //     }
   //   }
   // }
+
 }

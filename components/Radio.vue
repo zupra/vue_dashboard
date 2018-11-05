@@ -3,7 +3,7 @@
   .Radio_head
     canvas#audioCanvas(ref="canvas")
     .audioControl(@click="toggle()", :class="isPause ? 'pause' : 'active' ")
-  ul.list-Card
+  ul.listNav
     li(v-for="(item, index) in stations", :class='{ active : index == activeStation }', @click="playItem(item.src, index)") {{item.title}}
   audio(ref="audio", src="", crossorigin="")
 
@@ -140,8 +140,9 @@ export default {
   height: 100%
   width: 100%
 .Radio
+  //padding 0 1em 1em
   &_head
-    margin 0 1em -1em
+    //margin 0 1em -1em
     height 70px
     background: #4281A4
     position relative

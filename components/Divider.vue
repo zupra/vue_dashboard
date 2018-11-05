@@ -1,6 +1,7 @@
 <template lang="pug">
-.Divider
+.Divider(:id="title")
   .Divider__title # {{title}}
+  
 
 </template>
 <script>

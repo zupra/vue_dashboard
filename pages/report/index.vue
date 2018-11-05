@@ -3,7 +3,7 @@
 
   h1 Здесь будет генератор новых отчётов
   h2 А пока список готовых отчётов:
-  nav.list-Card
+  nav.listNav_Card
     nuxt-link(
       v-for="report in reportList",
       :to="report",

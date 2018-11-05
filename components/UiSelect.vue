@@ -4,7 +4,7 @@
   input.Ui-select_input(:class="[size]", :value="!selectedOption ? 'Please select an item' : selectedOption.label", readonly, @click.stop="isOpen=true")
 
   transition(name="select")
-    ul.Ui-select_list.list-Card(v-show="isOpen")
+    ul.Ui-select_list.listNav_Card(v-show="isOpen")
       li(v-for="(option,i) in options", @click="setOption(option,i)", :class="{selected:i==selectedItem}")
         | {{ option.label }}
 </template>

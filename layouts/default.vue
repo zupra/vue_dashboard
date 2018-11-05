@@ -2,17 +2,6 @@
 
 #layout
   #topNav
-    //- .btn#burger(@click="showSidebar = !showSidebar") ≡
-    //- #burger.btn
-    //-   svg(
-    //-       @click="showSidebar = !showSidebar",
-    //-       width='28',
-    //-       height='20',
-    //-     )
-    //-     g(stroke='midnightblue', stroke-width='2')
-    //-       path(d='M0,2 L28,2')
-    //-       path(d='M0,10 L21,10')
-    //-       path(d='M0,18 L14,18')
     #burger
       svg(
           @click="showSidebar = !showSidebar",
@@ -29,7 +18,23 @@
 
 
     //- breadcrumbs
-    .btn(@click="logOut") выйти
+    div
+      button(@click="logOut") выйти
+      Dropdown(openTo="toLeft")
+        button(slot="btn") Radio
+        Radio
+      //- Dropdown(
+      //-   openTo="toLeft"
+      //- )
+      //-   button(slot="btn") Dropdown table toLeft
+      //-   table.table_distance
+      //-     tr
+      //-       each _,i in Array(5)
+      //-         th thead_#{i+1}
+      //-     each _,i in Array(3)
+      //-       tr
+      //-         each _,i in Array(5)
+      //-           td data_#{i+1}
     //- .btn(@click="$store.state.user.token = ''") выйти
 
 
@@ -46,7 +51,12 @@
         nav
           nuxt-link(to="/") Home/logo
 
-        <radio />
+        nav
+          a(
+            v-for="hash in ['Calendar','Pagination','Цвет','ShadowPoligon','Multifilter','Modal','Expander','Form','Table']",
+            :href="`/UI#${hash}`"
+          ) {{hash}}
+        
 
         nav
           h4 backNav
@@ -82,12 +92,14 @@
 <script>
 import Breadcrumbs from '~/components/Breadcrumbs.vue'
 import Radio from '~/components/Radio.vue'
+import Dropdown from '~/components/Dropdown.vue'
 
 export default {
   //middleware: 'user',
   components: {
     Radio,
-    Breadcrumbs
+    Breadcrumbs,
+    Dropdown
   },
   data() {
     return {
@@ -108,7 +120,6 @@ export default {
   },
   methods: {
     logOut() {
-      //console.error('logOut')
       this.$store.commit('user/logOut')
       this.$router.push('/login')
     }
@@ -123,10 +134,11 @@ export default {
 
 $zIndex = 10
 
-.slideSidebar-enter-active, .slideSidebar-leave-active
+.slideSidebar-enter-active, 
+.slideSidebar-leave-active
   transition transform .4s
-
-.slideSidebar-enter, .slideSidebar-leave-active
+.slideSidebar-enter, 
+.slideSidebar-leave-active
   transform translateX(-100%) // - 24em
 
 #layout
@@ -135,7 +147,6 @@ $zIndex = 10
   /* хром, сафари */
   &::-webkit-scrollbar
     width 0
-
   /* ie 10+ */
   &
     -ms-overflow-style none
@@ -144,8 +155,8 @@ $sidebar()
   @media (max-width: 800px)
     position absolute
     z-index $zIndex
-
   width 220px
+
 
 #sidebar, #main
   height 100vh
@@ -154,8 +165,8 @@ $sidebar()
   // !!!
   // min-width: 375px;
   flex 1
-  overflow hidden
   width 100%
+  overflow hidden
   background #f7f7f7
 
 #sidebar
@@ -166,7 +177,6 @@ $sidebar()
 
   nav
     padding 1em
-
   a
     display block
     padding .5em 0
@@ -185,17 +195,11 @@ $sidebar()
   padding-right 6px
 
 #burger
-  // background #3498db
-  // border-radius .3em
-
-  // background #696969
   display flex
-
   &:hover polyline
     fill yellow
-
-svg
-  margin auto
-  cursor pointer
-  user-select none
+  svg
+    margin auto
+    cursor pointer
+    user-select none
 </style>

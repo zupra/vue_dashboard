@@ -6,6 +6,8 @@
       input(type="color" v-model="bgColor")
       .btn(v-show="bgColor" @click="bgColor=''") сбросить
   section(:style="{ backgroundColor: bgColor}")
+    .whiteframe.shadow_Card Card
+    .whiteframe.shadow_Dropdown Dropdown
     - for( n=1; n< 25;n++ )
       .whiteframe(class="whiteframe-"+n+"dp")=n+"dp"
 </template>
@@ -36,6 +38,13 @@ section
   height 100px
   line-height 100px
   text-align center
+
+
+.shadow_Card
+  box-shadow 0 1px 8px rgba(0,0,0,0.25)
+.shadow_Dropdown
+  box-shadow 0 1px 1rem 1px rgba(0,0,0,0.3)
+
 
 .whiteframe-1dp
   box-shadow 0 1px 3px rgba(0,0,0,.2),0 1px 1px rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12)
