@@ -1,8 +1,38 @@
 <template lang="pug">
 .Wrap
 
+  <divider title="MaskedInput" />
+  pre {{phone_number}}
+  TheMask(
+    v-model="phone_number",
+    mask="+7(###) ### ## ##",
+    placeholder="Phone number"
+  )
+  hr
+  pre {{credit_card}}
+  TheMask(
+    v-model="credit_card"
+    mask="#### #### #### ####",
+    placeholder="credit Card"
+  )
 
-  hr.H1
+  <divider title="SwitchTgl" />
+  p Разрешить Просматривать &nbsp;
+    SwitchTgl
+  p Разрешить Удалять &nbsp;
+    SwitchTgl
+  table.table_distance
+    tr
+      each _,i in Array(5)
+        th thead_#{i+1}
+    each _,i in Array(3)
+      tr
+        each _,i in Array(4)
+          td data_#{i+1}
+        td
+          SwitchTgl
+
+  <divider title="Dropdown" />
   Dropdown
     .btn.lg(slot="btn") Dropdown Card
     .Card
@@ -74,9 +104,11 @@
       figure
         div(style="width:5em;height:4em;background-color:"+clr)
         figcaption #{clr}
+
   <divider title="ShadowPoligon" />
   ShadowPoligon
 
+  <divider title="Card" />
   .Flex_wr
     .col
       .Tag nav>a
@@ -120,10 +152,13 @@ import MultifilterTest from '~/components/MultifilterTest.vue'
 import ModalTest from '~/components/ModalTest.vue'
 import ExpanderTest from '~/components/ExpanderTest.vue'
 import Divider from '~/components/Divider.vue'
-import UiTest from '~/components/UiTest.vue'
 import Dropdown from '~/components/Dropdown.vue'
 import ShadowPoligon from '~/components/ShadowPoligon.vue'
 import IconsTest from '~/components/IconsTest.vue'
+import PaginationTest from '~/components/Pagination/PaginationTest.vue'
+import SwitchTgl from '~/components/SwitchTgl.vue'
+
+import UiTest from '~/components/UiTest.vue'
 
 import Calendar from '~/components/Calendar/Calendar.vue'
 import InpDate from '~/components/Calendar/InpDate.vue'
@@ -131,10 +166,11 @@ import InpMonth from '~/components/Calendar/InpMonth.vue'
 import Calendar_month from '~/components/Calendar/Calendar_month.vue'
 import Calendar_period from '~/components/Calendar/Calendar_period.vue'
 
-import PaginationTest from '~/components/Pagination/PaginationTest.vue'
+import { TheMask } from 'vue-the-mask'
 
 export default {
   //layout: 'lite',
+  layout: 'ui',
   components: {
     PaginationTest,
     UiTest,
@@ -150,10 +186,16 @@ export default {
     Calendar_month,
     Calendar_period,
     UiSelectTest,
-    IconsTest
+    IconsTest,
+    SwitchTgl,
+
+    TheMask
   },
   data() {
-    return {}
+    return {
+      phone_number: '',
+      credit_card: ''
+    }
   }
 }
 </script>

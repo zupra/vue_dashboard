@@ -1,7 +1,7 @@
 <template lang="pug">
 .Divider(:id="title")
   .Divider__title # {{title}}
-  
+
 
 </template>
 <script>
@@ -16,10 +16,10 @@ export default {
 </script>
 <style lang="stylus">
 .Divider
-  margin 3rem 0
-  background #ead2ac
-  padding .2em 1em 0
+  padding 4rem 0 2rem
   font bold 22px/1 "Courier New", Courier, monospace
   color #FFF
-  //&__title
+  &__title
+    background #ead2ac
+    padding .2em 1em 0
 </style>

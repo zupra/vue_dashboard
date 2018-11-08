@@ -19,7 +19,6 @@
           path.d1(d='M5,14 L32,14')
           path.d2(d='M5,22 L26,22')
           path.d3(d='M5,30 L20,30')
-    //- breadcrumbs
     .button-group
       each item in ['Войти','Настройки','Профиль']
         .btn #{item}
@@ -58,13 +57,11 @@
 
 
 <script>
-import Breadcrumbs from '~/components/Breadcrumbs.vue'
 import Radio from '~/components/Radio.vue'
 
 export default {
   components: {
-    Radio,
-    Breadcrumbs
+    Radio
   },
   data() {
     return {

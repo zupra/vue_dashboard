@@ -1,7 +1,6 @@
 <template lang="pug">
 section
-  <divider title="Form" />
-  h1 Action / form el
+  <divider title="Buttons" />
   fieldset
     legend Button
     .form-line
@@ -120,6 +119,7 @@ section
         div(class=""+styl, disabled) #{styl} disabled
 
 
+  <divider title="Checkbox-Radio" />
   fieldset
     legend Checkbox, Radio
     .Tag checkbox
@@ -160,6 +160,7 @@ section
 
 
 
+  <divider title="Input-EL" />
   fieldset
     legend Input EL
     .form-line

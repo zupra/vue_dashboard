@@ -43,6 +43,7 @@ module.exports = {
     '~plugins/vee-validate.js',
     '~/plugins/vuex-persist.js',
     '~/plugins/axios'
+    // '~/plugins/vue-cropper'
     //{ src: '~plugins/vee-validate.js', ssr: false }
   ],
 
@@ -84,36 +85,83 @@ module.exports = {
         })
       }
     }
-  },
+  }
 
   /*
   ** Router configuration
   */
- //https://toor.co/blog/nuxtjs-smooth-scrolling-with-hash-links/
-  // router: {
-  //   scrollBehavior(to, from, savedPosition) {
-  //     if (savedPosition) {
-  //       return savedPosition
-  //     } else {
-  //       let position = {}
-  //       if (to.matched.length < 2) {
-  //         position = { x: 0, y: 0 }
-  //       } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
-  //         position = { x: 0, y: 0 }
-  //       }
-  //       if (to.hash) {
-  //         position = { selector: to.hash }
-  //       }
-  //       return position
-  //     }
-  //   }
-  // }
+  //https://toor.co/blog/nuxtjs-smooth-scrolling-with-hash-links/
 
-  // router: {
-  //   scrollBehavior: function (to, from, savedPosition) {
-  //     return { x: 90, y: 0 }
-  //   }
-  // }
+  /*
+  router: {
+    scrollBehavior: async (to, from, savedPosition) => {
+      if (savedPosition) {
+        return savedPosition
+      }
+
+      // const findEl = async (hash, x) => {
+      //   return (
+      //     document.querySelector(hash) ||
+      //     new Promise((resolve, reject) => {
+      //       if (x > 10) {
+      //         return resolve()
+      //       }
+      //       setTimeout(() => {
+      //         resolve(findEl(hash, ++x || 1))
+      //       }, 500)
+      //     })
+      //   )
+      // }
+
+      if (to.hash) {
+        //let el = await findEl(to.hash)
+        const el = document.querySelector(to.hash)
+        const area = document.querySelector('#main .scrollableArea')
+        if ('scrollBehavior' in document.documentElement.style) {
+          return area.scrollTo({
+            top: el.offsetTop,
+            behavior: 'smooth'
+          })
+        } else {
+          return area.scrollTo(0, el.offsetTop)
+        }
+      }
+
+      return { x: 0, y: 0 }
+    }
+  }
+  */
+
+  /*
+  router: {
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition
+      } else {
+        let position = {}
+        if (to.matched.length < 2) {
+          position = { x: 0, y: 0 }
+        } else if (
+          to.matched.some(r => r.components.default.options.scrollToTop)
+        ) {
+          position = { x: 0, y: 0 }
+        }
+        if (to.hash) {
+          position = { selector: to.hash }
+        }
+        return position
+      }
+    }
+  }
+*/
+
+  /*
+  router: {
+    scrollBehavior: function(to, from, savedPosition) {
+      return { x: 90, y: 0 }
+    }
+  }
+*/
 
   // render: {
   //   bundleRenderer: {
@@ -124,5 +172,4 @@ module.exports = {
   //     }
   //   }
   // }
-
 }

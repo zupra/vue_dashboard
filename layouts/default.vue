@@ -17,7 +17,6 @@
         polyline(v-else, points="50,10 36,22 50,34", fill="whitesmoke")
 
 
-    //- breadcrumbs
     div
       button(@click="logOut") выйти
       Dropdown(openTo="toLeft")
@@ -49,18 +48,14 @@
       .scrollableArea
 
         nav
-          nuxt-link(to="/") Home/logo
-
-        nav
-          a(
-            v-for="hash in ['Calendar','Pagination','Цвет','ShadowPoligon','Multifilter','Modal','Expander','Form','Table']",
-            :href="`/UI#${hash}`"
-          ) {{hash}}
-        
+          nuxt-link(to="/")
+            svg(width="26", height="24")
+              path(d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z")
+            | Home
 
         nav
           h4 backNav
-          //- :to="{path: '/'+rout.url, props: {title: rout.link}}",
+          //- :to="{path: '/'+rout.url, query:{title:rout.link}}",
           //- :to="`/${rout.url}`",
           nuxt-link(
             v-for="rout in backNav",
@@ -90,7 +85,6 @@
 
 
 <script>
-import Breadcrumbs from '~/components/Breadcrumbs.vue'
 import Radio from '~/components/Radio.vue'
 import Dropdown from '~/components/Dropdown.vue'
 
@@ -98,13 +92,13 @@ export default {
   //middleware: 'user',
   components: {
     Radio,
-    Breadcrumbs,
     Dropdown
   },
   data() {
     return {
       pages: [
-        { url: '/UI', name: 'UI test' },
+        { url: '/UI', name: 'UI doc' },
+        { url: '/imgCropper', name: 'image Cropper' },
         { url: '/notice', name: 'Notice list' },
         { url: '/valid', name: 'Валидация форм' },
         { url: '/grid', name: 'Grid' },
@@ -126,80 +120,3 @@ export default {
   }
 }
 </script>
-
-
-
-<style lang="stylus">
-@import '~@/assets/__var.styl'
-
-$zIndex = 10
-
-.slideSidebar-enter-active, 
-.slideSidebar-leave-active
-  transition transform .4s
-.slideSidebar-enter, 
-.slideSidebar-leave-active
-  transform translateX(-100%) // - 24em
-
-#layout
-  display flex
-
-  /* хром, сафари */
-  &::-webkit-scrollbar
-    width 0
-  /* ie 10+ */
-  &
-    -ms-overflow-style none
-
-$sidebar()
-  @media (max-width: 800px)
-    position absolute
-    z-index $zIndex
-  width 220px
-
-
-#sidebar, #main
-  height 100vh
-
-#main
-  // !!!
-  // min-width: 375px;
-  flex 1
-  width 100%
-  overflow hidden
-  background #f7f7f7
-
-#sidebar
-  $sidebar()
-  padding-top 3em
-  background $header
-  color $header_text
-
-  nav
-    padding 1em
-  a
-    display block
-    padding .5em 0
-
-#topNav
-  position fixed
-  top 0
-  left 0
-  width 100%
-  z-index $zIndex + 1
-  height 44px
-  background #777
-  display flex
-  justify-content space-between
-  align-items center
-  padding-right 6px
-
-#burger
-  display flex
-  &:hover polyline
-    fill yellow
-  svg
-    margin auto
-    cursor pointer
-    user-select none
-</style>
