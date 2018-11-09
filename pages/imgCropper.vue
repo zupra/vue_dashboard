@@ -1,4 +1,7 @@
+
+
 <template lang="pug">
+//- https://github.com/xyxiao001/vue-cropper
 .Wrap
   h1 image Cropper
 
@@ -14,14 +17,22 @@
       :canMoveBox="option.canMoveBox"
       :fixedBox="option.fixedBox"
       :original="option.original"
+      :autoCrop="option.autoCrop"
+      :autoCropWidth="option.autoCropWidth"
+      :autoCropHeight="option.autoCropHeight"
+      :centerBox="option.centerBox"
+      :high="option.high"
+      :infoTrue="option.infoTrue"
       @realTime="realTime"
+      @imgLoad="imgLoad"
+      @cropMoving="cropMoving"
+      :enlarge="option.enlarge"
     )
   .form-line
-    button.btn(@click='changeImg') changeImg
     label.btn(for='uploads') upload
     input#uploads(
       type='file',
-      style='position:absolute; clip:rect(0 0 0 0);',
+      style='display:none',
       accept='image/png, image/jpeg, image/gif, image/jpg',
       @change='uploadImg($event, 1)'
     )
@@ -29,48 +40,146 @@
     button.btn(@click='stopCrop', v-else='') stop
 
     button.btn(@click='clearCrop') clear
-    //- button.btn(@click='refreshCrop') refresh
+    button.btn(@click='refreshCrop') refresh
     button.btn(@click='changeScale(1)') +
     button.btn(@click='changeScale(-1)') -
-    //- button.btn(@click='rotateLeft') rotateLeft
-    //- button.btn(@click='rotateRight') rotateRight
-    button.btn(@click="finish('base64')") preview(base64)
-    button.btn(@click="finish('blob')") preview(blob)
-    a.btn(@click="down('base64')") download(base64)
-    a.btn(@click="down('blob')") download(blob)
+    button.btn(@click='rotateLeft') rotateLeft
+    button.btn(@click='rotateRight') rotateRight
+    //- button.btn(@click="finish('base64')") preview(base64)
+    //- button.btn(@click="finish('blob')") preview(blob)
 
-    .form-line
+
+  .form-line
+    each option in ['original','high','full','infoTrue','canMove','canMoveBox','fixedBox','autoCrop','centerBox','enlarge']
       label
-        input(type='checkbox', v-model='option.original')
-        | original
+        input(type='checkbox', v-model='option.'+option)
+        | #{option}
+
+    hr
+    each f in ['jpeg','png','webp']
       label
-        input(type='checkbox', v-model='option.canMove')
-        | canMove
-      label
-        input(type='checkbox', v-model='option.canMoveBox')
-        | canMoveBox
-      label
-        input(type='checkbox', v-model='option.fixedBox')
-        | fixedBox
-      label
-        input(type='checkbox', v-model='option.full')
-        | full
-      hr
-      label
-        input(type='radio', name='type', value='jpeg', v-model='option.outputType')
-        | jpg
-      label
-        input(type='radio', name='type', value='png', v-model='option.outputType')
-        | png
-      label
-        input(type='radio', name='type', value='webp', v-model='option.outputType')
-        | webp
+        input(type='radio', name='type', value=''+f, v-model='option.outputType')
+        | #{f}
+
+    .btn(@click="down('base64')") download(base64)
+    .btn(@click="down('blob')") download(blob)
+    a(:href="downImg" download="demo.png" ref="downloadDom")
 
   fieldset
     legend preview result
     .show-preview(:style="{'width': previews.w + 'px', 'height': previews.h + 'px',  'overflow': 'hidden', 'margin': '5px'}")
       div(:style='previews.div')
         img(:src='previews.url', :style='previews.img')
+
+
+  table
+    tr
+      th name
+      th Features
+      th Detail
+      th value
+
+    tr
+      td img
+      td Picture address
+      td null
+      td url address || base64 || blob
+    tr
+      td outputSize
+      td quality of the generated image
+      td 1
+      td 0.1 - 1
+    tr
+      td outputType
+      td format of the generated image
+      td jpg (jpg need jpeg)
+      td jpeg || png || webp
+    tr
+      td info
+      td Crop box size information
+      td true
+      td true || false
+    tr
+      td canScale
+      td Whether the image allows the wheel to zoom
+      td true
+      td true || false
+    tr
+      td autoCrop
+      td Whether to generate a screenshot box by default
+      td false
+      td true || false
+    tr
+      td autoCropWidth
+      td Default generation of screenshot frame width
+      td parent's 80%
+      td 0~max
+    tr
+      td autoCropHeight
+      td Default generation of screenshot frame Height
+      td parent's 80%
+      td 0~max
+    tr
+      td fixed
+      td Whether to open the screenshot frame width and height fixed ratio
+      td true
+      td true | false
+    tr
+      td fixedNumber
+      td The aspect ratio of the screenshot box
+      td [1 : 1]
+      td [width : height]
+    tr
+      td full
+      td Screenshot of whether to output the original map scale
+      td false
+      td true | false
+    tr
+      td fixedBox
+      td Fixed screenshot frame size is not allowed to change
+      td false
+      td true | false
+    tr
+      td canMove
+      td Whether the uploaded image can be moved
+      td true
+      td true | false
+    tr
+      td canMoveBox
+      td Can the screenshot box be dragged?
+      td true
+      td true | false
+    tr
+      td original
+      td Upload images are rendered in raw scale
+      td false
+      td true | false
+    tr
+      td centerBox
+      td Is the screenshot box restricted to the image?
+      td false
+      td true | false
+    tr
+      td high
+      td Is it proportional to the dpi output of the device?
+      td true
+      td true | false
+    tr
+      td infoTrue
+      td
+        | True to show the true output image width and height false show the width of the screenshot frame
+      td false
+      td true | false
+    tr
+      td maxImgSize
+      td Limit the maximum width and height of the image
+      td 2000
+      td 0-max
+    tr
+      td enlarge
+      td Picture output ratio multiplier based on screenshots
+      td 1
+      td 0-max(Don't be too big.)
 
 
 </template>
@@ -83,18 +192,12 @@ export default {
     VueCropper
   },
 
-  data: function() {
+  data() {
     return {
+      model: false,
+      modelSrc: '',
       crap: false,
       previews: {},
-      lists: [
-        {
-          img: 'https://fengyuanchen.github.io/cropper/images/picture.jpg'
-        },
-        {
-          img: 'http://ofyaji162.bkt.clouddn.com/touxiang.jpg'
-        }
-      ],
       option: {
         img: 'https://zupra.github.io/test/filter.jpg',
         size: 1,
@@ -103,51 +206,67 @@ export default {
         canMove: true,
         fixedBox: false,
         original: false,
-        canMoveBox: false
+        canMoveBox: true,
+        //
+        autoCrop: true,
+        autoCropWidth: 200,
+        autoCropHeight: 150,
+        centerBox: false,
+        high: true,
+        cropData: {},
+        enlarge: 1
       },
       downImg: '#'
     }
   },
   methods: {
-    changeImg() {
-      this.option.img = this.lists[~~(Math.random() * this.lists.length)].img
-    },
     startCrop() {
-      // start
       this.crap = true
       this.$refs.cropper.startCrop()
     },
     stopCrop() {
-      //  stop
       this.crap = false
       this.$refs.cropper.stopCrop()
     },
     clearCrop() {
-      // clear
       this.$refs.cropper.clearCrop()
     },
+    refreshCrop() {
+      this.$refs.cropper.refresh()
+    },
+    changeScale(num) {
+      num = num || 1
+      this.$refs.cropper.changeScale(num)
+    },
+    rotateLeft() {
+      this.$refs.cropper.rotateLeft()
+    },
+    rotateRight() {
+      this.$refs.cropper.rotateRight()
+    },
+    /*
+    finish(type) {
+      // var test = window.open('about:blank')
+      // test.document.body.innerHTML = 'about:blank'
+      if (type === 'blob') {
+        this.$refs.cropper.getCropBlob(data => {
+          var img = window.URL.createObjectURL(data)
+          this.model = true
+          this.modelSrc = img
+        })
+      } else {
+        this.$refs.cropper.getCropData(data => {
+          this.model = true
+          this.modelSrc = data
+        })
+      }
+    },
+    */
     //
     realTime(data) {
       this.previews = data
     },
-    finish(type) {
-      //
-      var test = window.open('about:blank')
-      test.document.body.innerHTML = '图片生成中..'
-      if (type === 'blob') {
-        this.$refs.cropper.getCropBlob(data => {
-          var test = window.open('')
-          test.location.href = window.URL.createObjectURL(data)
-        })
-      } else {
-        this.$refs.cropper.getCropData(data => {
-          test.location.href = data
-        })
-      }
-    },
-
     down(type) {
-      // event.preventDefault()
       if (type === 'blob') {
         this.$refs.cropper.getCropBlob(data => {
           this.downImg = window.URL.createObjectURL(data)
@@ -174,12 +293,11 @@ export default {
         })
       }
     },
-
     uploadImg(e, num) {
       // this.option.img
       var file = e.target.files[0]
       if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
-        alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
+        alert('.gif,jpeg,jpg,png,bmp')
         return false
       }
       var reader = new FileReader()
@@ -199,6 +317,12 @@ export default {
       }
       // reader.readAsDataURL(file)
       reader.readAsArrayBuffer(file)
+    },
+    imgLoad(msg) {
+      console.log(msg)
+    },
+    cropMoving(data) {
+      this.option.cropData = data
     }
   }
 }
