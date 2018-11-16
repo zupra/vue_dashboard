@@ -1,23 +1,4 @@
 //== helperS ==
-.form-group
-  display flex
-  flex-direction column
-  //!FIXME
-  >*
-    width 240px
-    margin-bottom 1em
-
-.form-line
-  user-select none
-  margin .3em
-  &+&
-    margin-top .7em
-  .btn, button, input, select
-    margin .35em
-  label
-    white-space: nowrap
-    padding-right .7em
-
 
 //helper-el
 legend
@@ -32,9 +13,6 @@ fieldset
     border-top 1px solid #dee2e6
     legend
       margin-left: 2em;
-
-
-
 label
   user-select none
   cursor pointer
@@ -42,17 +20,49 @@ label
   display inline-table
 
 
+
+//grouped_form_EL
+
+
+.form-group
+  display flex
+  flex-direction column
+  //!FIXME
+  >*
+    width 240px
+    margin-bottom 1em
+
+
+
+.field-group
+  label
+  input
+    display: block
+  label
+    margin-bottom: .5em
+
+
+
+.form-line
+  user-select none
+  margin .3em
+  &+&
+    margin-top .7em
+  .btn, button, input, select
+    margin .35em
+  label
+    white-space: nowrap
+    padding-right .7em
+
+
+
 .button-group
   display inline-flex
   $shadow_btn_button-group()
   background #FFF
   border-radius .3em
-
   .btn
-    //fix h100%
-    height: 2.5em;
-
-
+    height: 2.5em; //fix h100%
     border-color: transparent;
     box-shadow none
     border-radius 0

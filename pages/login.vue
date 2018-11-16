@@ -62,15 +62,17 @@ export default {
           } else {
             const { token, main_nav } = response.data
             this.$store.commit('user/logIn', token)
-            //this.$store.commit('user/setMainNav', main_nav)
+            this.$store.commit('user/setMainNav', main_nav)
             this.$router.push('/')
 
             //!TODO: fake
+            /*
             this.$axios
               .get(`/mainNav`)
               .then(res =>
                 this.$store.commit('user/setMainNav', res.data.main_nav)
               )
+            */
           }
         })
     }
@@ -78,10 +80,10 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<doc>
 .spinner_btn
   position absolute
   left 10px
   top 50%
   transform translateY(-50%)
-</style>
+</doc>

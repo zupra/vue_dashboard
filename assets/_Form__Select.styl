@@ -3,10 +3,18 @@ $select()
   appearance: none
   cursor: pointer
   background #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='12'><polygon points='0,0 12,0 6,12' fill='orange'/></svg>") 100% no-repeat;
-  padding-right: 30px //for icon
+  padding-right: 30px !important //for icon
 select:not([multiple]),
 .select
   $select()
+
+  /*
+  option
+    -webkit-appearance: menulist-button
+    line-height 3em
+    height: 2.4em;
+  */
+
 select[multiple]
   cursor: pointer
   padding .2em

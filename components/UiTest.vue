@@ -245,6 +245,7 @@ section
 
   <divider title="Table" />
   h1 Table
+
   .Tag base table
   .table-responsive
     table
@@ -261,6 +262,18 @@ section
               .button-group
                 each styl,i in ['btn','btn fill red','btn fill green','btn fill orange']
                   div(class=""+styl) action#{i+1}
+
+  .Tag table_col
+  table.table_col
+    thead
+      tr
+        each _,i in Array(5)
+          th thead_#{i+1}
+    tbody
+      each _,i in Array(2)
+        tr
+          each _,i in Array(5)
+            td data_#{i+1}
   .Tag table_distance
   .table-responsive
     table.table_distance

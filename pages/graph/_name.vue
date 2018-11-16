@@ -9,67 +9,40 @@
   fieldset
     legend Доступные поля <b>{{ name }}</b>
 
-    Calendar_period(
-      @period="v =>Period=v",
+    h1 Доступные поля
+
+  //- .slice(0,2)
+  //- template(v-if="chart.type == 'BarChart'")
+  template(v-if="Data")
+    div(
+      v-for="chart in Data.chart_list"
+      style="display:inline-flex"
     )
-    button.btn.fill.green(
-      @click="updateDate(Period)"
-      :class="{spinner_btn: spinner}"
-    )
-      img( v-show="spinner" src="~static/img/spinner_btn.svg")
-      | Обновить
-    hr
-
-    .checked-group
-      label(v-for="col in columns")
-        input(
-          type='checkbox',
-          :value='col',
-          v-model="checkedСolumns"
-        )
-        span.ripple {{col.v}}
-
-    HorizontalSort(
-      @sort="v => checkedСolumns = v"
-      :arr="checkedСolumns"
-    )
-
-    .btn.lg.fill.green(
-      @click="changeColumns(newColumns)"
-      :class="{spinner_btn: spinner}"
-    )
-      img( v-show="spinner" src="~static/img/spinner_btn.svg")
-      | Обновить таблицу
+      h2 {{chart.title}}
+      BarChart(
+        v-if="chart.type == 'BarСhart'"
+        style="position: relative;width: 100%",
+        :height="100"
+        :data="chart.data"
+      )
+      PieChart(
+        v-if="chart.type == 'PieСhart'"
+        :height="500"
+        :data="chart.data"
+      )
 
 
-  fullscreen(
-    :fullscreen.sync='fullscreen',
-    :class="{full:fullscreen}"
-    ref='fullscreen',
-    background='#FFF'
-  )
-    .btn.fill.red(
-      :class="{'xl':fullscreen}"
-      @click='toggleFullScreen'
-    ) fullscreen
-    VueGoodTable(
-      :columns="data_table.columns",
-      :rows="data_table.rows",
-      :lineNumbers="true",
-      :search-options="{enabled: true}",
-      :pagination-options="{perPage: 10, perPageDropdown: [10, 100, 500, 1000, 3000, 5000], enabled: true, mode: 'records', nextLabel: 'туда', prevLabel: 'Сюда', rowsPerPageLabel: 'Выводить на страницу по:', ofLabel: 'из', allLabel: 'Все'}"
-    )
 
+  pre {{Data}}
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { VueGoodTable } from 'vue-good-table'
-import Calendar_period from '~/components/Calendar/Calendar_period.vue'
-import HorizontalSort from '~/components/Draggable/HorizontalSort.vue'
+import PieChart from '~/components/Chart/PieChart.js'
+import BarChart from '~/components/Chart/BarChart.js'
 
 export default {
-  name: 'Report',
+  name: 'Graph',
   validate({ store, params }) {
     return store.getters['user/userReportArr'].includes(params.name)
   },
@@ -103,81 +76,33 @@ export default {
   },
   */
   components: {
-    Calendar_period,
-    VueGoodTable,
-    HorizontalSort
+    BarChart,
+    PieChart
   },
   data() {
     return {
-      data_table: {
-        columns: [],
-        rows: []
-      },
-      toolbar: {
-        columns: {}
-      },
-
-      Period: {},
-      columns: [],
-      checkedСolumns: [],
-
-      spinner: false,
-      fullscreen: false
+      Data: null,
+      spinner: false
     }
   },
   computed: {
-    ...mapGetters({
-      userReportArr: 'user/userReportArr'
-    }),
-    newColumns() {
-      return this.checkedСolumns.map(i => i.k)
-    },
     title() {
       return this.$store.state.user.mainNav.filter(
         item => item.name === this.name
       )[0].link
-    }
+    },
+    ...mapGetters({
+      userReportArr: 'user/userReportArr'
+    })
   },
   created() {
     this.$axios
-      .$get(`http://betclub.com/atlas/report/index/${this.name}`)
+      .$get(`http://betclub.com/atlas/graph/index/${this.name}`)
       .then(res => {
-        this.toolbar = res.data.toolbar
-        this.columns = this.checkedСolumns = res.data.toolbar.columns
-        this.data_table = res.data.data_table
+        this.Data = res.data
       })
   },
-
-  methods: {
-    toggleFullScreen() {
-      this.$refs['fullscreen'].toggle()
-    },
-    updateDate(date) {
-      this.spinner = true
-      const formData = new FormData()
-      formData.append('period', JSON.stringify(date))
-      this.$axios
-        .$post(`http://betclub.com/atlas/report/index/${this.name}`, formData)
-        .then(res => {
-          this.data_table = res.data.data_table
-          this.spinner = false
-        })
-    },
-    changeColumns(arr) {
-      this.spinner = true
-      const formData = new FormData()
-      formData.append('columns', JSON.stringify(arr))
-      // formData.append('columns', JSON.stringify(['rng_id', 'by_bonus']))
-      // const data = JSON.stringify({ columns: ['game_id'] })
-      this.$axios
-        .$post(`http://betclub.com/atlas/report/index/${this.name}`, formData)
-        .then(res => {
-          this.data_table = res.data.data_table
-          // setTimeout(() => (this.spinner = false), 700)
-          this.spinner = false
-        })
-    }
-  }
+  methods: {}
 }
 </script>
 

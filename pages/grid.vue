@@ -6,12 +6,13 @@
       //- if item === 'B' || item === 'G'
       if i === 3 || i === 1 || i === 8 || i === 10
         .box.height_2x Widget #{i+1}
-          LineChart(
+          BarChart(
             style="position: relative;width: 100%",
             :data={
               labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
               datasets: [
                 {
+                  type: 'line',
                   label: 'GitHub Commits',
                   backgroundColor: 'rgba(237, 85, 101,.5)',
                   data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
@@ -49,7 +50,7 @@
                   data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
                 },
                 {
-                  type: 'line',
+                  type: 'bar',
                   label: 'label 2',
                   backgroundColor: 'rgba(38, 166, 154,.5)',
                   data: [11, 12, 20, 40, 80, 39, 40, 10, 39, 12, 20, 40]
@@ -64,12 +65,10 @@
 
 <script>
 import BarChart from '~/components/Chart/BarChart.js'
-import LineChart from '~/components/Chart/LineChart.js'
 
 export default {
   components: {
-    BarChart,
-    LineChart
+    BarChart
   },
   data() {
     return {

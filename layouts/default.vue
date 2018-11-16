@@ -89,7 +89,7 @@ import Radio from '~/components/Radio.vue'
 import Dropdown from '~/components/Dropdown.vue'
 
 export default {
-  //middleware: 'user',
+  middleware: 'user',
   components: {
     Radio,
     Dropdown
@@ -102,6 +102,8 @@ export default {
         { url: '/notice', name: 'Notice list' },
         { url: '/valid', name: 'Валидация форм' },
         { url: '/grid', name: 'Grid' },
+        { url: '/modules', name: 'modules' },
+        { url: '/user', name: 'user(редактирование)' },
         { url: '/protect', name: 'protection' }
       ],
       showSidebar: true

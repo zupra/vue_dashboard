@@ -1,7 +1,7 @@
 <template lang="pug">
 //- (v-click-outside="isOpen=false")
 .Ui-select
-  input.Ui-select_input(:class="[size]", :value="!selectedOption ? 'Please select an item' : selectedOption.label", readonly, @click.stop="isOpen=true")
+  input.Ui-select_input(:class="[size]", :value="!selectedOption ? placeholder : selectedOption.label", readonly, @click.stop="isOpen=true")
 
   transition(name="select")
     ul.Ui-select_list.listNav_Card(v-show="isOpen")
@@ -20,14 +20,18 @@ export default {
       required: true,
       type: String
     },
-    // index: {
-    //   type: [Number],
-    //   default: null
-    // },
     size: {
       type: String,
       default: ''
+    },
+    placeholder: {
+      type: String,
+      default: 'Выберите элемент'
     }
+    // index: {
+    //   type: [Number],
+    //   default: null
+    // }
   },
   data() {
     return {
@@ -74,7 +78,7 @@ export default {
 
 // delay for rippleEffect
 .select-leave-active
-  transition opacity .5s
+  transition opacity .3s
 
 .Ui-select
   user-select none
@@ -89,6 +93,7 @@ export default {
     //reset .Card
     margin 0
     position absolute
+    z-index 1
     width 100%
 
 </style>

@@ -1,9 +1,10 @@
-import { Bar } from 'vue-chartjs'
+import { Pie } from 'vue-chartjs'
 export default {
-  extends: Bar,
+  extends: Pie,
   props: ['data', 'options'],
   mounted() {
     this.renderChart(this.data, this.options, {
+      responsive: true,
       maintainAspectRatio: false
     })
   }
