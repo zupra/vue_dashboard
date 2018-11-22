@@ -1,3 +1,8 @@
+<doc>
+https://github.com/JayeshLab/vue-numeric-input/blob/master/src/vue-numeric-input.vue
+</doc>
+
+
 <template lang="pug">
 .InputNumber.button-group
   .btn(@click="(value - step >= min) && minus(step)") -

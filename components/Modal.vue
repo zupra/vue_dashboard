@@ -39,13 +39,13 @@ export default {
       validator: prop => ['Y_center', 'rModal', 'lModal'].includes(prop)
     }
   },
-  watch: {
-    show(isShow) {
-      document.body.style.cssText = isShow
-        ? 'height:100vh;overflow:hidden;'
-        : ''
-    }
-  },
+  // watch: {
+  //   show(isShow) {
+  //     document.body.style.cssText = isShow
+  //       ? 'height:100vh;overflow:hidden;'
+  //       : ''
+  //   }
+  // },
   methods: {
     close() {
       !this.freezing && this.$emit('update:show', false)
@@ -73,6 +73,8 @@ $bg = #f1f1f1;
 
     overflow hidden
     overflow-y overlay //auto
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
 
   &-Card
     //reset rootOverlay
@@ -106,6 +108,7 @@ $bg = #f1f1f1;
 
 // props:position
 .Y_center
+  //max-height 70vh
   margin 10% auto auto
 
   border-radius .2em

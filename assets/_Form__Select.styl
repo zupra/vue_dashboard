@@ -18,8 +18,14 @@ select:not([multiple]),
 select[multiple]
   cursor: pointer
   padding .2em
+  &:before
+    // pointer-events: none
+    cursor: default
+    color #568DA6
+    content: 'multiple: CTRL + items';
+    display block
+    padding 0 1em .5em
   option
-    padding .2em
-    padding-left .8em
+    padding .3em .5em
     &:first-child
       background #EFEFEF

@@ -12,10 +12,7 @@
     Calendar_period(
       @period="v =>Period=v",
     )
-    button.btn.fill.green(
-      @click="updateDate(Period)"
-      :class="{spinner_btn: spinner}"
-    )
+    button.btn.fill.green(@click="updateDate(Period)")
       img( v-show="spinner" src="~static/img/spinner_btn.svg")
       | Обновить
     hr
@@ -34,31 +31,49 @@
       :arr="checkedСolumns"
     )
 
-    .btn.lg.fill.green(
-      @click="changeColumns(newColumns)"
-      :class="{spinner_btn: spinner}"
-    )
+    .btn.lg.fill.green(@click="changeColumns(newColumns)")
       img( v-show="spinner" src="~static/img/spinner_btn.svg")
       | Обновить таблицу
 
 
   fullscreen(
     :fullscreen.sync='fullscreen',
-    :class="{full:fullscreen}"
+    :class="{full:fullscreen}",
     ref='fullscreen',
     background='#FFF'
   )
-    .btn.fill.red(
-      :class="{'xl':fullscreen}"
-      @click='toggleFullScreen'
-    ) fullscreen
+
+    .form-line
+      .btn.fill.red(
+        :class="{'xl':fullscreen}",
+        @click='toggleFullScreen',
+      ) fullscreen
+
+      //- :fields = "json_fields"
+      JsonExcel(
+        :data="data_table.rows"
+        :name="`${title}.xls`"
+      )
+        .btn Download Excel
+
+
+    //- :lineNumbers="true",
     VueGoodTable(
       :columns="data_table.columns",
       :rows="data_table.rows",
-      :lineNumbers="true",
       :search-options="{enabled: true}",
-      :pagination-options="{perPage: 10, perPageDropdown: [10, 100, 500, 1000, 3000, 5000], enabled: true, mode: 'records', nextLabel: 'туда', prevLabel: 'Сюда', rowsPerPageLabel: 'Выводить на страницу по:', ofLabel: 'из', allLabel: 'Все'}"
+      :pagination-options="{perPage: 50, perPageDropdown: [10, 100, 500, 1000, 3000, 5000], enabled: true, mode: 'records', nextLabel: 'туда', prevLabel: 'Сюда', rowsPerPageLabel: 'Выводить на страницу по:', ofLabel: 'из', allLabel: 'Все'}"
     )
+
+    //- vue-good-table(
+    //-   mode="remote"
+    //-   pagination-options="{
+    //-     enabled: true,
+    //-   }"
+    //-   :totalRows="totalRecords"
+    //-   :rows="rows"
+    //-   :columns="columns"
+    //- )
 
 </template>
 
@@ -67,6 +82,8 @@ import { mapGetters } from 'vuex'
 import { VueGoodTable } from 'vue-good-table'
 import Calendar_period from '~/components/Calendar/Calendar_period.vue'
 import HorizontalSort from '~/components/Draggable/HorizontalSort.vue'
+
+import JsonExcel from 'vue-json-excel'
 
 export default {
   name: 'Report',
@@ -105,7 +122,8 @@ export default {
   components: {
     Calendar_period,
     VueGoodTable,
-    HorizontalSort
+    HorizontalSort,
+    JsonExcel
   },
   data() {
     return {
@@ -140,7 +158,11 @@ export default {
   },
   created() {
     this.$axios
-      .$get(`http://betclub.com/atlas/report/index/${this.name}`)
+      .$get(
+        `http://betclub.com/atlas/report/index/${this.name}?token=${
+          this.$store.state.user.token
+        }`
+      )
       .then(res => {
         this.toolbar = res.data.toolbar
         this.columns = this.checkedСolumns = res.data.toolbar.columns
@@ -182,19 +204,41 @@ export default {
 </script>
 
 
-
 <style lang="stylus">
-.spinner_btn
-  padding-left 40px
-  img
-    position absolute
-    left 10px
-    top 50%
-    transform translateY(-50%)
+
+// thead th
+//   position sticky
+//   top 0
+
+.vgt-wrap__footer
+  display flex
+  justify-content: space-between;
+  background #EEE
+  padding .5em 1em
+
+.footer__navigation
+  display flex
+  &__info
+    margin 0 1em
+
+.sorting
+  // &:hover
+  //   &:before
+  //     content '1'
+  &:before
+    color red
+  &-desc
+    &:before
+      content '↑ '
+  &-asc
+    &:before
+      content '↓ '
 </style>
 
 
-<style>
+
+
+<doc>
 /* */
 .vgt-right-align {
   text-align: right;
@@ -873,4 +917,4 @@ table.vgt-table tr.clickable:hover {
   opacity: 0.3;
   /* Firefox */
 }
-</style>
+</doc>

@@ -2,9 +2,8 @@
 
 #layout
   #topNav
-    #burger
+    #burger(@click="showSidebar = !showSidebar")
       svg(
-          @click="showSidebar = !showSidebar",
           width='90',
           height='44',
         )
@@ -89,7 +88,7 @@ import Radio from '~/components/Radio.vue'
 import Dropdown from '~/components/Dropdown.vue'
 
 export default {
-  middleware: 'user',
+  // middleware: 'user',
   components: {
     Radio,
     Dropdown
@@ -104,6 +103,7 @@ export default {
         { url: '/grid', name: 'Grid' },
         { url: '/modules', name: 'modules' },
         { url: '/user', name: 'user(редактирование)' },
+        { url: '/loyalty', name: 'Лояльность' },
         { url: '/protect', name: 'protection' }
       ],
       showSidebar: true

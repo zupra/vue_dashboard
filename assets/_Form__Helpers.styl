@@ -28,10 +28,12 @@ label
   display flex
   flex-direction column
   //!FIXME
-  >*
-    width 240px
-    margin-bottom 1em
 
+  >*
+    // width 240px
+    margin-bottom 1em
+  label
+    display grid
 
 
 .field-group
@@ -57,12 +59,12 @@ label
 
 
 .button-group
+  $shadow_button()
   display inline-flex
-  $shadow_btn_button-group()
   background #FFF
   border-radius .3em
   .btn
-    height: 2.5em; //fix h100%
+    // height: 2.5em; //fix h100%
     border-color: transparent;
     box-shadow none
     border-radius 0

@@ -79,8 +79,8 @@ export default {
 }
 </script>
 
-<style lang="styl">
 
+<style lang="stylus" scoped>
 
 .Grid
   display: grid

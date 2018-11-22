@@ -21,6 +21,8 @@ body
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
 
+  -webkit-text-size-adjust: none; //Отключает масштабирование текста в горизонтальной ориентации
+
 
 
 .Wrap
@@ -37,14 +39,14 @@ a, .link
 .link
   text-decoration underline
 
-@import '__Utility'
 @import '__layout'
+@import '__utility'
 @import '__baseApp'
+@import '__helper'
 
 @import '_Grid'
 @import '_Card'
 
-@import '_Helper'
 @import '_Form'
 @import '_Table'
 @import '_List'

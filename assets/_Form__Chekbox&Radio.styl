@@ -14,16 +14,20 @@ $size = 20px
     display none
     &:checked ~ span
       background: $blue
-      border-color $blue
+      border-color: $blue - 50 //rgba(#FFF, .4) transparent
       color: #FFF
   span
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    &:active
+      transform: translateY(2px)
+    // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    $shadow_button()
     margin 2px
     display inline-block
-    border 2px solid currentColor
-    
-    cursor pointer
+
     color #999
+    border 2px solid currentColor
+
+    cursor pointer
     font-size .8rem
     border-radius 2em
     line-height: 2

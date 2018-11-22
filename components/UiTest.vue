@@ -14,6 +14,24 @@ section
       each styl in ['btn fill lite','btn fill red','btn fill green','btn fill orange','btn']
         div(class=""+styl) #{styl}
 
+    .Tag ICON + fill/mod
+    .form-line
+      each styl in ['btn','btn fill red','btn fill green','btn fill orange']
+        div(class=""+styl)
+          img(src="~static/img/spinner_btn.svg")
+          | #{styl}
+    .form-line
+      //- each icon in ['user-plus','alert-triangle','bell','gift']
+      .btn(v-for="icon in ['user-plus','alert-triangle','bell','gift','camera','phone-call']")
+        img(:src="'https://icongr.am/feather/'+icon+'.svg?size=18&color=ffffff'")
+        | icon {{icon}}
+
+    .form-line
+      .btn.lg(v-for="icon in ['align-justify','dollar-sign','mail','paperclip']")
+        img(:src="'https://icongr.am/feather/'+icon+'.svg?size=22&color=ffffff'")
+        | icon {{icon}}
+
+
     .Tag button-group
     p
       .button-group
@@ -249,27 +267,24 @@ section
   .Tag base table
   .table-responsive
     table
-      thead
-        tr
-          each _,i in Array(5)
-            th thead_#{i+1}
-      tbody
-        each _,i in Array(3)
-          tr
-            each _,i in Array(4)
-              td data_#{i+1}
-            td.td_buttonGroup
-              .button-group
-                each styl,i in ['btn','btn fill red','btn fill green','btn fill orange']
-                  div(class=""+styl) action#{i+1}
-
-  .Tag table_col
-  table.table_col
-    thead
       tr
         each _,i in Array(5)
           th thead_#{i+1}
-    tbody
+      each _,i in Array(3)
+        tr
+          each _,i in Array(4)
+            td data_#{i+1}
+          td.td_buttonGroup
+            .button-group
+              each styl,i in ['btn','btn fill red','btn fill green','btn fill orange']
+                div(class=""+styl) action#{i+1}
+
+  .Tag table_col
+  .table-responsive
+    table.table_col
+      tr
+        each _,i in Array(5)
+          th thead_#{i+1}
       each _,i in Array(2)
         tr
           each _,i in Array(5)
@@ -277,27 +292,23 @@ section
   .Tag table_distance
   .table-responsive
     table.table_distance
-      thead
+      tr
+        each _,i in Array(5)
+          th thead_#{i+1}
+      each _,i in Array(3)
         tr
           each _,i in Array(5)
-            th thead_#{i+1}
-      tbody
-        each _,i in Array(3)
-          tr
-            each _,i in Array(5)
-              td data_#{i+1}
+            td data_#{i+1}
   .Tag table_striped
   .table-responsive
     table.table_striped
-      thead
+      tr
+        each _,i in Array(5)
+          th thead_#{i+1}
+      each _,i in Array(5)
         tr
           each _,i in Array(5)
-            th thead_#{i+1}
-      tbody
-        each _,i in Array(5)
-          tr
-            each _,i in Array(5)
-              td data_#{i+1}
+            td data_#{i+1}
   <divider title="Typography" />
   h1 Typography
   .Tag textList

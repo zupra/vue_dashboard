@@ -21,16 +21,17 @@
     SwitchTgl
   p Разрешить Удалять &nbsp;
     SwitchTgl
-  table.table_distance
-    tr
-      each _,i in Array(5)
-        th thead_#{i+1}
-    each _,i in Array(3)
+  .table-responsive
+    table.table_distance
       tr
-        each _,i in Array(4)
-          td data_#{i+1}
-        td
-          SwitchTgl
+        each _,i in Array(5)
+          th thead_#{i+1}
+      each _,i in Array(3)
+        tr
+          each _,i in Array(4)
+            td data_#{i+1}
+          td
+            SwitchTgl
 
   <divider title="Dropdown" />
   Dropdown

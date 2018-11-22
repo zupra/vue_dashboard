@@ -7,15 +7,20 @@ $zIndex = 10
 .slideSidebar-leave-active
   transform translateX(-100%) // - 24em
 
+
+.scrollableArea
+  height: 100%
+  overflow-y: auto
+  // overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  // хром, сафари
+  &::-webkit-scrollbar { width: 0; }
+  // ie 10+
+  & { -ms-overflow-style: none; }
+
+
 #layout
   display flex
-
-$sidebar()
-  @media (max-width: 800px)
-    position absolute
-    z-index $zIndex
-  width 220px
-
 
 #sidebar, #main
   height 100vh
@@ -27,12 +32,21 @@ $sidebar()
   width 100%
   overflow hidden
   background #f7f7f7
+  // @media (max-width: 800px)
 
-#sidebar
-  $sidebar()
+
+
+
+$sidebar()
+  @media (max-width: 800px)
+    position absolute
+  z-index $zIndex
+  width 220px
   padding-top 3em
   background $header
   color $header_text
+#sidebar
+  $sidebar()
 
   nav
     padding 1em
@@ -46,11 +60,13 @@ $sidebar()
       fill currentColor;
 
 
-
+//TopBar
 #topNav
   position fixed
   top 0
   left 0
+  // position: sticky;
+
   width 100%
   z-index $zIndex + 1
   height 44px
@@ -62,6 +78,16 @@ $sidebar()
 
 #burger
   display flex
+
+  // overflow: visible
+  // &:before
+  //   content: '';
+  //   position: fixed;
+  //   top 0
+  //   height: 100vh;
+  //   width: 100vw;
+  //   background: #ddca7e4a;
+
   &:hover polyline
     fill yellow
   svg
