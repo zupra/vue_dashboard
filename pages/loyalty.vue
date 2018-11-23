@@ -28,17 +28,13 @@
       .table-responsive
         table
           tr
-            each _,i in Array(3)
+            each _,i in Array(2)
               th thead_#{i+1}
           each _,i in Array(10)
             tr
               td data_#{i+1}
               td
                 input(value="50", style="width:55px;text-align:center")
-              td.td_buttonGroup
-                .button-group
-                  each styl,i in ['btn','btn fill red']
-                    div(class=""+styl) action#{i+1}
       div карта
         br
         input(type="file")
@@ -52,25 +48,68 @@
     position="lModal"
     title="Стоимость услуги"
   )
-    p Услуга стоит &nbsp;
-      input(type="number", value="50")
-      | &nbsp; баллов
-    div карточка услуги
+    h5 title
+    input(value="title")
+    br
+    br
+    h5 Описание
+    textarea(
+      style="width: 100%"
+    ) Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo tenetur. Eligendi eveniet nobis dolorem molestiae deleniti reprehenderit laudantium, explicabo illo inventore
+    br
+    br
+    select.lg
+      option Action 1
+      option Action 2
+      option Action 3
+      option Action 4
+    br
+    br
+    h5 карточка услуги
     input(type="file")
     br
     img(src="https://imgplaceholder.com/240x180")
-    p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo tenetur. Eligendi eveniet nobis dolorem molestiae deleniti reprehenderit laudantium, explicabo illo inventore.
+
 
 
   Modal(:show.sync="showModal_WTF", title="Услуга для статуса N")
-    ul.textList
-      each item,i in [1,2,3,4,5]
-        li item #{item}
-    hr
-    div карточка услуги
-    input(type="file")
-    br
-    img(src="https://imgplaceholder.com/240x180")
+    //- ul.textList
+    //-   each item,i in [1,2,3,4,5]
+    //-     li item #{item}
+
+    .Flex_wr
+      .Card(
+        style="padding: 1em 1em .5em"
+      )
+        h4 Подкатегории
+        p эконом &nbsp;
+          SwitchTgl
+        p комфорт &nbsp;
+          SwitchTgl
+        p Vip &nbsp;
+          SwitchTgl
+      .Card(
+        style="padding: 1em 1em .5em"
+      )
+        h4 Регионы
+
+        p RU off-Line &nbsp;
+          SwitchTgl
+        p RU on-Line &nbsp;
+          SwitchTgl
+        p KZ off-Line &nbsp;
+          SwitchTgl
+        p KZ on-Line &nbsp;
+          SwitchTgl
+    h5 Описание
+    textarea(
+      style="width: 100%"
+    ) Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo tenetur. Eligendi eveniet nobis dolorem molestiae deleniti reprehenderit laudantium, explicabo illo inventore
+    p Услуга стоит &nbsp;
+      input(type="number", value="50")
+      | &nbsp; баллов
+
+
 
 
 
@@ -106,9 +145,9 @@
               center.form-line
                 SwitchTgl(:yes="false")
                 .btn.outline.green(@click="showModal_WTF = true") WTF
-                .btn.sm.outline More
-                .btn.sm.outline More
-                .btn.sm.outline More
+                //- .btn.sm.outline More
+                //- .btn.sm.outline More
+                //- .btn.sm.outline More
 
 
 </template>

@@ -56,11 +56,12 @@
           h4 backNav
           //- :to="{path: '/'+rout.url, query:{title:rout.link}}",
           //- :to="`/${rout.url}`",
+          //- :key="rout.name"
           nuxt-link(
             v-for="rout in backNav",
-            :to="'/'+rout.url",
-            :key="rout.name"
-          ) {{rout.link}}
+            :to="'/'+rout.link",
+            :key="rout.link"
+          ) {{rout.name}}
 
         nav
           h4 мои страницы

@@ -35,7 +35,10 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#26a69a' },
+  loading: {
+    color: '#26a69a',
+    height: '5px'
+  },
 
   /*
   ** Global CSS
@@ -71,9 +74,20 @@ module.exports = {
   /*
   ** Axios module configuration
   */
+  env: {
+    API_URL: 'http://localhost:3000/api/'
+  },
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
     baseURL: process.env.API_URL || 'http://localhost:3005/'
+
+    // proxy: true,
+    // proxy: {
+    //   '/api': 'http://localhost:6060'
+    // }
+    // See https://github.com/nuxt-community/axios-module#options
+    // baseURL: process.env.NODE_ENV === 'development' ? 'http://1' : 'http://2' //process.env.API_URL || 'https://atlas.inaccurate.ru/'
+
+    // baseUrl: process.env.isDev ? '1' : '2'
   },
 
   /*

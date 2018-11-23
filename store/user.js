@@ -1,6 +1,6 @@
 export const state = () => ({
-  token: '', //sessionStorage.getItem('token') || '',
-  mainNav: [] //JSON.parse(sessionStorage.getItem('main_nav')) || []
+  token: '',
+  mainNav: []
 })
 
 export const mutations = {
@@ -17,12 +17,22 @@ export const mutations = {
 
 export const getters = {
   userComponentsArr: state => {
-    return state.mainNav.map(item => item.url)
+    return state.mainNav.map(item => item.link)
   },
-  userReportArr: state => {
-    return state.mainNav.map(item => item.name)
+  userReport: state => {
+    return state.mainNav
+      .filter(item => item.link.includes('report'))
+      .map(item => ({
+        title: item.name,
+        name: item.link.split('/')[1]
+      }))
+  },
+  userGraph: state => {
+    return state.mainNav
+      .filter(item => item.link.includes('graph'))
+      .map(item => ({
+        title: item.name,
+        name: item.link.split('/')[1]
+      }))
   }
-  // getReportTitle: state => name => {
-  //   return state.mainNav.filter(item => item.name === name)[0].link
-  // }
 }

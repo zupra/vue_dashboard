@@ -7,7 +7,7 @@
   //- pre toolbar:{{toolbar}}
 
   fieldset
-    legend Доступные поля <b>{{ name }}</b>
+    legend Доступные поля <b>{{ title }}</b>
 
     Calendar_period(
       @period="v =>Period=v",
@@ -51,6 +51,7 @@
 
       //- :fields = "json_fields"
       JsonExcel(
+        style="display: inline-block"
         :data="data_table.rows"
         :name="`${title}.xls`"
       )
@@ -59,21 +60,29 @@
 
     //- :lineNumbers="true",
     VueGoodTable(
+      v-if="!data_table.remote"
       :columns="data_table.columns",
       :rows="data_table.rows",
       :search-options="{enabled: true}",
-      :pagination-options="{perPage: 50, perPageDropdown: [10, 100, 500, 1000, 3000, 5000], enabled: true, mode: 'records', nextLabel: 'туда', prevLabel: 'Сюда', rowsPerPageLabel: 'Выводить на страницу по:', ofLabel: 'из', allLabel: 'Все'}"
+      :pagination-options="{enabled: true, mode: 'records', perPage: 50, perPageDropdown: [10, 100, 500, 1000, 3000, 5000], nextLabel: 'туда', prevLabel: 'Сюда', rowsPerPageLabel: 'Выводить на страницу по:', ofLabel: 'из', allLabel: 'Все'}"
     )
 
-    //- vue-good-table(
-    //-   mode="remote"
-    //-   pagination-options="{
-    //-     enabled: true,
-    //-   }"
-    //-   :totalRows="totalRecords"
-    //-   :rows="rows"
-    //-   :columns="columns"
-    //- )
+
+    //- :pagination-options="{enabled: true, mode: 'pages'}"
+    VueGoodTable(
+      v-if="data_table.remote"
+      mode="remote"
+      @on-page-change="onPageChange"
+      @on-sort-change="onSortChange"
+      @on-column-filter="onColumnFilter"
+      @on-per-page-change="onPerPageChange"
+
+      :search-options="{enabled: true}",
+      :pagination-options="{enabled: true, mode: 'pages', perPage: 100, perPageDropdown: [10, 100, 500, 1000, 3000, 5000]}"
+      :totalRows="data_table.totalRecords"
+      :rows="data_table.rows"
+      :columns="data_table.columns"
+    )
 
 </template>
 
@@ -88,37 +97,10 @@ import JsonExcel from 'vue-json-excel'
 export default {
   name: 'Report',
   validate({ store, params }) {
-    return store.getters['user/userReportArr'].includes(params.name)
-  },
-  // asyncData({ store, params, error }) {
-  //   if (!store.getters['user/userReportArr'].includes(params.name)) {
-  //     return error({ message: 'Недоступно', statusCode: 404 })
-  //   }
-  //   return { params: params }
-  // },
-
-  asyncData({ params }) {
-    return params
-  },
-  /*
-  async asyncData({ app, params }) {
-    const { data } = await app.$axios.get(
-      `http://betclub.com/atlas/report/index/${params.name}`
+    return store.getters['user/userReport'].some(
+      item => item.name == params.name
     )
-    return console.log(data)
-    {
-      params,
-      // toolbar: data.toolbar,
-      columns: data.toolbar.columns,
-      checkedСolumns: data.toolbar.columns,
-      // data_table: data.data_table
-      data_table: {
-        columns: data.data_table.columns,
-        rows: data.data_table.rows
-      }
-    }
   },
-  */
   components: {
     Calendar_period,
     VueGoodTable,
@@ -127,49 +109,69 @@ export default {
   },
   data() {
     return {
+      //name: '', //params.name
       data_table: {
-        columns: [],
-        rows: []
+        // columns: [],
+        // rows: [],
+        remote: false
+        // totalRecords: 0
       },
+      /*
       toolbar: {
         columns: {}
       },
+      */
 
       Period: {},
       columns: [],
       checkedСolumns: [],
 
       spinner: false,
-      fullscreen: false
+      fullscreen: false,
+
+      // === !!! HERE IF mode="remote" ======
+      serverParams: {
+        columnFilters: {},
+        sort: {
+          field: '',
+          type: ''
+        },
+        page: 1,
+        perPage: 1000
+      }
     }
   },
-  computed: {
-    ...mapGetters({
-      userReportArr: 'user/userReportArr'
-    }),
-    newColumns() {
-      return this.checkedСolumns.map(i => i.k)
-    },
-    title() {
-      return this.$store.state.user.mainNav.filter(
-        item => item.name === this.name
-      )[0].link
-    }
-  },
-  created() {
-    this.$axios
-      .$get(
-        `http://betclub.com/atlas/report/index/${this.name}?token=${
-          this.$store.state.user.token
-        }`
-      )
+  asyncData({ app, params, error }) {
+    return app.$axios
+      .$get(`http://betclub.com/atlas/report/index/${params.name}`)
       .then(res => {
-        this.toolbar = res.data.toolbar
-        this.columns = this.checkedСolumns = res.data.toolbar.columns
-        this.data_table = res.data.data_table
+        // console.log(app)
+        return {
+          name: params.name,
+          toolbar: res.data.toolbar,
+          columns: res.data.toolbar.columns,
+          checkedСolumns: res.data.toolbar.columns,
+          data_table: res.data.data_table
+        }
+      })
+      .catch(e => {
+        error({ statusCode: 404, message: `Ошибка report ${params.name}` })
       })
   },
+  computed: {
+    title() {
+      return this.$store.getters['user/userReport'].filter(
+        item => item.name === this.name
+      )[0].title
+    },
 
+    // ...mapGetters({
+    //   userReportArr: 'user/userReportArr'
+    // }),
+    newColumns() {
+      return this.checkedСolumns.map(i => i.k)
+    }
+  },
   methods: {
     toggleFullScreen() {
       this.$refs['fullscreen'].toggle()
@@ -189,7 +191,6 @@ export default {
       this.spinner = true
       const formData = new FormData()
       formData.append('columns', JSON.stringify(arr))
-      // formData.append('columns', JSON.stringify(['rng_id', 'by_bonus']))
       // const data = JSON.stringify({ columns: ['game_id'] })
       this.$axios
         .$post(`http://betclub.com/atlas/report/index/${this.name}`, formData)
@@ -198,18 +199,67 @@ export default {
           // setTimeout(() => (this.spinner = false), 700)
           this.spinner = false
         })
+    },
+    // ¯\_(ツ)_/¯ ### HERE IF mode="remote" ### ¯\_(ツ)_/¯
+    updateParams(newProps) {
+      console.log(newProps)
+      this.serverParams = Object.assign({}, this.serverParams, newProps)
+    },
+    onPageChange(params) {
+      this.updateParams({ page: params.currentPage })
+      this.loadItems()
+    },
+    onPerPageChange(params) {
+      this.updateParams({ perPage: params.currentPerPage })
+      this.loadItems()
+    },
+    onSortChange(params) {
+      console.log(params)
+
+      this.updateParams({
+        sort: {
+          type: params[0].type,
+          field: params[0].field
+        }
+        // sort: {
+        //   type: params.sortType,
+        //   field: this.data_table.columns[params.columnIndex].field
+        // }
+      })
+      this.loadItems()
+    },
+    onColumnFilter(params) {
+      this.updateParams(params)
+      this.loadItems()
+    },
+    // rows from server
+    loadItems() {
+      // getFromServer(this.serverParams).then(response => {
+      //   this.totalRecords = response.totalRecords
+      //   this.rows = response.rows
+      // })
+
+      const formData = new FormData()
+      formData.append('serverParams', JSON.stringify(this.serverParams))
+      this.$axios
+        .$post(`http://betclub.com/atlas/report/index/${this.name}`, formData)
+        .then(res => {
+          console.log(res.data)
+          this.data_table = res.data.data_table
+          // this.data_table.totalRecords = res.data.data_table.totalRecords
+          // this.data_table.rows = res.data.data.data_table.rows
+        })
     }
   }
 }
 </script>
 
 
-<style lang="stylus">
+<doc lang="stylus">
 
 // thead th
 //   position sticky
 //   top 0
-
 .vgt-wrap__footer
   display flex
   justify-content: space-between;
@@ -233,12 +283,12 @@ export default {
   &-asc
     &:before
       content '↓ '
-</style>
+</doc>
 
 
 
 
-<doc>
+<style>
 /* */
 .vgt-right-align {
   text-align: right;
@@ -917,4 +967,4 @@ table.vgt-table tr.clickable:hover {
   opacity: 0.3;
   /* Firefox */
 }
-</doc>
+</style>
