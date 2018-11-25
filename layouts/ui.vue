@@ -34,7 +34,7 @@
 
         nav
           a(
-            v-for="hash,i in ['Цвет','Typography','MaskedInput','SwitchTgl','Dropdown','Calendar','Pagination','ShadowPoligon','Card','Multifilter','Modal','Expander','Buttons','Checkbox-Radio','Input-EL','Table','Иконки']",
+            v-for="hash,i in ['Цвет','MaskedInput','SwitchTgl','Dropdown','UiSelect','Multifilter','Card','Pagination','Calendar','ShadowPoligon','Modal','Expander','Buttons','Checkbox-Radio','Input-EL','Table','Typography','Иконки']",
             :href="`/UI#${hash}`"
             :key="i"
             :class="{'nuxt-link-exact-active':i == hashActive}"

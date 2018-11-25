@@ -1,6 +1,14 @@
 <template lang="pug">
 .Wrap
 
+  <divider title="Цвет" />
+  #palette
+    each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#C7CEDE','#3c4858','#34495e','#568DA6']
+      figure
+        div(style="width:5em;height:4em;background-color:"+clr)
+        figcaption #{clr}
+
+
   <divider title="MaskedInput" />
   pre {{phone_number}}
   TheMask(
@@ -79,35 +87,14 @@
     MultifilterTest
 
 
-  <divider title="Calendar" />
-  Calendar_period
-  hr
-  span Input Date &nbsp;
-    InpDate
-  span &nbsp; Input Month &nbsp;
-    InpMonth
-  hr.H1
-  .Flex_wr
-    .col
-      Calendar
-    .col
-      Calendar_month
+  <divider title="UiSelect" />
+  UiSelectTest
 
+  <divider title="Multifilter" />
+  MultifilterTest
 
   <divider title="Pagination" />
   PaginationTest
-  hr
-  UiSelectTest
-
-  <divider title="Цвет" />
-  #palette
-    each clr in ['#ed5565','#26a69a','#3498db','#ff9800','#477dca','#dee2e6','#C7CEDE','#3c4858','#34495e','#568DA6']
-      figure
-        div(style="width:5em;height:4em;background-color:"+clr)
-        figcaption #{clr}
-
-  <divider title="ShadowPoligon" />
-  ShadowPoligon
 
   <divider title="Card" />
   .Flex_wr
@@ -129,8 +116,21 @@
         each item in ['Радио Best FM','Радио ENERGY','Rock FM 95.2','Радио ПАССАЖ','Радио Maximum','Авторадио','Зайцев FM']
           li #{item}
 
-  <divider title="Multifilter" />
-  MultifilterTest
+
+  <divider title="Calendar" />
+  Calendar_period
+  hr
+  span Input Date &nbsp;
+    InpDate
+  span &nbsp; Input Month &nbsp;
+    InpMonth
+  hr.H1
+  .Flex_wr
+    .col
+      Calendar
+    .col
+      Calendar_month
+
   <divider title="Modal" />
   ModalTest
   <divider title="Expander" />
@@ -144,6 +144,9 @@
   br
   hr
   br
+
+  <divider title="ShadowPoligon" />
+  ShadowPoligon
 </template>
 
 

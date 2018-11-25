@@ -91,19 +91,11 @@ export default {
   border 1px solid #CCC
   padding: 1em
   background: #EEE
-.height_2x
-  grid-row-end: span 2
-
-.box
-.flex
   display: flex
-.box
   flex-direction: column
   justify-content: space-between;
 
-.flex
-  flex 1
-  img
-    margin: auto
+.height_2x
+  grid-row-end: span 2
 
 </style>

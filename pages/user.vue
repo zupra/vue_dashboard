@@ -39,10 +39,9 @@
 
   fieldset
     legend legend
-    .field-group
-      each item in ['Логин','Пароль','Группа','Имя','Фамилия','Отчество','Зал','Регион','Департамент']
-        label #{item}
-          input(placeholder=""+item)
+    each item in ['Логин','Пароль','Группа','Имя','Фамилия','Отчество','Зал','Регион','Департамент']
+      label.field #{item}
+        input(placeholder=""+item)
 
   InpDate
   ul

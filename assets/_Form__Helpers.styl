@@ -36,12 +36,28 @@ label
     display grid
 
 
-.field-group
-  label
-  input
-    display: block
-  label
-    margin-bottom: .5em
+.field
+  position relative
+  font-family: 'Roboto Condensed', sans-serif;
+  display flex
+  flex-direction column
+  margin-bottom: 1rem
+  // line-height 1.4
+  .error
+    position absolute
+    top 100%
+    font-size 0.8rem
+    color #ed5565
+    // line-height 1.2
+    &:before
+      position absolute
+      top 0
+      left -1.4em
+      content: '😳'
+      font-size 1rem
+
+  .is-invalid
+    border-color #ed5565 !important
 
 
 

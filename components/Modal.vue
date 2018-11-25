@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 
 $bg = #f1f1f1;
 
@@ -90,7 +90,7 @@ $bg = #f1f1f1;
   .body
     background #f7f7f7
     padding 1rem 1.5rem;
-    line-height 1.2rem
+    //line-height 1.2rem
 
   .actions
     text-align right
@@ -126,7 +126,7 @@ $bg = #f1f1f1;
 .lModal
 .rModal
   //overflow overlay
-  padding 1em
+  padding 0 1em 1em
   max-width 400px
   //FIX
   align-self start

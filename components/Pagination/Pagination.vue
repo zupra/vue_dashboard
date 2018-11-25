@@ -82,10 +82,11 @@ export default {
     display flex
     flex-wrap wrap
     justify-content center
+    .Card
+      margin 1em
 
   &_Actions
-    // display: flex;
-    // justify-content: space-between;
+    //margin 1em
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(200px, auto));

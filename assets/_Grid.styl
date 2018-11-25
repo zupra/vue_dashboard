@@ -2,6 +2,9 @@
 .col
   flex 1
 $MW = 600px
+
+.Flex_wr
+  margin-bottom 1em
 @media (min-width: $MW)
   .Flex_wr
     display flex
@@ -23,11 +26,15 @@ $MW = 600px
 //   align-items: flex-start
 
 
-.Row
+.flex
   display flex
-  &.start
+  &.x_start
     justify-content: flex-start
-  &.end
+  &.x_end
     justify-content: flex-end
-  &.center
+  &.x_center
     justify-content: center
+  &.x_sb
+    justify-content space-between
+  &.y_center
+    align-items center

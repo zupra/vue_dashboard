@@ -1,6 +1,6 @@
 <template lang="pug">
 .MainFullWidth
-  h1 Loyalty
+  h1 Программа лояльности
   .form-line
     span Регион &nbsp;
       select.lg
@@ -21,54 +21,47 @@
     title="set CARD N"
   )
     .form-group
-      label title
-        input
-      label description
-        textarea
-      .table-responsive
-        table
+    label.field Статус карты
+      input.lg
+    label.field Описание
+      textarea.lg
+
+    label.field Расчёт
+      table
+        tr
+          each th in ['TH','TH']
+            th #{th}
+        each _,i in Array(10)
           tr
-            each _,i in Array(2)
-              th thead_#{i+1}
-          each _,i in Array(10)
-            tr
-              td data_#{i+1}
-              td
-                input(value="50", style="width:55px;text-align:center")
-      div карта
-        br
-        input(type="file")
-        br
-        img(src="https://imgplaceholder.com/240x180")
+            td data_#{i+1}
+            td.td_buttonGroup
+              input(value="50", style="width:55px;text-align:center")
+    label.field IMG карты
+      input(type="file")
+      img(src="https://imgplaceholder.com/240x180")
 
 
 
   Modal(
     :show.sync="showModal_TD"
     position="lModal"
-    title="Стоимость услуги"
+    title="Услуга"
   )
-    h5 title
-    input(value="title")
-    br
-    br
-    h5 Описание
-    textarea(
-      style="width: 100%"
-    ) Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo tenetur. Eligendi eveniet nobis dolorem molestiae deleniti reprehenderit laudantium, explicabo illo inventore
-    br
-    br
-    select.lg
-      option Action 1
-      option Action 2
-      option Action 3
-      option Action 4
-    br
-    br
-    h5 карточка услуги
-    input(type="file")
-    br
-    img(src="https://imgplaceholder.com/240x180")
+
+
+    label.field Имя услуги
+      input.lg(value="title")
+    label.field Описание
+      textarea.lg Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo.
+    label.field Действие
+      select.lg
+        option Action 1
+        option Action 2
+        option Action 3
+        option Action 4
+    label.field Карточка услуги
+      input(type="file")
+      img(src="https://imgplaceholder.com/240x180")
 
 
 
@@ -82,32 +75,34 @@
         style="padding: 1em 1em .5em"
       )
         h4 Подкатегории
-        p эконом &nbsp;
+        p.flex.x_sb.y_center эконом &nbsp;
           SwitchTgl
-        p комфорт &nbsp;
+        p.flex.x_sb.y_center комфорт &nbsp;
           SwitchTgl
-        p Vip &nbsp;
+        p.flex.x_sb.y_center Vip &nbsp;
           SwitchTgl
       .Card(
         style="padding: 1em 1em .5em"
       )
         h4 Регионы
 
-        p RU off-Line &nbsp;
+        p.flex.x_sb.y_center RU off-Line &nbsp;
           SwitchTgl
-        p RU on-Line &nbsp;
+        p.flex.x_sb.y_center RU on-Line &nbsp;
           SwitchTgl
-        p KZ off-Line &nbsp;
+        p.flex.x_sb.y_center KZ off-Line &nbsp;
           SwitchTgl
-        p KZ on-Line &nbsp;
+        p.flex.x_sb.y_center KZ on-Line &nbsp;
           SwitchTgl
-    h5 Описание
-    textarea(
-      style="width: 100%"
-    ) Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo tenetur. Eligendi eveniet nobis dolorem molestiae deleniti reprehenderit laudantium, explicabo illo inventore
-    p Услуга стоит &nbsp;
-      input(type="number", value="50")
-      | &nbsp; баллов
+
+    label.field Описание услуги
+      textarea.lg(
+        style="width: 100%"
+      ) Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo accusamus impedit cumque repudiandae tempora blanditiis, similique reiciendis explicabo tenetur. Eligendi eveniet nobis dolorem molestiae deleniti reprehenderit laudantium, explicabo illo inventore
+    label.field Цена услуги
+      span
+        input.lg(type="number", value="50")
+        | &nbsp; баллов
 
 
 
