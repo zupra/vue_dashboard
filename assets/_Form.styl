@@ -69,7 +69,7 @@ textarea
 
 input
 select
-.btn, button
+.btn, button, .btn_icon
   vertical-align: middle;
 
 
@@ -123,6 +123,22 @@ textarea
 
 
 // === BUTTON ===
+
+
+$CLR()
+  &.red
+    background: $red
+    &:hover
+      background $red + 20%
+  &.green
+    background: $green
+    &:hover
+      background $green + 20
+  &.orange
+    background $orange
+    &:hover
+      background $orange + 20% //#eea236 - 10
+
 $fill_Mod()
   &.fill
     &.lite
@@ -130,18 +146,7 @@ $fill_Mod()
       background: snow
       &:hover
         text-decoration underline
-    &.red
-      background: $red
-      &:hover
-        background $red + 20%
-    &.green
-      background: $green
-      &:hover
-        background $green + 20
-    &.orange
-      background $orange
-      &:hover
-        background $orange + 20% //#eea236 - 10
+    $CLR()
 
 $flat_Mod()
   &.flat
@@ -207,7 +212,10 @@ $outline_Mod()
   // display inline-block
   white-space nowrap
   text-decoration none
-.btn, button
+
+.btn_icon
+.btn
+button
   // -webkit-appearance: button;
   // line-height: 1
   display: inline-flex
@@ -215,23 +223,34 @@ $outline_Mod()
   justify-content: center
 
   $shadow_button()
-  border: 1px solid transparent
   cursor: pointer
   user-select: none
   transition: background 0.3s
-
-  //default
+  //base default
   background: $blue
   color: #FFF
-  &:active
-    transform: translateY(2px)
   &:hover
     background $blue + 20
-  //icon
-  img, svg
-    margin-right: .5em
+  &:active
+    transform: translateY(2px)
 
+.btn_icon
+  background: $blue //#3498db
+  margin-right: 4px
+  border-radius .3em
+  padding: 4px
+  $CLR()
+
+
+
+.btn, button
+  border: 1px solid transparent
   $fill_Mod()
   $flat_Mod()
   $outline_Mod()
   $size_Mod()
+
+//icon
+.btn, button
+  .icon
+    margin-right: .5em

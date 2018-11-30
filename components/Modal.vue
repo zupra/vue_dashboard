@@ -2,6 +2,8 @@
 .Modal-rootOverlay(v-show='show', @click.self='close')
   .Modal-Card(:class='[mod, position]')
     .title(v-if='title') {{ title }}
+    .slot_Title
+      slot(name='title')
     .body
       slot
     .actions
@@ -58,6 +60,12 @@ export default {
 <style lang="stylus">
 
 $bg = #f1f1f1;
+
+.slot_Title *
+  margin: 1rem 1.5rem;
+.rModal, .lModal
+  .slot_Title *
+    margin: 1rem 0;
 
 .Modal
   &-rootOverlay

@@ -1,17 +1,17 @@
 <template lang="pug">
 
-.Multifilter
-  .Multifilter-search
+.BigSelect
+  .BigSelect_search
     .Search-hasReset
       .Search_Reset(v-show="keyword", @click="keyword=''")
       input.Search.lg(v-model="keyword", placeholder="Искать в списке")
 
-  .Multifilter-list
+  .BigSelect_list
     label(v-for="item in filteredData", :key="item")
       input(type="checkbox", name="checkboxGroup", :value="item", v-model="selected" )
       span(v-html="mark(item)")
     .ifNull(v-show="filteredData.length == 0", @click="keyword=''") не найдено
-  .Multifilter-footer
+  .BigSelect_footer
     .Selected
       i(v-for="item,i in selected" @click="selected.splice(i,1)") {{' '+item}}
     .btn(:disabled="!selected.length") ОК
@@ -51,24 +51,24 @@ export default {
 
 <style lang="stylus">
 
-.Multifilter
+.BigSelect
   background #FFF
   box-shadow: 0 1px 8px rgba(0,0,0,.25);
   width 240px
 
-  &-search
-  &-footer
+  &_search
+  &_footer
     padding .7em
-  &-search
+  &_search
     input
       width 100%
-  &-footer
+  &_footer
     padding-top 5px
     overflow: auto;
     .btn
       margin-top: .5em;
       float right
-  &-list
+  &_list
     padding .5em 0
     border-top 1px solid #EEE
     border-bottom 1px solid #EEE
@@ -87,7 +87,7 @@ export default {
         color #477dca
         background #efefef
 
-.Multifilter
+.BigSelect
   .ifNull
     cursor pointer
     text-align center

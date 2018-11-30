@@ -75,7 +75,7 @@ module.exports = {
   ** Axios module configuration
   */
   env: {
-    API_URL: 'http://localhost:3000/api/'
+    API_URL: 'https://atlas.inaccurate.ru/'
   },
   axios: {
     baseURL: process.env.API_URL || 'http://localhost:3005/'

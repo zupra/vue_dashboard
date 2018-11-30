@@ -21,6 +21,7 @@ export default {
     notice: {
       type: Object, //type, title, body, id(for key)
       required: true
+      // validator: prop => [].includes(prop)
     }
   },
   data() {

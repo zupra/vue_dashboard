@@ -83,15 +83,15 @@
       a.active(href="#") Lorem ipsum
 
   Dropdown
-    .btn.lg(slot="btn") Dropdown Multifilter
-    MultifilterTest
+    .btn.lg(slot="btn") Dropdown BigSelect_many
+    BigSelect_manyTest
 
 
   <divider title="UiSelect" />
   UiSelectTest
 
-  <divider title="Multifilter" />
-  MultifilterTest
+  <divider title="BigSelect_many" />
+  BigSelect_manyTest
 
   <divider title="Pagination" />
   PaginationTest
@@ -152,7 +152,7 @@
 
 <script>
 import UiSelectTest from '~/components/UiSelectTest.vue'
-import MultifilterTest from '~/components/MultifilterTest.vue'
+import BigSelect_manyTest from '~/components/BigSelect/BigSelect_manyTest.vue'
 import ModalTest from '~/components/ModalTest.vue'
 import ExpanderTest from '~/components/ExpanderTest.vue'
 import Divider from '~/components/Divider.vue'
@@ -181,7 +181,7 @@ export default {
     Divider,
     ModalTest,
     ExpanderTest,
-    MultifilterTest,
+    BigSelect_manyTest,
     Dropdown,
     ShadowPoligon,
     Calendar,

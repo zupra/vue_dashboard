@@ -1,6 +1,11 @@
 <template lang="pug">
 
 #layout
+  //- @notice="v =>notice=v",
+  Notification(
+    @notice="notice = $event"
+    :notice="notice"
+  )
   #topNav
     #burger(@click="showSidebar = !showSidebar")
       svg(
@@ -87,15 +92,18 @@
 <script>
 import Radio from '~/components/Radio.vue'
 import Dropdown from '~/components/Dropdown.vue'
+import Notification from '~/components/Notification.vue'
 
 export default {
   // middleware: 'user',
   components: {
     Radio,
-    Dropdown
+    Dropdown,
+    Notification
   },
   data() {
     return {
+      notice: {},
       pages: [
         { url: '/UI', name: 'UI doc' },
         { url: '/imgCropper', name: 'image Cropper' },
@@ -104,7 +112,7 @@ export default {
         { url: '/grid', name: 'Grid' },
         { url: '/modules', name: 'modules' },
         { url: '/user', name: 'user(редактирование)' },
-        { url: '/loyalty', name: 'Лояльность' },
+        { url: '/loyalty_test', name: 'Лояльность' },
         { url: '/protect', name: 'protection' }
       ],
       showSidebar: true

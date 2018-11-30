@@ -18,18 +18,29 @@ section
     .form-line
       each styl in ['btn','btn fill red','btn fill green','btn fill orange']
         div(class=""+styl)
-          img(src="~static/img/spinner_btn.svg")
+          img.icon(src="~static/img/spinner_btn.svg")
           | #{styl}
     .form-line
       //- each icon in ['user-plus','alert-triangle','bell','gift']
       .btn(v-for="icon in ['user-plus','alert-triangle','bell','gift','camera','phone-call']")
-        img(:src="'https://icongr.am/feather/'+icon+'.svg?size=18&color=ffffff'")
+        img.icon(:src="'https://icongr.am/feather/'+icon+'.svg?size=18&color=ffffff'")
         | icon {{icon}}
 
     .form-line
       .btn.lg(v-for="icon in ['align-justify','dollar-sign','mail','paperclip']")
-        img(:src="'https://icongr.am/feather/'+icon+'.svg?size=22&color=ffffff'")
+        img.icon(:src="'https://icongr.am/feather/'+icon+'.svg?size=22&color=ffffff'")
         | icon {{icon}}
+
+    .Tag btn_icon
+    .form-line
+      .btn_icon(v-for="icon in ['settings','eye-hide','cursor-hand-click','tree-view','process-on-vm']")
+        img.icon(:src="'https://icongr.am/clarity/'+icon+'.svg?size=24&color=ffffff'")
+    each styl in ['red','green','orange']
+      .form-line
+        .btn_icon(class=""+styl)(v-for="icon in ['settings','eye-hide','cursor-hand-click','tree-view','process-on-vm']")
+          img.icon(:src="'https://icongr.am/clarity/'+icon+'.svg?size=24&color=ffffff'")
+
+
 
 
     .Tag button-group

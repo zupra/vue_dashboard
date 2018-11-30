@@ -1,7 +1,7 @@
 <template lang="pug">
 
 
-multifilter(:options="options")
+BigSelect_many(:options="options")
 
 </template>
 
@@ -206,10 +206,10 @@ const Data = sportBrands.map(brand => ({
   name: brand,
   qty: randomInt(2, 500)
 }))
-import Multifilter from '~/components/Multifilter.vue'
+import BigSelect_many from '~/components/BigSelect/BigSelect_many.vue'
 export default {
   components: {
-    Multifilter
+    BigSelect_many
   },
   data() {
     return {

@@ -5,44 +5,35 @@ fieldset
   pre {{selectedOption}}
 
   h1 Vue custom SELECT
-  p selectedOption: &nbsp;
-    b {{selectedOption.name}}
+  p selectedOption:
+    pre {{selectedOption}}
 
-  .Flex_wr
-    .col
-      .Tag size="sm"
 
-      //- :index="index",
-      //- @index="OnOptionIdx",
-      UiSelect(
-        name="ui_select"
-        :options="options",
-        @option="OnSelect",
-        size="sm"
-      )
-    .col
-      .Tag base
-      UiSelect(
-        name="ui_select"
-        :options="options",
-        @option="OnSelect"
-      )
-    .col
-      .Tag size="lg"
-      UiSelect(
-        name="ui_select"
-        :options="options",
-        @option="OnSelect",
-        size="lg"
-      )
-    .col
-      .Tag size="xl"
-      UiSelect(
-        name="ui_select"
-        :options="options",
-        @option="OnSelect",
-        size="xl"
-      )
+  //- .Flex_wr
+  //-   .col
+  //-     .Tag size="sm"
+  //-     UiSelect(
+  //-       :options="options",
+  //-       size="sm"
+  //-     )
+  //-   .col
+  //-     .Tag base
+  //-     UiSelect(
+  //-       :options="options",
+  //-     )
+  //-   .col
+  //-     .Tag size="lg"
+  //-     UiSelect(
+  //-       :options="options",
+  //-       size="lg"
+  //-     )
+  //-   .col
+  //-     .Tag size="xl + ripple"
+  //-     UiSelect(
+  //-       :ripple="true"
+  //-       :options="options",
+  //-       size="xl"
+  //-     )
 
 </template>
 
@@ -73,18 +64,15 @@ export default {
   },
   data() {
     return {
-      selectedOption: {
-        name: '',
-        value: null
-      },
+      selectedOption: null,
       options: options
       // index: null
     }
   },
   methods: {
-    OnSelect(option) {
-      this.selectedOption = option
-    }
+    // OnSelect(option) {
+    //   this.selectedOption = option
+    // }
     // OnOptionIdx(idx) {
     //   this.index = idx
     // }

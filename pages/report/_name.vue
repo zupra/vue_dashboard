@@ -13,7 +13,7 @@
       @period="v =>Period=v",
     )
     button.btn.fill.green(@click="updateDate(Period)")
-      img( v-show="spinner" src="~static/img/spinner_btn.svg")
+      img.icon( v-show="spinner" src="~static/img/spinner_btn.svg")
       | Обновить
     hr
 
@@ -32,7 +32,7 @@
     )
 
     .btn.lg.fill.green(@click="changeColumns(newColumns)")
-      img( v-show="spinner" src="~static/img/spinner_btn.svg")
+      img.icon( v-show="spinner" src="~static/img/spinner_btn.svg")
       | Обновить таблицу
 
 
