@@ -43,7 +43,6 @@ module.exports = {
   /*
   ** Global CSS
   */
-
   css: [{ src: '~assets/main.styl', lang: 'stylus' }],
 
   /*
@@ -64,8 +63,6 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org
-    // '@nuxtjs/auth' Doc: https://auth.nuxtjs.org
     '@nuxtjs/axios'
 
     // '@nuxtjs/localtunnel'
@@ -74,19 +71,16 @@ module.exports = {
   /*
   ** Axios module configuration
   */
-  env: {
-    API_URL: 'https://atlas.inaccurate.ru/'
-  },
+  // env: {
+  //   API_URL: 'https://atlas.inaccurate.ru/'
+  // },
   axios: {
+    // Doc https://github.com/nuxt-community/axios-module#options
+    // See https://github.com/klesarev/axios-rus-docs/tree/master/docs
     baseURL: process.env.API_URL || 'http://localhost:3005/'
 
-    // proxy: true,
-    // proxy: {
-    //   '/api': 'http://localhost:6060'
-    // }
-    // See https://github.com/nuxt-community/axios-module#options
-    // baseURL: process.env.NODE_ENV === 'development' ? 'http://1' : 'http://2' //process.env.API_URL || 'https://atlas.inaccurate.ru/'
-
+    // baseURL: process.env.NODE_ENV === 'development' ? '1' : '2'
+    // process.env.API_URL || 'https://atlas.inaccurate.ru/'
     // baseUrl: process.env.isDev ? '1' : '2'
   },
 
@@ -115,85 +109,4 @@ module.exports = {
   ** Router configuration
   */
   //https://toor.co/blog/nuxtjs-smooth-scrolling-with-hash-links/
-
-  /*
-  router: {
-    scrollBehavior: async (to, from, savedPosition) => {
-      if (savedPosition) {
-        return savedPosition
-      }
-
-      // const findEl = async (hash, x) => {
-      //   return (
-      //     document.querySelector(hash) ||
-      //     new Promise((resolve, reject) => {
-      //       if (x > 10) {
-      //         return resolve()
-      //       }
-      //       setTimeout(() => {
-      //         resolve(findEl(hash, ++x || 1))
-      //       }, 500)
-      //     })
-      //   )
-      // }
-
-      if (to.hash) {
-        //let el = await findEl(to.hash)
-        const el = document.querySelector(to.hash)
-        const area = document.querySelector('#main .scrollableArea')
-        if ('scrollBehavior' in document.documentElement.style) {
-          return area.scrollTo({
-            top: el.offsetTop,
-            behavior: 'smooth'
-          })
-        } else {
-          return area.scrollTo(0, el.offsetTop)
-        }
-      }
-
-      return { x: 0, y: 0 }
-    }
-  }
-  */
-
-  /*
-  router: {
-    scrollBehavior(to, from, savedPosition) {
-      if (savedPosition) {
-        return savedPosition
-      } else {
-        let position = {}
-        if (to.matched.length < 2) {
-          position = { x: 0, y: 0 }
-        } else if (
-          to.matched.some(r => r.components.default.options.scrollToTop)
-        ) {
-          position = { x: 0, y: 0 }
-        }
-        if (to.hash) {
-          position = { selector: to.hash }
-        }
-        return position
-      }
-    }
-  }
-*/
-
-  /*
-  router: {
-    scrollBehavior: function(to, from, savedPosition) {
-      return { x: 90, y: 0 }
-    }
-  }
-*/
-
-  // render: {
-  //   bundleRenderer: {
-  //     directives: {
-  //       custom1: function (el, dir) {
-  //         // something ...
-  //       }
-  //     }
-  //   }
-  // }
 }

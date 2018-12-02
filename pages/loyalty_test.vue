@@ -94,6 +94,7 @@
     //- hr
     //- center
     //- h4 Подкатегории
+
     table
       tr
         each th in ['#','Name','Img','Value']
@@ -101,8 +102,6 @@
       each _,i in Array(10)
         tr
           td
-            .btn_icon
-              img(src="https://icongr.am/feather/layers.svg?size=18&color=ffffff")
             .btn_icon.red
               img(src="https://icongr.am/feather/trash-2.svg?size=18&color=ffffff")
 
@@ -115,6 +114,10 @@
           //-   input(value="Img", style="width:70px;text-align:center")
           //- td.td_buttonGroup
           //-   input(value="Value", style="width:70px;text-align:center")
+
+    .btn
+      img.icon(src="https://icongr.am/feather/folder-plus.svg?size=18&color=ffffff")
+      | new
 
 
   Modal(:show.sync="showModal_CardExtras")
@@ -287,30 +290,30 @@ export default {
 
 
 <style lang="stylus">
-
 .brightStr
-  color: #000;
-  border-bottom: .2em solid gold
-
+  color #000
+  border-bottom .2em solid gold
 
 .item
   padding .5em 1em
+
   &+&
-    border-left: 1px solid #ccc;
+    border-left 1px solid #ccc
 
 .row_TH
   background #dee2e6 !important
-  border-bottom: none !important
+  border-bottom none !important
 
 .row
   &:hover
-    background #FFF //beige + 20 //#EEE
-  align-items: center
-  border-bottom: 1px solid #ccc;
-  display: grid
+    background #FFF // beige + 20 //#EEE
+
+  align-items center
+  border-bottom 1px solid #ccc
+  display grid
   // grid-template-columns: repeat(auto-fit, minmax(280px, auto))
   // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns repeat(5, 1fr)
   // grid-template-columns: minmax(200px, 3fr) 9fr;
   // grid-auto-rows: minmax(200px, auto)
   // grid-gap: 1em

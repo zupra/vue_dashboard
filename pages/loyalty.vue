@@ -109,6 +109,7 @@
     table.table_col.table_distance.table_striped
       tr
         th Категории:
+        // V-FOR cards
         th(
           v-for="card in cards",
           style="min-width: 150px"
@@ -117,6 +118,7 @@
           .btn_icon.green(@click="init_currCard(card, true)")
             img(src="https://icongr.am/feather/settings.svg?size=18&color=ffffff")
 
+      // V-FOR categories
       tr(v-for="(category, i) in categories")
         td.flex.x_sb.y_center
           div.flex
@@ -130,6 +132,8 @@
             style="line-height:1; white-space: nowrap;"
           ) {{category.name}}
 
+
+        // V-FOR extras
         td(v-for="td,j in extras[i]")
           .btn_icon(@click="init_currExtras(td)")
             img(src="https://icongr.am/feather/edit.svg?size=24&color=ffffff")
@@ -173,18 +177,20 @@ export default {
         points_max: '300',
         expires: '5'
       },
-      currCard: null, //{}
-      currExtras: null, //{}
+      //
       showModal_setCard: false,
       spinner_setCard: false,
+      currCard: null, //{}
+      //
       showModal_setExtras: false,
+      currExtras: null, //{}
+      //
       showModal_setCat: false,
-
-      // showModal_CardExtras: false,
+      //
       showModal_Region: false
     }
   },
-  async asyncData({ app, params }) {
+  async asyncData({ app }) {
     let { data } = await app.$axios.$get(
       'http://betclub.com/atlas/loyalty/list/'
     )
@@ -225,6 +231,12 @@ export default {
           this.regions = res.data.regions
         })
     },
+    updateList: async function() {
+      let { data } = await this.$axios.$get(
+        'http://betclub.com/atlas/loyalty/list/'
+      )
+      this.$data = Object.assign(this.$data, data)
+    },
     init_currCard(obj, get) {
       this.showModal_setCard = true
       this.currCard = obj
@@ -235,7 +247,15 @@ export default {
       this.currExtras = obj
       this.__getFullCurrExtras(obj)
     },
-
+    __getFullCard: async function() {
+      let API //subs cards
+      let LIST //cards, categories, regions
+      let { data } = await this.$axios.$get(
+        `http://betclub.com/atlas/loyalty/${API}`
+      )
+      this[LIST] = Object.assign(this[LIST], data)
+    },
+    /*
     __getFullCurrExtras(param) {
       const data = JSON.stringify(param)
       this.$axios
@@ -257,12 +277,11 @@ export default {
           this.currCard = { ...data }
         })
     },
-
+    */
     handleFileUpload(e) {
       /*
       this.file = this.$refs.fileInput.files[0]
-      console.log(e)
-      console.log(this.$refs)
+      console.log(e, this.$refs)
       */
       const files = e.target.files || e.dataTransfer.files
       if (!files) return
@@ -330,12 +349,6 @@ export default {
           alert('Удалено')
           this.updateList()
         })
-    },
-    updateList: async function() {
-      let { data } = await this.$axios.$get(
-        'http://betclub.com/atlas/loyalty/list/'
-      )
-      this.$data = Object.assign(this.$data, data)
     }
   }
 }
@@ -345,11 +358,7 @@ export default {
 
 
 <style lang="stylus">
-
 .brightStr
-  color: #000;
-  border-bottom: .2em solid gold
-
-
-
+  color #000
+  border-bottom .2em solid gold
 </style>
